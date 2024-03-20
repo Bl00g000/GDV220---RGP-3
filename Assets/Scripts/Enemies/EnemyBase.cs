@@ -31,16 +31,45 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!bWandering)
+        if (!bWandering && !bAttacking)
         {
             StartCoroutine(Wander());
         }
+
+        if (PlayerMovement.instance.gameObject.activeSelf)
+        {
+            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange)
+            {
+                if (bWandering)
+                {
+                    bWandering = false;
+                }
+
+                Attack();
+            }
+        }
+        else
+        {
+            bAttacking = false;
+        }
     }
 
+    // Basic run-attack
+    // Function to be overriden by child classes
+    // depending on how enemy attacks
     public virtual void Attack()
     {
-        // Function to be overriden by child classes
-        // depending on how enemy attacks
+        bAttacking = true;
+        navMeshAgent.speed = fAttackSpeed;
+        navMeshAgent.SetDestination(PlayerMovement.instance.transform.position);
+
+        float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
+        if (fDistFromPlayer < 1.0f)
+        {
+            // DEAL DAMANGE HERE
+            Debug.Log("DEATH TO THE PLAYER!");
+            PlayerMovement.instance.gameObject.SetActive(false);
+        }
     }
 
     protected Vector3 FindNewWanderPos()
