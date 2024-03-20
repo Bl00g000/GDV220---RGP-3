@@ -66,7 +66,7 @@ public class EnemyBase : MonoBehaviour
         float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
         if (fDistFromPlayer < 1.0f)
         {
-            // DEAL DAMANGE HERE
+            // DEAL DAMAGE HERE
             Debug.Log("DEATH TO THE PLAYER!");
             PlayerMovement.instance.gameObject.SetActive(false);
         }
