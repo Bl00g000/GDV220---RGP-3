@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Player2
-  - Player3
+  - WallBackhit
+  - Wall
+  - LightMap
   - 
   - 
   - 
@@ -34,9 +34,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - ObscurePostProcessMap
+  - ShadowMap
+  - ObscureMap
   m_SortingLayers:
   - name: Default
     uniqueID: 0
