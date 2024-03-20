@@ -201,6 +201,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &42671048 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7593643068584604371, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+    type: 3}
+  m_PrefabInstance: {fileID: 196093512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &196093512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -233,6 +239,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7593643067811654118, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+        type: 3}
+      propertyPath: vec3FollowTargetPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7593643068077876922, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
       propertyPath: m_Name
@@ -256,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 7593643068077876923, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7593643068077876923, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
@@ -630,7 +641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881778301}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -644,11 +655,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4875205927852220000, guid: 68469c62488425d4a8a3fe8c7798e22c,
-        type: 3}
-      propertyPath: fAttackSpeed
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 4875205927852220001, guid: 68469c62488425d4a8a3fe8c7798e22c,
         type: 3}
       propertyPath: m_RootOrder
@@ -709,11 +715,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4875205927852220004, guid: 68469c62488425d4a8a3fe8c7798e22c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68469c62488425d4a8a3fe8c7798e22c, type: 3}
 --- !u!1001 &8401317120223728517
@@ -723,16 +724,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1377078933176228541, guid: 254e5ba79aa31ac45bb828d79acec556,
-        type: 3}
-      propertyPath: m_AutoBraking
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1377078933176228541, guid: 254e5ba79aa31ac45bb828d79acec556,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8401317120382320128, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
       propertyPath: m_Name
@@ -740,9 +731,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8401317120382320140, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
-      propertyPath: fAttackSpeed
-      value: 50
-      objectReference: {fileID: 0}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 42671048}
     - target: {fileID: 8401317120382320143, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
       propertyPath: m_RootOrder

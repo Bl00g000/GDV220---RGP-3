@@ -25,7 +25,7 @@ public class CineCamFollowTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //PositionCamera();
+        PositionCamera();
     }
 
 

@@ -31,11 +31,6 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!bWandering && !bAttacking)
-        {
-            StartCoroutine(Wander());
-        }
-
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
             // Check if player is inside aggro range
@@ -44,6 +39,8 @@ public class EnemyBase : MonoBehaviour
                 if (bWandering)
                 {
                     bWandering = false;
+                    StopCoroutine(Wander());
+                    navMeshAgent.ResetPath();
                 }
 
                 Attack();
@@ -52,6 +49,11 @@ public class EnemyBase : MonoBehaviour
         else
         {
             bAttacking = false;
+        }
+
+        if (!bWandering && !bAttacking)
+        {
+            StartCoroutine(Wander());
         }
     }
 
@@ -85,8 +87,9 @@ public class EnemyBase : MonoBehaviour
 
     protected IEnumerator Wander()
     {
-        // Set new position to wander to
+        // Set wander speed and position
         navMeshAgent.speed = fWanderSpeed;
+
         Vector3 v3WanderPos = FindNewWanderPos();
         navMeshAgent.SetDestination(v3WanderPos);
         bWandering = true;

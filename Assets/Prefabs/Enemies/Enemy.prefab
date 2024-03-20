@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4875205927852220001
 Transform:
   m_ObjectHideFlags: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 4875205927852220002}
   fHealth: 10
   fWanderSpeed: 3
-  fAttackSpeed: 5
+  fAttackSpeed: 12
   fAggroRange: 50
   fWanderRadius: 20
 --- !u!33 &4875205927852220007

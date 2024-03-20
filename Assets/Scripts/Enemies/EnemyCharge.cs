@@ -4,33 +4,41 @@ using UnityEngine;
 
 public class EnemyCharge : EnemyBase
 {
+    public Transform playerTransform;
+
     public override void Attack()
     {
         if (!bAttacking)
         {
-            bAttacking = true;
+            bWandering = false;
             StartCoroutine(Charge());
         }
     }
 
     private IEnumerator Charge()
     {
+        bAttacking = true;
         navMeshAgent.speed = fAttackSpeed;
 
-        //navMeshAgent.isStopped = true;
+        Vector3 v3ChargeTargetPos = playerTransform.position;
+        navMeshAgent.SetDestination(v3ChargeTargetPos);
 
-        Debug.Log("Preparing to charge...");
+        // I want to first check if it's finished turning around to face player
+        // before pausing its movement along path for prep time
+        // BUT I HAVENT FIGURED THIS OUT YET - Teddy
+        navMeshAgent.isStopped = true;
+
         // Prep time (IT STOMPIN ITS FEETS!)
+        Debug.Log("Preparing to charge...");
         yield return new WaitForSeconds(3.0f);
 
-        navMeshAgent.SetDestination(PlayerMovement.instance.transform.position);
-        //navMeshAgent.isStopped = false;
+        navMeshAgent.isStopped = false;
 
         // Wait until charge is finished
-        yield return new WaitUntil(() => !navMeshAgent.hasPath);
+        yield return new WaitUntil(() => navMeshAgent.remainingDistance <= 1.0f);
+        navMeshAgent.ResetPath();
 
         //yield return new WaitForSeconds(3.0f);
-
         bAttacking = false;
     }
 }
