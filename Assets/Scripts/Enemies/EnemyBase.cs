@@ -7,10 +7,12 @@ public class EnemyBase : MonoBehaviour
 {
     [SerializeField] protected NavMeshAgent navMeshAgent;
 
+    public float fMaxHealth;
     public float fHealth;
     public float fWanderSpeed;
     public float fAttackSpeed;
     public float fAggroRange;
+    public float fSlowMultiplier;
 
     Vector3 v3StartingPosition;
     [SerializeField] float fWanderRadius = 20.0f;
@@ -18,12 +20,15 @@ public class EnemyBase : MonoBehaviour
     // States
     protected bool bWandering;
     protected bool bAttacking;
+    public bool bFlashlighted;
 
     // Start is called before the first frame update
     void Start()
     {
         bWandering = false;
         bAttacking = false;
+        bFlashlighted = false;
+        fSlowMultiplier = 1.0f;
 
         v3StartingPosition = transform.position;
     }
@@ -31,6 +36,14 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bFlashlighted)
+        {
+            fSlowMultiplier = 0.2f;
+        }
+        else
+        {
+            fSlowMultiplier = 1.0f;
+        }
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
             // Check if player is inside aggro range
@@ -55,6 +68,8 @@ public class EnemyBase : MonoBehaviour
         {
             StartCoroutine(Wander());
         }
+
+        bFlashlighted = false;
     }
 
     // Basic run-attack
@@ -63,7 +78,7 @@ public class EnemyBase : MonoBehaviour
     public virtual void Attack()
     {
         bAttacking = true;
-        navMeshAgent.speed = fAttackSpeed;
+        navMeshAgent.speed = fAttackSpeed * fSlowMultiplier;
         navMeshAgent.SetDestination(PlayerMovement.instance.transform.position);
 
         float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
@@ -88,7 +103,7 @@ public class EnemyBase : MonoBehaviour
     protected IEnumerator Wander()
     {
         // Set wander speed and position
-        navMeshAgent.speed = fWanderSpeed;
+        navMeshAgent.speed = fWanderSpeed * fSlowMultiplier;
 
         Vector3 v3WanderPos = FindNewWanderPos();
         navMeshAgent.SetDestination(v3WanderPos);
