@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] protected NavMeshAgent navMeshAgent;
 
     public float fHealth;
     public float fWanderSpeed;
@@ -16,8 +16,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] float fWanderRadius = 20.0f;
 
     // States
-    bool bWandering;
-    bool bAttacking;
+    protected bool bWandering;
+    protected bool bAttacking;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,7 @@ public class EnemyBase : MonoBehaviour
 
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
+            // Check if player is inside aggro range
             if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange)
             {
                 if (bWandering)
