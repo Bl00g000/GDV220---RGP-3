@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57505da05f21a994bbd46dda97e54f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadowRadius: 50
+  shadowRadius: 100
   shadowMap: {fileID: 1481018964}
   shadowCamera: {fileID: 1345419367}
   shadowProjector: {fileID: 2006407186}
