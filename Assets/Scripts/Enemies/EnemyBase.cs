@@ -31,8 +31,6 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(navMeshAgent.pathStatus);
-
         if (!bWandering)
         {
             StartCoroutine(Wander());
@@ -57,21 +55,18 @@ public class EnemyBase : MonoBehaviour
 
     protected IEnumerator Wander()
     {
-        // Return if this is already wandering
-        //if (bWandering) yield break;
-
+        // Set new position to wander to
+        navMeshAgent.speed = fWanderSpeed;
         Vector3 v3WanderPos = FindNewWanderPos();
         navMeshAgent.SetDestination(v3WanderPos);
         bWandering = true;
         
+        // Wait until path has been completed -- DIFFERENT FROM PATHSTATUS!!!
         yield return new WaitUntil(() => !navMeshAgent.hasPath);
 
         // Variable delay/pause before it wanders again
-
         yield return new WaitForSeconds(Random.Range(3.0f, 5.0f));
 
         bWandering = false;
-
-        
     }
 }
