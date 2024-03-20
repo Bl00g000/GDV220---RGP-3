@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     //public GameObject followTarget;     //Camera followtarget
 
     private Vector3 moveDirection;      //Move direction declaration
+    public Plane plane = new Plane(Vector3.up, 0);
+    public Vector3 mouseWorldPosition;
+    public Vector3 lookDirection;      //Look direction declaration
 
    // public Transform characterTransform;//Character transform
 
@@ -90,53 +93,20 @@ public class PlayerMovement : MonoBehaviour
         //Tick timers (fog, respawn)
         TickTimers();
 
-        //Get movement input
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        RotatePlayer();
+
+        MovePlayer();
+        
 
         //prevents overspeeding
-        SpeedControl();
+       // SpeedControl();
     }
 
     //Move player is here
     private void FixedUpdate()
     {
 
-        //Player movement catch (eg no move if respawning etc
-        if (canMove && (verticalInput != 0 || horizontalInput != 0))
-        {
-            // calculate movement direction
-            moveDirection = playerController.transform.forward * verticalInput + playerController.transform.right * horizontalInput;
-            moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
-            moveDirection.Normalize();
-            //moveDirection = new Vector3
-            //Turn character according to movement
-            RotateCharacter();
-            //if(verticalInput != 0 && horizontalInput != 0)
-            //{
-            //
-            //}
-            playerController.Move(moveDirection * Time.deltaTime * moveSpeed);
-
-            //Move player
-            //trackRigidBody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        }
-        else
-        {
-
-            //IsTurningLeft = false;
-            //IsTurningRight = false;
-        }
-
-        //SOUNDS PLAYING AND STOPING
-        //if (trackRigidBody.velocity.magnitude > 0.1f)
-        //{
-        //    //movementAudio.SetActive(true);
-        //}
-        //else
-        //{
-        //   // movementAudio.SetActive(false);
-        //}
+        
     }
 
 
@@ -152,31 +122,100 @@ public class PlayerMovement : MonoBehaviour
         //}
     }
 
-
-    private void RotateCharacter()
+    private void MovePlayer()
     {
-        //moveDirection.Normalize();
-        //
-        //Vector3 newFromDir = trackRigidBody.transform.forward;
-        //
-        //Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-        //Quaternion LerpedQuaternion = Quaternion.Lerp(trackRigidBody.rotation, targetRotation, Time.deltaTime * rotSpeed);
-        //
-        ////values for turning
-        //LerpValue = LerpedQuaternion.eulerAngles.y;
-        //TargetRotationValue = targetRotation.eulerAngles.y;
-        //
-        //
-        //trackRigidBody.MoveRotation(LerpedQuaternion);                        // Smooth rotation
-        //
-        ////clamp error
-        //if ((TargetRotationValue > 40 && TargetRotationValue < 50) || (TargetRotationValue > -2 && TargetRotationValue < 2))
+        //Get movement input
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+
+        //Player movement catch (eg no move if respawning etc
+        if (canMove && (verticalInput != 0 || horizontalInput != 0))
+        {
+            // calculate movement direction
+            //W MOVES TOWARDS CHARCATER FORWARD
+            moveDirection = playerController.transform.forward * verticalInput + playerController.transform.right * horizontalInput;
+            moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
+
+            //W MOVES TOWARD 
+            //////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////
+            //UNCOMMENT THIS TO SEE HOW MOVING TOWARDS THE MOUSE WORKS!!!!
+            moveDirection = new Vector3(horizontalInput, 0, verticalInput);
+            //////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
+            moveDirection.Normalize();
+
+            //Turn character according to movement
+            
+            //if(verticalInput != 0 && horizontalInput != 0)
+            //{
+            //
+            //}
+            playerController.Move(moveDirection * Time.deltaTime * moveSpeed);
+
+        }
+        else
+        {
+
+            //IsTurningLeft = false;
+            //IsTurningRight = false;
+        }
+
+        //SOUNDS PLAYING AND STOPpING
+        //if (trackRigidBody.velocity.magnitude > 0.1f)
         //{
-        //    if (LerpValue > 200)
-        //    {
-        //        TargetRotationValue += 360;
-        //    }
+        //    //movementAudio.SetActive(true);
         //}
+        //else
+        //{
+        //   // movementAudio.SetActive(false);
+        //}
+
+    }
+
+    private void RotatePlayer()
+    {
+
+        
+
+        float distance;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(plane.Raycast(ray, out distance))
+        {
+            mouseWorldPosition = ray.GetPoint(distance);
+        }
+
+        moveDirection.Normalize();
+        
+
+
+        Vector3 newFromDir = playerController.transform.forward;
+        
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(mouseWorldPosition.x - transform.position.x, 0, mouseWorldPosition.z - transform.position.z), Vector3.up);
+        Quaternion LerpedQuaternion = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotSpeed);
+        
+        //values for turning
+        LerpValue = LerpedQuaternion.eulerAngles.y;
+        TargetRotationValue = targetRotation.eulerAngles.y;
+
+        //transform.Rotate(lookDirection);
+        transform.Rotate(LerpedQuaternion.eulerAngles , Space.Self);//.MoveRotation(LerpedQuaternion);                        // Smooth rotation
+
+        transform.rotation = LerpedQuaternion;
+
+
+
+        //clamp error
+        if ((TargetRotationValue > 40 && TargetRotationValue < 50) || (TargetRotationValue > -2 && TargetRotationValue < 2))
+        {
+            if (LerpValue > 200)
+            {
+                TargetRotationValue += 360;
+            }
+        }
         //
         ////Bool checks for character animation
         //if (LerpValue < TargetRotationValue && Mathf.Abs(LerpValue - TargetRotationValue) > modelTurnForgiveness)

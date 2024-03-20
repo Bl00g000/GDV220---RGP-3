@@ -8,7 +8,7 @@ public class CineCamFollowTarget : MonoBehaviour
 {
     //Target rail location. resets to here every frame. 
     //Base: 0,15,0
-    public Vector3 vec3TargetRailPosition = new Vector3(0.0f, 25.0f, 0.0f);
+    public Vector3 vec3FollowTargetPosition = new Vector3(0.0f, 25.0f, -5.0f);
 
     //Refences to other things
     private CharacterController playerController;
@@ -19,18 +19,19 @@ public class CineCamFollowTarget : MonoBehaviour
     {
         cinecam = GetComponent<CinemachineVirtualCamera>();
         playerController = PlayerMovement.instance.GetComponent<CharacterController>();
+        PositionCamera();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PositionCamera();
+        //PositionCamera();
     }
 
 
 
     public void PositionCamera()
     {
-        transform.position = playerController.transform.position + vec3TargetRailPosition;
+        transform.position = playerController.transform.position + vec3FollowTargetPosition;
     }
 }
