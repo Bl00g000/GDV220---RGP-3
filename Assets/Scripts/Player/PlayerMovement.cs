@@ -24,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     //public GameObject followTarget;     //Camera followtarget
 
-    private Vector3 moveDirection;      //Move direction declaration
+    public Vector3 moveDirection;      //Move direction declaration
+   // public Vector3 moveDirection;      //Move direction declaration
     public Plane plane = new Plane(Vector3.up, 0);
     public Vector3 mouseWorldPosition;
     public Vector3 lookDirection;      //Look direction declaration
@@ -149,6 +150,8 @@ public class PlayerMovement : MonoBehaviour
             //////////////////////////////////////////////////////////////
             moveDirection.Normalize();
 
+
+
             //Turn character according to movement
             
             //if(verticalInput != 0 && horizontalInput != 0)
@@ -165,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             //IsTurningRight = false;
         }
 
-        playerController.Move(Vector3.up * Time.deltaTime * gravity);
+       // playerController.Move(Vector3.up * Time.deltaTime * gravity);
 
         //SOUNDS PLAYING AND STOPpING
         //if (trackRigidBody.velocity.magnitude > 0.1f)
@@ -183,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         
-
+        //Mouse to world point
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(plane.Raycast(ray, out distance))
