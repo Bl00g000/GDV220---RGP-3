@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyCharge : EnemyBase
 {
-    public Transform playerTransform;
-
     public override void Attack()
     {
         if (!bAttacking)
@@ -20,25 +18,16 @@ public class EnemyCharge : EnemyBase
         bAttacking = true;
         navMeshAgent.speed = fAttackSpeed;
 
-        Vector3 v3ChargeTargetPos = playerTransform.position;
-        navMeshAgent.SetDestination(v3ChargeTargetPos);
-
-        // I want to first check if it's finished turning around to face player
-        // before pausing its movement along path for prep time
-        // BUT I HAVENT FIGURED THIS OUT YET - Teddy
-        navMeshAgent.isStopped = true;
-
         // Prep time (IT STOMPIN ITS FEETS!)
         Debug.Log("Preparing to charge...");
         yield return new WaitForSeconds(3.0f);
 
-        navMeshAgent.isStopped = false;
+        // Charge at player position
+        Vector3 v3ChargeTargetPos = PlayerMovement.instance.transform.position;
+        navMeshAgent.SetDestination(v3ChargeTargetPos);
 
         // Wait until charge is finished
         yield return new WaitUntil(() => navMeshAgent.remainingDistance <= 1.0f);
         navMeshAgent.ResetPath();
-
-        //yield return new WaitForSeconds(3.0f);
-        bAttacking = false;
     }
 }
