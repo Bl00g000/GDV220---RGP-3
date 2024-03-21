@@ -1172,7 +1172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdadd913528f0964fab95521a832b303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vec3FollowTargetPosition: {x: 0, y: 15, z: -4}
+  vec3FollowTargetPosition: {x: 0, y: 15, z: -1}
+  vec3FollowTargetRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &7593643068077876922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1185,8 @@ GameObject:
   - component: {fileID: 7593643068077876923}
   - component: {fileID: 1926669454}
   - component: {fileID: 1926669456}
+  - component: {fileID: 6297152477191412696}
+  - component: {fileID: 6786838321003470207}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -1246,6 +1249,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fFlashLightDPS: 2
   bFlashLightActive: 0
+--- !u!114 &6297152477191412696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593643068077876922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e73ae1ba84c42b4f84dd42fd45cd114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  rotSpeed: 200
+  gravity: -9.8
+  respawnLocation: {fileID: 0}
+  playerController: {fileID: 0}
+  mouseWorldPosition: {x: 0, y: 0, z: 0}
+  lookDirection: {x: 0, y: 0, z: 0}
+  UIOverlayObject: {fileID: 0}
+  respawning: 0
+  LerpValue: 0
+  TargetRotationValue: 0
+  modelTurnForgiveness: 7
+--- !u!143 &6786838321003470207
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593643068077876922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7593643068351399167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,11 +1371,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7593643068584604371}
-  - component: {fileID: 7593643068584604360}
   - component: {fileID: 7593643068584604375}
   - component: {fileID: 7593643068584604374}
   - component: {fileID: 7593643068584604373}
-  - component: {fileID: 7593643068584604372}
   m_Layer: 0
   m_Name: TempPlayerCapsule
   m_TagString: Untagged
@@ -1360,29 +1403,6 @@ Transform:
   m_Father: {fileID: 7593643068077876923}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7593643068584604360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593643068584604370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e73ae1ba84c42b4f84dd42fd45cd114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rotSpeed: 10
-  respawnLocation: {fileID: 0}
-  playerController: {fileID: 0}
-  mouseWorldPosition: {x: 0, y: 0, z: 0}
-  lookDirection: {x: 0, y: 0, z: 0}
-  UIOverlayObject: {fileID: 0}
-  respawning: 0
-  LerpValue: 0
-  TargetRotationValue: 0
-  modelTurnForgiveness: 7
 --- !u!33 &7593643068584604375
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1446,24 +1466,6 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &7593643068584604372
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593643068584604370}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7593643069122858225
 GameObject:

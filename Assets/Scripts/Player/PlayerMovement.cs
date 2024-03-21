@@ -14,12 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 10.0f;
-    public float rotSpeed = 10.0f;
+    public float rotSpeed = 20.0f;
+    public float gravity = -9.8f;
 
     public GameObject respawnLocation;    //Spawn Location object
 
     //public Rigidbody trackRigidBody;    //RigidBody
-    public CharacterController playerController;    //CharacterController
+    [HideInInspector]public CharacterController playerController;    //CharacterController
 
     //public GameObject followTarget;     //Camera followtarget
 
@@ -163,6 +164,8 @@ public class PlayerMovement : MonoBehaviour
             //IsTurningLeft = false;
             //IsTurningRight = false;
         }
+
+        playerController.Move(Vector3.up * Time.deltaTime * gravity);
 
         //SOUNDS PLAYING AND STOPpING
         //if (trackRigidBody.velocity.magnitude > 0.1f)
