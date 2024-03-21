@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: ObscureMapPostProcess
+    passTag: ObscurePostProcessMap
     Event: 300
     filterSettings:
       RenderQueueType: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
-      stencilReference: 3
-      stencilCompareFunction: 4
+      stencilReference: 2
+      stencilCompareFunction: 3
       passOperation: 0
       failOperation: 0
       zFailOperation: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
-      stencilReference: 2
-      stencilCompareFunction: 4
+      stencilReference: 3
+      stencilCompareFunction: 3
       passOperation: 0
       failOperation: 0
       zFailOperation: 0
