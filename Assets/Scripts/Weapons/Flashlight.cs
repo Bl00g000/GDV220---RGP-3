@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,21 @@ public class Flashlight : MonoBehaviour
     Collider[] collisions;
     public bool bFlashLightActive = false;
 
+    public float fMaxCharge = 10.0f;
+    public float fChargeGainPerSecond = 2.5f;
+    public float fChargeDrainPerSecond = 2.5f;
+    float fCurrentCharge;
+
+    [Header("Keybinds")]
+    public KeyCode RechargeButton = KeyCode.R;
+
+    public event Action<bool> FlashLightToggle;
+
     // Start is called before the first frame update
     void Start()
     {
+        fCurrentCharge = fMaxCharge;
+
         playerVisionCone = gameObject.GetComponent<VisionCone>();
         pointsToPlane = gameObject.GetComponentInChildren<PointsToPlane>();
     }
@@ -20,14 +33,10 @@ public class Flashlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            bFlashLightActive = true;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            bFlashLightActive = false;
-        }
+        HandleInputs();
+        RechargeBattery();
+
+        
         
         collisions = Physics.OverlapSphere(gameObject.GetComponentInChildren<PlayerMovement>().transform.position, playerVisionCone.fFlashlightRange + 10);
         CheckForEnmiesHit();
@@ -52,5 +61,42 @@ public class Flashlight : MonoBehaviour
                 }
             }
         }
+    }
+
+    void HandleInputs()
+    {
+        // Recharge flashlight battery if held down and flashlight isn't currently on
+        if (Input.GetKeyDown(RechargeButton))
+        {
+            RechargeBattery();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            ActivateFlashLight();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            DeactivateFlashLight();
+        }
+    }
+
+    void RechargeBattery()
+    {
+        if (!bFlashLightActive)
+        {
+            Mathf.Clamp(fCurrentCharge += fChargeGainPerSecond * Time.deltaTime, 0, fMaxCharge);
+        }
+    }
+
+    void ActivateFlashLight()
+    {
+        FlashLightToggle?.Invoke(true);
+        bFlashLightActive = true;
+    }
+
+    void DeactivateFlashLight()
+    {
+        FlashLightToggle?.Invoke(false);
+        bFlashLightActive = false;
     }
 }
