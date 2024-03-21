@@ -7,6 +7,7 @@ using System.Data;
 using UnityEngine.UIElements;
 //using MPUIKIT;
 using Unity.VisualScripting;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float currentMoveSpeed = 10.0f;
     public float moveSpeed = 10.0f;
-    public float strafeModifier = 0.8f;
+    public float strafeModifier = 0.7f;
     public float reverseModifier = 0.6f;
     public float rotSpeed = 20.0f;
     public float gravity = -9.8f;
@@ -29,10 +30,19 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 moveDirection;      //Move direction declaration
     public Vector3 moveLookDiff = Vector3.zero;      //Move diff declaration
-    public Vector3 lookEulers = Vector3.zero;      //Move diff declaration
+    public Vector3 testInverseVec = Vector3.zero;      //Move diff declaration
+    public Vector3 testmovedirvec = Vector3.zero;      //Move diff declaration
+    public Vector3 testsubtractedVec3 = Vector3.zero;      //Move diff declaration
+    public Vector3 testsubtractedVec4 = Vector3.zero;      //Move diff declaration
+    //public Vector3 testsubtractedVec1 = Vector3.zero;      //Move diff declaration
+    //public Vector3 testsubtractedVec2 = Vector3.zero;      //Move diff declaration
+    
+    public Vector3 testaddedvec = Vector3.zero;      //Move diff declaration
+   // public Vector3 lookEulers = Vector3.zero;      //Move diff declaration
     public Plane plane = new Plane(Vector3.up, 0);
     public Vector3 mouseWorldPosition;
     public Vector3 lookDirection;      //Look direction declaration
+
 
    // public Transform characterTransform;//Character transform
 
@@ -119,15 +129,59 @@ public class PlayerMovement : MonoBehaviour
     private void SpeedControl() //From bloo
     {
 
+        currentMoveSpeed = moveSpeed;
+
+       testInverseVec = transform.InverseTransformDirection(Vector3.forward);
+        //testInverseVec = transform.InverseTransformDirection(lookDirection);
+
+        testmovedirvec = playerController.transform.forward;
+
+        //testsubtractedVec1 = testInverseVec - moveDirection;
+        //testsubtractedVec2 = moveDirection - testInverseVec;
+
+        testsubtractedVec3 =  moveDirection - testmovedirvec;
+        testsubtractedVec4 = testmovedirvec - moveDirection ;
+
+        testaddedvec = testmovedirvec + moveDirection ;
+        //Ab =  (float)testInverseVec.y - (float)moveDirection.y;
+        //Bb =   moveDirection.y - testInverseVec.y;
+        //Vb = testInverseVec.y + moveDirection.y;
+        //Db = testInverseVec.y;
         //moveLookDiff =  transform.rotation.eulerAngles;
 
         // calculate movement direction
-       // if(moveDirection.x)
-       // {
-       //
-       // }
+        if(Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
+        {
 
 
+            //testaddedvec = new Vector3(testaddedvec.y, 0.0f, testaddedvec.x);
+
+        }
+
+        if (Mathf.Abs(testaddedvec.x) < 1.0f)
+        {
+            //currentMoveSpeed *= strafeModifier;
+        }
+
+        if (Mathf.Abs(testaddedvec.z) < 1.0f)
+        {
+            currentMoveSpeed *= reverseModifier;
+        }
+
+
+
+
+        //Character is moving straight sideways
+        if (Mathf.Abs( moveDirection.x)  != 0  )
+         {
+           // currentMoveSpeed *= strafeModifier;
+         }
+         if(moveDirection.z < 0)
+         {
+            //currentMoveSpeed *= reverseModifier;
+         }
+
+         
 
     }
 
@@ -155,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
             moveDirection.Normalize();
 
             //changes speed depending on direction
-            SpeedControl();
+            //SpeedControl();
 
 
             //Turn character according to movement
@@ -165,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
             //
             //}
             playerController.Move(moveDirection * Time.deltaTime * currentMoveSpeed);
+            //playerController.
 
         }
         else
@@ -223,8 +278,11 @@ public class PlayerMovement : MonoBehaviour
         //Changes the look direction to be the player rotation
         lookDirection = playerController.transform.forward + playerController.transform.right;
         lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
+        lookDirection.Normalize();
 
-        lookEulers = transform.rotation.eulerAngles;
+        //lookEulers = transform.rotation.eulerAngles;
+
+        
 
         //clamp error
         //if ((TargetRotationValue > 40 && TargetRotationValue < 50) || (TargetRotationValue > -2 && TargetRotationValue < 2))
