@@ -13,7 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance;
 
     [Header("Movement")]
+    public float currentMoveSpeed = 10.0f;
     public float moveSpeed = 10.0f;
+    public float strafeModifier = 0.8f;
+    public float reverseModifier = 0.6f;
     public float rotSpeed = 20.0f;
     public float gravity = -9.8f;
 
@@ -25,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     //public GameObject followTarget;     //Camera followtarget
 
     public Vector3 moveDirection;      //Move direction declaration
-   // public Vector3 moveDirection;      //Move direction declaration
+    public Vector3 moveLookDiff = Vector3.zero;      //Move diff declaration
+    public Vector3 lookEulers = Vector3.zero;      //Move diff declaration
     public Plane plane = new Plane(Vector3.up, 0);
     public Vector3 mouseWorldPosition;
     public Vector3 lookDirection;      //Look direction declaration
@@ -114,14 +118,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl() //From bloo
     {
-        //Vector3 flatVel = new Vector3(trackRigidBody.velocity.x, 0f, trackRigidBody.velocity.z);
-        //
-        //// limit velocity if needed
-        //if (flatVel.magnitude > moveSpeed)
-        //{
-        //    Vector3 limitedVel = flatVel.normalized * moveSpeed;
-        //    trackRigidBody.velocity = new Vector3(limitedVel.x, trackRigidBody.velocity.y, limitedVel.z);
-        //}
+
+        //moveLookDiff =  transform.rotation.eulerAngles;
+
+        // calculate movement direction
+       // if(moveDirection.x)
+       // {
+       //
+       // }
+
+
+
     }
 
     private void MovePlayer()
@@ -134,10 +141,7 @@ public class PlayerMovement : MonoBehaviour
         //Player movement catch (eg no move if respawning etc
         if (canMove && (verticalInput != 0 || horizontalInput != 0))
         {
-            // calculate movement direction
-            //W MOVES TOWARDS CHARCATER FORWARD
-            moveDirection = playerController.transform.forward * verticalInput + playerController.transform.right * horizontalInput;
-            moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
+            
 
             //W MOVES TOWARD 
             //////////////////////////////////////////////////////////////
@@ -150,6 +154,8 @@ public class PlayerMovement : MonoBehaviour
             //////////////////////////////////////////////////////////////
             moveDirection.Normalize();
 
+            //changes speed depending on direction
+            SpeedControl();
 
 
             //Turn character according to movement
@@ -158,17 +164,18 @@ public class PlayerMovement : MonoBehaviour
             //{
             //
             //}
-            playerController.Move(moveDirection * Time.deltaTime * moveSpeed);
+            playerController.Move(moveDirection * Time.deltaTime * currentMoveSpeed);
 
         }
         else
         {
-
+            moveDirection = Vector3.zero;
             //IsTurningLeft = false;
             //IsTurningRight = false;
         }
 
-       // playerController.Move(Vector3.up * Time.deltaTime * gravity);
+        //Gravity
+        playerController.Move(Vector3.up * Time.deltaTime * gravity);
 
         //SOUNDS PLAYING AND STOPpING
         //if (trackRigidBody.velocity.magnitude > 0.1f)
@@ -194,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
             mouseWorldPosition = ray.GetPoint(distance);
         }
 
-        moveDirection.Normalize();
+        //moveDirection.Normalize();
         
 
 
@@ -213,15 +220,20 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = LerpedQuaternion;
 
 
+        //Changes the look direction to be the player rotation
+        lookDirection = playerController.transform.forward + playerController.transform.right;
+        lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
+
+        lookEulers = transform.rotation.eulerAngles;
 
         //clamp error
-        if ((TargetRotationValue > 40 && TargetRotationValue < 50) || (TargetRotationValue > -2 && TargetRotationValue < 2))
-        {
-            if (LerpValue > 200)
-            {
-                TargetRotationValue += 360;
-            }
-        }
+        //if ((TargetRotationValue > 40 && TargetRotationValue < 50) || (TargetRotationValue > -2 && TargetRotationValue < 2))
+        //{
+        //    if (LerpValue > 200)
+        //    {
+        //        TargetRotationValue += 360;
+        //    }
+        //}
         //
         ////Bool checks for character animation
         //if (LerpValue < TargetRotationValue && Mathf.Abs(LerpValue - TargetRotationValue) > modelTurnForgiveness)
