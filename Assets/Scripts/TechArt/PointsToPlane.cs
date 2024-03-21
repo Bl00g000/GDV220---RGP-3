@@ -83,9 +83,9 @@ public class PointsToPlane : MonoBehaviour
 
         // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
-        foreach (MeshFilter filter in gameObject.GetComponentsInChildren<MeshFilter>())
+        foreach (Transform child in gameObject.transform)
         {
-            filter.mesh = currentMesh;
+            child.GetComponent<MeshFilter>().mesh = currentMesh;
         }
 
         // Update shadows
