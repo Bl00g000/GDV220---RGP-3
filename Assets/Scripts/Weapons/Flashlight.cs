@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Flashlight : MonoBehaviour
@@ -14,12 +15,30 @@ public class Flashlight : MonoBehaviour
     public float fMaxCharge = 10.0f;
     public float fChargeGainPerSecond = 2.5f;
     public float fChargeDrainPerSecond = 2.5f;
-    float fCurrentCharge;
+    public float fCurrentCharge;
+
+    [Header("Audio")]
+    public AudioSource flashlightOnAudio;
+    public AudioSource outOfChargeAudio;
 
     [Header("Keybinds")]
     public KeyCode RechargeButton = KeyCode.R;
 
-    public event Action<bool> FlashLightToggle;
+    public static Flashlight instance;
+
+    public event Action<bool> OnFlashLightToggle;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +53,8 @@ public class Flashlight : MonoBehaviour
     void Update()
     {
         HandleInputs();
-        RechargeBattery();
+        HandleFlashLight();
 
-        
-        
         collisions = Physics.OverlapSphere(gameObject.GetComponentInChildren<PlayerMovement>().transform.position, playerVisionCone.fFlashlightRange + 10);
         CheckForEnmiesHit();
     }
@@ -66,37 +83,66 @@ public class Flashlight : MonoBehaviour
     void HandleInputs()
     {
         // Recharge flashlight battery if held down and flashlight isn't currently on
-        if (Input.GetKeyDown(RechargeButton))
+        if (Input.GetKey(RechargeButton))
         {
             RechargeBattery();
         }
         if (Input.GetMouseButtonDown(1))
         {
-            ActivateFlashLight();
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            DeactivateFlashLight();
+            ToggleFlashLight();
         }
     }
 
     void RechargeBattery()
     {
+        // if the flashlight is not active allow the player to recharge their flashlight battery
         if (!bFlashLightActive)
         {
-            Mathf.Clamp(fCurrentCharge += fChargeGainPerSecond * Time.deltaTime, 0, fMaxCharge);
+            fCurrentCharge += fChargeGainPerSecond * Time.deltaTime;
+            fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
         }
     }
 
-    void ActivateFlashLight()
+    void ToggleFlashLight()
     {
-        FlashLightToggle?.Invoke(true);
-        bFlashLightActive = true;
+        if (bFlashLightActive)
+        {
+            OnFlashLightToggle?.Invoke(false);
+            bFlashLightActive = false;
+
+            // play audio
+            flashlightOnAudio.Play();
+        }
+        else if (!bFlashLightActive && fCurrentCharge > 0)
+        {
+            // invoke event and set flashlightactive bool
+            OnFlashLightToggle?.Invoke(true);
+            bFlashLightActive = true;
+
+            // play audio
+            flashlightOnAudio.Play();
+        }
     }
 
-    void DeactivateFlashLight()
+    void HandleFlashLight()
     {
-        FlashLightToggle?.Invoke(false);
-        bFlashLightActive = false;
+        if (bFlashLightActive)
+        {
+            // check current charge is more than 0
+            if (fCurrentCharge > 0)
+            {
+                // reduce charge by charge per second and clamp value
+                fCurrentCharge -= fChargeGainPerSecond * Time.deltaTime;
+                fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
+            }
+            else // if battery has run out disable flashlight bool and invoke the action
+            {
+                OnFlashLightToggle?.Invoke(false);
+                bFlashLightActive = false;
+
+                // play audio
+                outOfChargeAudio.Play();
+            }
+        }
     }
 }

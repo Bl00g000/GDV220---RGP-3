@@ -17,7 +17,7 @@ public class FlashlightGraphics : MonoBehaviour
 
     private void Start()
     {
-        attachedFlashlight.FlashLightToggle += OnFlashlightToggle;
+        attachedFlashlight.OnFlashLightToggle += OnFlashlightToggle;
     }
 
     // Update is called once per frame
