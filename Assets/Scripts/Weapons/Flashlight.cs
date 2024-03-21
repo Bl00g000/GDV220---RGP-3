@@ -13,7 +13,7 @@ public class Flashlight : MonoBehaviour
     public bool bFlashLightActive = false;
 
     public float fMaxCharge = 10.0f;
-    public float fChargeGainPerSecond = 2.5f;
+    public float fChargeGainMultiplier = 10.0f;
     public float fChargeDrainPerSecond = 2.5f;
     public float fCurrentCharge;
 
@@ -54,6 +54,7 @@ public class Flashlight : MonoBehaviour
     {
         HandleInputs();
         HandleFlashLight();
+        RechargeBattery();
 
         collisions = Physics.OverlapSphere(gameObject.GetComponentInChildren<PlayerMovement>().transform.position, playerVisionCone.fFlashlightRange + 10);
         CheckForEnmiesHit();
@@ -98,7 +99,8 @@ public class Flashlight : MonoBehaviour
         // if the flashlight is not active allow the player to recharge their flashlight battery
         if (!bFlashLightActive)
         {
-            fCurrentCharge += fChargeGainPerSecond * Time.deltaTime;
+            
+            fCurrentCharge += MathF.Abs(Input.mouseScrollDelta.y * fChargeGainMultiplier) * Time.deltaTime;
             fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
         }
     }
@@ -132,7 +134,7 @@ public class Flashlight : MonoBehaviour
             if (fCurrentCharge > 0)
             {
                 // reduce charge by charge per second and clamp value
-                fCurrentCharge -= fChargeGainPerSecond * Time.deltaTime;
+                fCurrentCharge -= fChargeDrainPerSecond * Time.deltaTime;
                 fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
             }
             else // if battery has run out disable flashlight bool and invoke the action

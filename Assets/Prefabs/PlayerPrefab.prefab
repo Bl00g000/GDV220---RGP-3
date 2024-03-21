@@ -1522,7 +1522,7 @@ MonoBehaviour:
   fFlashLightDPS: 1
   bFlashLightActive: 0
   fMaxCharge: 10
-  fChargeGainPerSecond: 2.5
+  fChargeGainMultiplier: 10
   fChargeDrainPerSecond: 2.5
   fCurrentCharge: 0
   flashlightOnAudio: {fileID: 2679479868059307040}
