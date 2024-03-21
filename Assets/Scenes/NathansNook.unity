@@ -347,6 +347,18 @@ PrefabInstance:
       propertyPath: shadowMap
       value: 
       objectReference: {fileID: 1481018964}
+    - target: {fileID: 1926669454, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: fFOVdeg
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926669454, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: hitOffset
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926669454, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: iRayCount
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7593643068077876922, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
       propertyPath: m_Name
@@ -732,7 +744,6 @@ GameObject:
   m_Component:
   - component: {fileID: 975567121}
   - component: {fileID: 975567124}
-  - component: {fileID: 975567123}
   - component: {fileID: 975567122}
   m_Layer: 11
   m_Name: RedCamera
@@ -789,14 +800,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &975567123
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975567120}
-  m_Enabled: 1
 --- !u!20 &975567124
 Camera:
   m_ObjectHideFlags: 0
