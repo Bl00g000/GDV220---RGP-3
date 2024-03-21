@@ -23,7 +23,6 @@ public class PointsToPlane : MonoBehaviour
     [Header("Optional Assigned Variables")]
     public VisionCone visionCone;
     public GameObject startObject;
-    public GameObject shadowCone;
 
     [Header("Settings")]
     public float zoneHeight;
@@ -48,7 +47,6 @@ public class PointsToPlane : MonoBehaviour
     {
         if (visionCone == null) visionCone = FindAnyObjectByType<VisionCone>();
         if (startObject == null) startObject = FindAnyObjectByType<PlayerMovement>().gameObject;
-        if (shadowCone == null) shadowCone = transform.GetChild(0).gameObject;
     }
 
     public List<GameObject> CollidersInZone()
@@ -85,7 +83,10 @@ public class PointsToPlane : MonoBehaviour
 
         // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
-        shadowCone.transform.GetComponent<MeshFilter>().mesh = currentMesh;
+        foreach (MeshFilter filter in gameObject.GetComponentsInChildren<MeshFilter>())
+        {
+            filter.mesh = currentMesh;
+        }
 
         // Update shadows
 
