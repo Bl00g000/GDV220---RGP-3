@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Flashlight : MonoBehaviour
     public float fFlashLightDPS = 2.0f;
     Collider[] collisions;
     public bool bFlashLightActive = false;
+    public Light floorLight;
 
     public float fMaxCharge = 10.0f;
     public float fChargeGainMultiplier = 10.0f;
@@ -20,6 +22,7 @@ public class Flashlight : MonoBehaviour
     [Header("Audio")]
     public AudioSource flashlightOnAudio;
     public AudioSource outOfChargeAudio;
+    public AudioSource windUpAudio;
 
     [Header("Keybinds")]
     public KeyCode RechargeButton = KeyCode.R;
@@ -45,18 +48,24 @@ public class Flashlight : MonoBehaviour
     {
         fCurrentCharge = fMaxCharge;
 
-        playerVisionCone = gameObject.GetComponent<VisionCone>();
-        pointsToPlane = gameObject.GetComponentInChildren<PointsToPlane>();
+        playerVisionCone = gameObject.GetComponentInParent<VisionCone>();
+        pointsToPlane = gameObject.transform.parent.GetComponentInChildren<PointsToPlane>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Get the mouse wheel movement speed
+        float scrollSpeed = Input.mouseScrollDelta.y;
+
+        // Do something with the scroll speed
+        Debug.Log("Mouse Wheel Speed: " + scrollSpeed);
+
         HandleInputs();
         HandleFlashLight();
         RechargeBattery();
 
-        collisions = Physics.OverlapSphere(gameObject.GetComponentInChildren<PlayerMovement>().transform.position, playerVisionCone.fFlashlightRange + 10);
+        collisions = Physics.OverlapSphere(gameObject.GetComponentInParent<PlayerMovement>().transform.position, playerVisionCone.fFlashlightRange + 10);
         CheckForEnmiesHit();
     }
 
@@ -100,6 +109,11 @@ public class Flashlight : MonoBehaviour
         if (!bFlashLightActive)
         {
             
+            if (!windUpAudio.isPlaying && MathF.Abs(Input.mouseScrollDelta.y) > 0) // TODO: THIS NEEDS REWORKING THE SOUND SUCKS WOOHOO
+            { 
+                windUpAudio.Play(); 
+            }
+
             fCurrentCharge += MathF.Abs(Input.mouseScrollDelta.y * fChargeGainMultiplier) * Time.deltaTime;
             fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
         }
@@ -117,12 +131,18 @@ public class Flashlight : MonoBehaviour
         }
         else if (!bFlashLightActive && fCurrentCharge > 0)
         {
+            floorLight.intensity = Mathf.Lerp(0f, 100f, fCurrentCharge / fMaxCharge);
+
             // invoke event and set flashlightactive bool
             OnFlashLightToggle?.Invoke(true);
             bFlashLightActive = true;
 
             // play audio
             flashlightOnAudio.Play();
+        }
+        else
+        {
+            outOfChargeAudio.Play();
         }
     }
 
@@ -136,6 +156,10 @@ public class Flashlight : MonoBehaviour
                 // reduce charge by charge per second and clamp value
                 fCurrentCharge -= fChargeDrainPerSecond * Time.deltaTime;
                 fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
+
+                float fCurrentInternsity = fCurrentCharge / fMaxCharge;
+
+                floorLight.intensity = Mathf.Lerp(0f, 100f, fCurrentInternsity);
             }
             else // if battery has run out disable flashlight bool and invoke the action
             {
