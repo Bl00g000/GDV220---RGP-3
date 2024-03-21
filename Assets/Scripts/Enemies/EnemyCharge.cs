@@ -28,7 +28,7 @@ public class EnemyCharge : EnemyBase
         navMeshAgent.SetDestination(v3ChargeTargetPos);
 
         // Wait until charge is finished
-        yield return new WaitUntil(() => navMeshAgent.remainingDistance <= 1.0f);
+        yield return new WaitUntil(() => Vector3.Distance(v3ChargeTargetPos, transform.position) <= 1.0f);
 
         navMeshAgent.ResetPath();
         bAttacking = false;

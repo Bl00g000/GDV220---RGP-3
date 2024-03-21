@@ -65,7 +65,7 @@ public class EnemyBase : MonoBehaviour
             bAttacking = false;
         }
 
-        if (!bWandering && !bAttacking)
+        if (!bWandering && !bAttacking && Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) > fAggroRange * 2)
         {
             StartCoroutine(Wander());
         }
