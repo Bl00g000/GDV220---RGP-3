@@ -16,7 +16,7 @@ public class EnemyCharge : EnemyBase
     private IEnumerator Charge()
     {
         bAttacking = true;
-        navMeshAgent.speed = fAttackSpeed;
+        navMeshAgent.speed = fAttackingSpeed * fSlowMultiplier;
 
         // Prep time (IT STOMPIN ITS FEETS!)
         Debug.Log("Preparing to charge...");
@@ -29,6 +29,8 @@ public class EnemyCharge : EnemyBase
 
         // Wait until charge is finished
         yield return new WaitUntil(() => Vector3.Distance(v3ChargeTargetPos, transform.position) <= 1.0f);
+
+        CheckDamagePlayer();
 
         navMeshAgent.ResetPath();
         bAttacking = false;

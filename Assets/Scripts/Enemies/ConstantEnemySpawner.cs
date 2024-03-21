@@ -14,6 +14,7 @@ public class ConstantEnemySpawner : MonoBehaviour
     void Start()
     {
         spawnPoint = transform.GetChild(0).transform.position;
+        transform.GetChild(0).GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -32,12 +33,11 @@ public class ConstantEnemySpawner : MonoBehaviour
         // Child count - 1 because spawn point is a child
         while (transform.childCount - 1 < iMaxNumSpawns)
         {
-            Debug.Log("Spawning enemy");
-            int iEnemySpawning = Random.Range(0, enemiesToSpawn.Count - 1);
+            int iEnemySpawning = Random.Range(0, enemiesToSpawn.Count);     // int - max exclusive
             var enemySpawned = Instantiate(enemiesToSpawn[iEnemySpawning], spawnPoint, transform.rotation);
             enemySpawned.transform.SetParent(transform);
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
         }
 
         bIsSpawning = false;

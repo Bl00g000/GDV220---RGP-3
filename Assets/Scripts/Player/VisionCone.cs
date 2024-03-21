@@ -31,7 +31,6 @@ public class VisionCone : MonoBehaviour
         ConeRayCasts();
     }
 
-
     void ConeRayCasts()
     {
         float fAngleStep = DegToRad(fFOVdeg) / iRayCount;

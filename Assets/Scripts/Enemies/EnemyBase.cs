@@ -5,14 +5,16 @@ using UnityEngine.AI;
 
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] protected NavMeshAgent navMeshAgent;
+    // THIS IS THE NON-ENEMY - IT ONLY WANDERS!!
+
+    protected NavMeshAgent navMeshAgent;
 
     public float fMaxHealth;
     public float fHealth;
     public float fWanderSpeed;
-    public float fAttackSpeed;
+    public float fAttackingSpeed;
     public float fAggroRange;
-    public float fSlowMultiplier;
+    [HideInInspector] public float fSlowMultiplier;
 
     Vector3 v3StartingPosition;
     [SerializeField] float fWanderRadius = 20.0f;
@@ -23,13 +25,14 @@ public class EnemyBase : MonoBehaviour
     public bool bFlashlighted;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         bWandering = false;
         bAttacking = false;
         bFlashlighted = false;
         fSlowMultiplier = 1.0f;
 
+        navMeshAgent = GetComponent<NavMeshAgent>();
         v3StartingPosition = transform.position;
     }
 
@@ -73,15 +76,14 @@ public class EnemyBase : MonoBehaviour
         bFlashlighted = false;
     }
 
-    // Basic run-attack
-    // Function to be overriden by child classes
-    // depending on how enemy attacks
     public virtual void Attack()
     {
-        bAttacking = true;
-        navMeshAgent.speed = fAttackSpeed * fSlowMultiplier;
-        navMeshAgent.SetDestination(PlayerMovement.instance.transform.position);
+        // Function to be overriden by child classes
+        // depending on how enemy attacks
+    }
 
+    protected void CheckDamagePlayer()
+    {
         float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
         if (fDistFromPlayer < 1.0f)
         {
