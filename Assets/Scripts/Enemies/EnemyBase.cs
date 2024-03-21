@@ -44,6 +44,7 @@ public class EnemyBase : MonoBehaviour
         {
             fSlowMultiplier = 1.0f;
         }
+
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
             // Check if player is inside aggro range

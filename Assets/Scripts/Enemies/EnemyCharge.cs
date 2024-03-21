@@ -20,14 +20,17 @@ public class EnemyCharge : EnemyBase
 
         // Prep time (IT STOMPIN ITS FEETS!)
         Debug.Log("Preparing to charge...");
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
 
         // Charge at player position
+        Debug.Log("Charging now!");
         Vector3 v3ChargeTargetPos = PlayerMovement.instance.transform.position;
         navMeshAgent.SetDestination(v3ChargeTargetPos);
 
         // Wait until charge is finished
         yield return new WaitUntil(() => navMeshAgent.remainingDistance <= 1.0f);
+
         navMeshAgent.ResetPath();
+        bAttacking = false;
     }
 }
