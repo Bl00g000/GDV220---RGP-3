@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -8,8 +9,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(MeshRenderer))]
 public class PointsToPlane : MonoBehaviour
 {
-
-
     [Header("Assigned Variables")]
     public float shadowRadius;
     public GameObject shadowMap;
@@ -34,10 +33,13 @@ public class PointsToPlane : MonoBehaviour
     // Created Variables
     private Mesh currentMesh;
 
+    public List<Collider> touchingColliders;
+
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshFilter = GetComponent<MeshFilter>();
+        touchingColliders = new List<Collider>();
     }
 
     // Start is called before the first frame update
@@ -48,15 +50,24 @@ public class PointsToPlane : MonoBehaviour
         if (shadowCone == null) shadowCone = transform.GetChild(0).gameObject;
     }
 
+    private void LateUpdate()
+    {
+        if (currentMesh != null && currentMesh.vertices.Distinct().Count() > 3)
+        {
+            transform.GetComponent<MeshCollider>().sharedMesh = currentMesh;
+        }
+    }
+
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if (currentMesh != null) Destroy(currentMesh);
 
         currentMesh = CreateMesh(visionCone.hitPositions);
+
+        // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
         shadowCone.transform.GetComponent<MeshFilter>().mesh = currentMesh;
-
 
         // Update shadows
 
@@ -66,16 +77,6 @@ public class PointsToPlane : MonoBehaviour
 
         shadowCamera.orthographicSize = shadowRadius / 2f;
         shadowProjector.size = Vector3.one * shadowRadius;
-    }
-
-    Texture2D toTexture2D(RenderTexture rTex)
-    {
-        Texture2D tex = new Texture2D(512, 512, TextureFormat.RGB24, false);
-        // ReadPixels looks at the active RenderTexture.
-        RenderTexture.active = rTex;
-        tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
-        tex.Apply();
-        return tex;
     }
 
     public Mesh CreateMesh(List<Vector3> points)
@@ -106,6 +107,8 @@ public class PointsToPlane : MonoBehaviour
         planeMesh.SetTriangles(triangles.ToArray(), 0);
 
         planeMesh.RecalculateBounds();
+        planeMesh.RecalculateNormals();
+        planeMesh.RecalculateTangents();
 
         return planeMesh;
     }
