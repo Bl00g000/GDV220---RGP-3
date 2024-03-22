@@ -6,22 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2a5949de-3317-46fe-b542-8a4dd8d1049b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_01.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_02.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/MAT_Vines_Test.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/MAT_Vines_Test.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/SG_Vines_Test.shadergraph" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/SG_Vines_Test.shadergraph.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Tendrils_1.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Tendrils_1.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Vines_Test.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Vines_Test.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AndyScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AndyScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vines.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vines.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Tendril/SG_Tendril.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FBX/Tendril/SG_Tendril.shadergraph" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +109,7 @@
       <workItem from="1711019770148" duration="130000" />
       <workItem from="1711019920347" duration="36000" />
       <workItem from="1711020313017" duration="5628000" />
-      <workItem from="1711073272675" duration="938000" />
+      <workItem from="1711073272675" duration="2133000" />
     </task>
     <servers />
   </component>
