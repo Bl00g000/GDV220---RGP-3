@@ -7,26 +7,42 @@ using System.Data;
 using UnityEngine.UIElements;
 //using MPUIKIT;
 using Unity.VisualScripting;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
 
     [Header("Movement")]
+    public float currentMoveSpeed = 10.0f;
     public float moveSpeed = 10.0f;
-    public float rotSpeed = 10.0f;
+    public float strafeModifier = 0.7f;
+    public float reverseModifier = 0.6f;
+    public float rotSpeed = 20.0f;
+    public float gravity = -9.8f;
 
     public GameObject respawnLocation;    //Spawn Location object
 
     //public Rigidbody trackRigidBody;    //RigidBody
-    public CharacterController playerController;    //CharacterController
+    [HideInInspector]public CharacterController playerController;    //CharacterController
 
     //public GameObject followTarget;     //Camera followtarget
 
-    private Vector3 moveDirection;      //Move direction declaration
+    public Vector3 moveDirection;      //Move direction declaration
+    public Vector3 moveLookDiff = Vector3.zero;      //Move diff declaration
+    public Vector3 testInverseVec = Vector3.zero;      //Move diff declaration
+    public Vector3 testmovedirvec = Vector3.zero;      //Move diff declaration
+    public Vector3 testsubtractedVec3 = Vector3.zero;      //Move diff declaration
+    public Vector3 testsubtractedVec4 = Vector3.zero;      //Move diff declaration
+    //public Vector3 testsubtractedVec1 = Vector3.zero;      //Move diff declaration
+    //public Vector3 testsubtractedVec2 = Vector3.zero;      //Move diff declaration
+    
+    public Vector3 testaddedvec = Vector3.zero;      //Move diff declaration
+   // public Vector3 lookEulers = Vector3.zero;      //Move diff declaration
     public Plane plane = new Plane(Vector3.up, 0);
     public Vector3 mouseWorldPosition;
     public Vector3 lookDirection;      //Look direction declaration
+
 
    // public Transform characterTransform;//Character transform
 
@@ -112,14 +128,61 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl() //From bloo
     {
-        //Vector3 flatVel = new Vector3(trackRigidBody.velocity.x, 0f, trackRigidBody.velocity.z);
-        //
-        //// limit velocity if needed
-        //if (flatVel.magnitude > moveSpeed)
-        //{
-        //    Vector3 limitedVel = flatVel.normalized * moveSpeed;
-        //    trackRigidBody.velocity = new Vector3(limitedVel.x, trackRigidBody.velocity.y, limitedVel.z);
-        //}
+
+        currentMoveSpeed = moveSpeed;
+
+       testInverseVec = transform.InverseTransformDirection(Vector3.forward);
+        //testInverseVec = transform.InverseTransformDirection(lookDirection);
+
+        testmovedirvec = playerController.transform.forward;
+
+        //testsubtractedVec1 = testInverseVec - moveDirection;
+        //testsubtractedVec2 = moveDirection - testInverseVec;
+
+        testsubtractedVec3 =  moveDirection - testmovedirvec;
+        testsubtractedVec4 = testmovedirvec - moveDirection ;
+
+        testaddedvec = testmovedirvec + moveDirection ;
+        //Ab =  (float)testInverseVec.y - (float)moveDirection.y;
+        //Bb =   moveDirection.y - testInverseVec.y;
+        //Vb = testInverseVec.y + moveDirection.y;
+        //Db = testInverseVec.y;
+        //moveLookDiff =  transform.rotation.eulerAngles;
+
+        // calculate movement direction
+        if(Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
+        {
+
+
+            //testaddedvec = new Vector3(testaddedvec.y, 0.0f, testaddedvec.x);
+
+        }
+
+        if (Mathf.Abs(testaddedvec.x) < 1.0f)
+        {
+            //currentMoveSpeed *= strafeModifier;
+        }
+
+        if (Mathf.Abs(testaddedvec.z) < 1.0f)
+        {
+            currentMoveSpeed *= reverseModifier;
+        }
+
+
+
+
+        //Character is moving straight sideways
+        if (Mathf.Abs( moveDirection.x)  != 0  )
+         {
+           // currentMoveSpeed *= strafeModifier;
+         }
+         if(moveDirection.z < 0)
+         {
+            //currentMoveSpeed *= reverseModifier;
+         }
+
+         
+
     }
 
     private void MovePlayer()
@@ -132,10 +195,7 @@ public class PlayerMovement : MonoBehaviour
         //Player movement catch (eg no move if respawning etc
         if (canMove && (verticalInput != 0 || horizontalInput != 0))
         {
-            // calculate movement direction
-            //W MOVES TOWARDS CHARCATER FORWARD
-            moveDirection = playerController.transform.forward * verticalInput + playerController.transform.right * horizontalInput;
-            moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
+            
 
             //W MOVES TOWARD 
             //////////////////////////////////////////////////////////////
@@ -148,21 +208,29 @@ public class PlayerMovement : MonoBehaviour
             //////////////////////////////////////////////////////////////
             moveDirection.Normalize();
 
+            //changes speed depending on direction
+            //SpeedControl();
+
+
             //Turn character according to movement
             
             //if(verticalInput != 0 && horizontalInput != 0)
             //{
             //
             //}
-            playerController.Move(moveDirection * Time.deltaTime * moveSpeed);
+            playerController.Move(moveDirection * Time.deltaTime * currentMoveSpeed);
+            //playerController.
 
         }
         else
         {
-
+            moveDirection = Vector3.zero;
             //IsTurningLeft = false;
             //IsTurningRight = false;
         }
+
+        //Gravity
+        playerController.Move(Vector3.up * Time.deltaTime * gravity);
 
         //SOUNDS PLAYING AND STOPpING
         //if (trackRigidBody.velocity.magnitude > 0.1f)
@@ -180,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         
-
+        //Mouse to world point
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(plane.Raycast(ray, out distance))
@@ -188,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
             mouseWorldPosition = ray.GetPoint(distance);
         }
 
-        moveDirection.Normalize();
+        //moveDirection.Normalize();
         
 
 
@@ -207,15 +275,23 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = LerpedQuaternion;
 
 
+        //Changes the look direction to be the player rotation
+        lookDirection = playerController.transform.forward + playerController.transform.right;
+        lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
+        lookDirection.Normalize();
+
+        //lookEulers = transform.rotation.eulerAngles;
+
+        
 
         //clamp error
-        if ((TargetRotationValue > 40 && TargetRotationValue < 50) || (TargetRotationValue > -2 && TargetRotationValue < 2))
-        {
-            if (LerpValue > 200)
-            {
-                TargetRotationValue += 360;
-            }
-        }
+        //if ((TargetRotationValue > 40 && TargetRotationValue < 50) || (TargetRotationValue > -2 && TargetRotationValue < 2))
+        //{
+        //    if (LerpValue > 200)
+        //    {
+        //        TargetRotationValue += 360;
+        //    }
+        //}
         //
         ////Bool checks for character animation
         //if (LerpValue < TargetRotationValue && Mathf.Abs(LerpValue - TargetRotationValue) > modelTurnForgiveness)

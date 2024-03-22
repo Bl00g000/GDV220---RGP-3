@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class VisionCone : MonoBehaviour
 {
@@ -18,7 +17,6 @@ public class VisionCone : MonoBehaviour
     public float fFlashlightRange = 10.0f;
     public float hitOffset;
     public List<Vector3> hitPositions = new List<Vector3>();
-    public List<Collider> hitColliders = new List<Collider>();
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +30,6 @@ public class VisionCone : MonoBehaviour
         v3dir = unitTransform.forward;
         ConeRayCasts();
     }
-
 
     void ConeRayCasts()
     {
@@ -81,12 +78,6 @@ public class VisionCone : MonoBehaviour
 
                 // adds if no hit back was found or required!
                 hitPositions.Add(hit.point + (hit.point - playPos).normalized * hitOffset);
-
-                // Check if the hit collider already exists in the List so that we only add each hit collider once
-                if (!hitColliders.Contains(hit.collider))
-                {
-                    hitColliders.Add(hit.collider);
-                }
                 continue;
             }
             else

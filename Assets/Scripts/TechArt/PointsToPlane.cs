@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -22,7 +23,6 @@ public class PointsToPlane : MonoBehaviour
     [Header("Optional Assigned Variables")]
     public VisionCone visionCone;
     public GameObject startObject;
-    public GameObject shadowCone;
 
     [Header("Settings")]
     public float zoneHeight;
@@ -33,13 +33,13 @@ public class PointsToPlane : MonoBehaviour
     // Created Variables
     private Mesh currentMesh;
 
-    public List<Collider> touchingColliders;
+    public List<GameObject> touchingObjects;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshFilter = GetComponent<MeshFilter>();
-        touchingColliders = new List<Collider>();
+        touchingObjects = new List<GameObject>();
     }
 
     // Start is called before the first frame update
@@ -47,15 +47,31 @@ public class PointsToPlane : MonoBehaviour
     {
         if (visionCone == null) visionCone = FindAnyObjectByType<VisionCone>();
         if (startObject == null) startObject = FindAnyObjectByType<PlayerMovement>().gameObject;
-        if (shadowCone == null) shadowCone = transform.GetChild(0).gameObject;
     }
 
-    private void LateUpdate()
+    public List<GameObject> CollidersInZone()
     {
-        if (currentMesh != null && currentMesh.vertices.Distinct().Count() > 3)
+        List<GameObject> hits = new List<GameObject>();
+        Vector3 startPos = startObject.transform.position;
+
+        foreach (Vector3 point in visionCone.hitPositions)
         {
-            transform.GetComponent<MeshCollider>().sharedMesh = currentMesh;
+            startPos.y = point.y;
+            RaycastHit[] allHits = Physics.RaycastAll(startPos, (point - startPos).normalized, Vector3.Distance(startPos, point));
+            foreach(RaycastHit hit in allHits)
+            {
+                if (!hits.Contains(hit.transform.gameObject))
+                {
+                    hits.Add(hit.transform.gameObject);
+                }
+            }
         }
+        return hits;
+    }
+
+    public bool LightContainsObject(GameObject _obj)
+    {
+        return touchingObjects.Contains(_obj);
     }
 
     // Update is called once per frame
@@ -67,7 +83,10 @@ public class PointsToPlane : MonoBehaviour
 
         // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
-        shadowCone.transform.GetComponent<MeshFilter>().mesh = currentMesh;
+        foreach (Transform child in gameObject.transform)
+        {
+            child.GetComponent<MeshFilter>().mesh = currentMesh;
+        }
 
         // Update shadows
 
@@ -77,6 +96,10 @@ public class PointsToPlane : MonoBehaviour
 
         shadowCamera.orthographicSize = shadowRadius / 2f;
         shadowProjector.size = Vector3.one * shadowRadius;
+
+        //update collisions 
+        touchingObjects.Clear();
+        touchingObjects = CollidersInZone();
     }
 
     public Mesh CreateMesh(List<Vector3> points)
