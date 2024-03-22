@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Vines_Test
+  m_Name: MAT_Tendril
   m_Shader: {fileID: -6465566751694194690, guid: 8b86aa701aa4f9d49861b2f2a1ccc53d,
     type: 3}
   m_ValidKeywords: []
@@ -40,7 +40,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Clip: 0.766
-    - _Grow: 0.994
+    - _Grow: 1
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0

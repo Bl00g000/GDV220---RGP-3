@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a5949de-3317-46fe-b542-8a4dd8d1049b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/MAT_Vines_Test.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/MAT_Vines_Test.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/SG_Vines_Test.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/SG_Vines_Test.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Cells_02.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/MAT_Vines_Test.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/MAT_Vines_Test.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/SG_Vines_Test.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/SG_Vines_Test.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Tendrils_1.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Tendrils_1.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Vines_Test.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FBX/Vines_Test/Vines_Test.fbx.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/AndyScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AndyScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vines.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vines.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,28 +46,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "andy-branch",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;andy-branch&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\disgu\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\disgu\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\disgu\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\disgu\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\disgu\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\disgu\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.35f1\Editor\Unity.exe" />
@@ -116,6 +124,7 @@
       <workItem from="1711019770148" duration="130000" />
       <workItem from="1711019920347" duration="36000" />
       <workItem from="1711020313017" duration="5628000" />
+      <workItem from="1711073272675" duration="938000" />
     </task>
     <servers />
   </component>
