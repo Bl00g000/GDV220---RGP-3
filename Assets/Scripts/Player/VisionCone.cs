@@ -17,7 +17,7 @@ public class VisionCone : MonoBehaviour
     public float fFlashlightRange = 10.0f;
     public float hitOffset;
     public List<Vector3> hitPositions = new List<Vector3>();
-
+    public float fZoneHeight;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +45,7 @@ public class VisionCone : MonoBehaviour
             float fAngleOffset = i * fAngleStep;
             Vector3 rayDirection = new Vector3(Mathf.Sin(fInitialAngle + fAngleOffset), 0, Mathf.Cos(fInitialAngle + fAngleOffset));
 
-            Vector3 playPos = new Vector3(unitTransform.position.x, 0.1f, unitTransform.position.z);
+            Vector3 playPos = new Vector3(unitTransform.position.x, transform.position.y + fZoneHeight, unitTransform.position.z);
 
             RaycastHit hit;
             if (Physics.Raycast(playPos, rayDirection, out hit, fFlashlightRange, hitLayers))
