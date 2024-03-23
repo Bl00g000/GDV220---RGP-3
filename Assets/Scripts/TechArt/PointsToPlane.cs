@@ -12,6 +12,7 @@ public class PointsToPlane : MonoBehaviour
 {
     [Header("Assigned Variables")]
     public float shadowRadius;
+
     public GameObject shadowMap;
     public Camera shadowCamera;
     public DecalProjector shadowProjector;
@@ -22,6 +23,7 @@ public class PointsToPlane : MonoBehaviour
 
     [Header("Optional Assigned Variables")]
     public VisionCone visionCone;
+
     public GameObject startObject;
 
     [Header("Settings")]
@@ -29,17 +31,25 @@ public class PointsToPlane : MonoBehaviour
 
     // Found variables
     private MeshRenderer meshRenderer;
+
     private MeshFilter meshFilter;
+
     // Created Variables
     private Mesh currentMesh;
 
+    List<GameObject> hits;
+
     public List<GameObject> touchingObjects;
+    RaycastHit[] result;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshFilter = GetComponent<MeshFilter>();
         touchingObjects = new List<GameObject>();
+        currentMesh = new Mesh();
+        hits = new List<GameObject>();
+        result = new RaycastHit[32];
     }
 
     // Start is called before the first frame update
@@ -47,26 +57,6 @@ public class PointsToPlane : MonoBehaviour
     {
         if (visionCone == null) visionCone = FindAnyObjectByType<VisionCone>();
         if (startObject == null) startObject = FindAnyObjectByType<PlayerMovement>().gameObject;
-    }
-
-    public List<GameObject> CollidersInZone()
-    {
-        List<GameObject> hits = new List<GameObject>();
-        Vector3 startPos = startObject.transform.position;
-
-        foreach (Vector3 point in visionCone.hitPositions)
-        {
-            startPos.y = point.y;
-            RaycastHit[] allHits = Physics.RaycastAll(startPos, (point - startPos).normalized, Vector3.Distance(startPos, point));
-            foreach(RaycastHit hit in allHits)
-            {
-                if (!hits.Contains(hit.transform.gameObject))
-                {
-                    hits.Add(hit.transform.gameObject);
-                }
-            }
-        }
-        return hits;
     }
 
     public bool LightContainsObject(GameObject _obj)
@@ -77,9 +67,9 @@ public class PointsToPlane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentMesh != null) Destroy(currentMesh);
+        // if (currentMesh != null) Destroy(currentMesh);
 
-        currentMesh = CreateMesh(visionCone.hitPositions);
+        CreateMesh(visionCone.hitPositions);
 
         // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
@@ -90,49 +80,84 @@ public class PointsToPlane : MonoBehaviour
 
         // Update shadows
 
-        shadowMap.transform.position = new Vector3(startObject.transform.position.x, Camera.main.transform.position.y - 1f, startObject.transform.position.z);
+        shadowMap.transform.position = new Vector3(startObject.transform.position.x,
+            Camera.main.transform.position.y - 1f,
+            startObject.transform.position.z);
 
         shadowMap.transform.localScale = Vector3.one * shadowRadius * 2f;
 
         shadowCamera.orthographicSize = shadowRadius / 2f;
         shadowProjector.size = Vector3.one * shadowRadius;
 
-        //update collisions 
+        // Update collisions 
         touchingObjects.Clear();
-        touchingObjects = CollidersInZone();
+
+        Vector3 startPos = startObject.transform.position;
+
+        hits.Clear();
+
+        Debug.Log(visionCone.hitPositions.Count);
+        foreach (Vector3 point in visionCone.hitPositions)
+        {
+            startPos.y = point.y;
+            // RaycastHit[] allHits = Physics.RaycastAll(startPos,
+            //     (point - startPos).normalized,
+            //     Vector3.Distance(startPos, point));
+            // foreach (RaycastHit hit in allHits)
+            // {
+            //     if (!hits.Contains(hit.transform.gameObject))
+            //     {
+            //         hits.Add(hit.transform.gameObject);
+            //     }
+            // }
+            // Debug.DrawLine(transform.position, point, Color.green);
+
+            var size = Physics.RaycastNonAlloc(startPos,
+                (point - startPos).normalized,
+                result,
+                Vector3.Distance(startPos, point));
+            for (int i = 0; i < size; i++)
+            {
+                if (!hits.Contains(result[i].transform.gameObject))
+                {
+                    hits.Add(result[i].transform.gameObject);
+                }
+            }
+        }
+
+        touchingObjects = hits;
     }
 
-    public Mesh CreateMesh(List<Vector3> points)
+    public void CreateMesh(List<Vector3> points)
     {
-        Mesh planeMesh = null;
+        // Mesh planeMesh = null;
+        // planeMesh = new Mesh();
+        currentMesh.Clear();
+        // currentMesh = new Mesh();
 
-        planeMesh = new Mesh();
-        planeMesh.vertices = new Vector3[points.Count + 1];
-
-        Vector3[] newVertices = new Vector3[points.Count + 1]; 
-        for (int i = 0; i < points.Count; i++) 
+        Vector3[] newVertices = new Vector3[points.Count + 1];
+        for (int i = 0; i < points.Count; i++)
         {
-            newVertices[i+1] = transform.InverseTransformPoint(points[i]);
-            newVertices[i + 1].y = transform.InverseTransformPoint(Vector3.up*zoneHeight).y;
+            newVertices[i + 1] = transform.InverseTransformPoint(points[i]);
+            newVertices[i + 1].y = transform.InverseTransformPoint(Vector3.up * zoneHeight).y;
         }
         newVertices[0] = transform.InverseTransformPoint(startObject.transform.position);
         newVertices[0].y = transform.InverseTransformPoint(Vector3.up * zoneHeight).y;
 
         List<int> triangles = new List<int>();
-        for (int i = 1; i < points.Count; i++) 
+        for (int i = 1; i < points.Count; i++)
         {
             triangles.Add(0);
             triangles.Add(i);
-            triangles.Add(i+1);
+            triangles.Add(i + 1);
         }
 
-        planeMesh.SetVertices(newVertices);
-        planeMesh.SetTriangles(triangles.ToArray(), 0);
+        currentMesh.SetVertices(newVertices);
+        currentMesh.SetTriangles(triangles.ToArray(), 0);
 
-        planeMesh.RecalculateBounds();
-        planeMesh.RecalculateNormals();
-        planeMesh.RecalculateTangents();
+        currentMesh.RecalculateBounds();
+        currentMesh.RecalculateNormals();
+        currentMesh.RecalculateTangents();
 
-        return planeMesh;
     }
 }
