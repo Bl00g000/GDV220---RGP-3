@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class EnemyRat : EnemyBase
 {
     private VisionCone lightCone;
-    private bool bIsRunningFromLight;
+    //private bool bIsRunningFromLight;
 
     private void Start()
     {
@@ -22,28 +21,28 @@ public class EnemyRat : EnemyBase
 
         if (!bFlashlighted)
         {
-            bIsRunningFromLight = false;
+            //bIsRunningFromLight = false;
             navMeshAgent.SetDestination(PlayerMovement.instance.transform.position);
         }
         else
         {
             //Debug.Log("AAAA LIGHT!!!");
             // GET OUT OF LIGHT AAA!
-            if (!bIsRunningFromLight)
-            {
-                bIsRunningFromLight = true;
+            //if (!bIsRunningFromLight)
+            //{
+                //bIsRunningFromLight = true;
                 navMeshAgent.isStopped = true;
 
-                Vector3 v3DirAvoidLight = GetDirectionToAvoidLight();
+                Vector3 v3DirAvoidLight = GetOutOfLightDirection();
                 navMeshAgent.SetDestination(v3DirAvoidLight);
                 navMeshAgent.isStopped = false;
-            }
+            //}
         }
 
         CheckDamagePlayer();
     }
 
-    Vector3 GetDirectionToAvoidLight()
+    Vector3 GetOutOfLightDirection()
     {
         // Teddy was mathsing here say "DIE TEDDY!" because she did
 
@@ -59,6 +58,7 @@ public class EnemyRat : EnemyBase
         Vector3 v3PosFromPlayer = transform.position - PlayerMovement.instance.transform.position;
 
         // Get direction vectors of the lines (edges of vision cone)
+        // From player to hitpoints
         Vector3 v3Direction1 = v3ConeEdge1 - PlayerMovement.instance.transform.position;
         Vector3 v3Direction2 = v3ConeEdge2 - PlayerMovement.instance.transform.position;
 

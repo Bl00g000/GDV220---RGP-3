@@ -37,7 +37,7 @@ public class EnemyBase : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (bFlashlighted)
         {
@@ -85,7 +85,7 @@ public class EnemyBase : MonoBehaviour
     protected void CheckDamagePlayer()
     {
         float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
-        if (fDistFromPlayer < 1.0f)
+        if (fDistFromPlayer <= 1.0f)
         {
             // DEAL DAMAGE HERE
             Debug.Log("DEATH TO THE PLAYER!");
