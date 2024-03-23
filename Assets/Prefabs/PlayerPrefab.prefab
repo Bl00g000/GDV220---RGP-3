@@ -1808,7 +1808,8 @@ GameObject:
   - component: {fileID: 6297152477191412696}
   - component: {fileID: 1926669454}
   - component: {fileID: 6786838321003470207}
-  m_Layer: 0
+  - component: {fileID: 985577142621812171}
+  m_Layer: 3
   m_Name: PlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1848,6 +1849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fInteractRange: 2.5
+  interactableObject: {fileID: 0}
   interactKey: 102
 --- !u!114 &6297152477191412696
 MonoBehaviour:
@@ -1926,6 +1928,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &985577142621812171
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593643068077876922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7593643068584604370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,7 +1953,6 @@ GameObject:
   - component: {fileID: 7593643068584604371}
   - component: {fileID: 7593643068584604375}
   - component: {fileID: 7593643068584604374}
-  - component: {fileID: 7593643068584604373}
   m_Layer: 0
   m_Name: TempPlayerCapsule
   m_TagString: Untagged
@@ -2018,20 +2033,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7593643068584604373
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593643068584604370}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7593643069122858225
 GameObject:
   m_ObjectHideFlags: 0
