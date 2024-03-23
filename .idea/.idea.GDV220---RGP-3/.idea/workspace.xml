@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a5949de-3317-46fe-b542-8a4dd8d1049b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AndysAttic.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AndysAttic.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TechArt/PointsToPlane.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TechArt/PointsToPlane.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +120,7 @@
       <workItem from="1711106190912" duration="541000" />
       <workItem from="1711114208324" duration="1488000" />
       <workItem from="1711170105358" duration="659000" />
-      <workItem from="1711189144231" duration="2612000" />
+      <workItem from="1711189144231" duration="3354000" />
     </task>
     <servers />
   </component>

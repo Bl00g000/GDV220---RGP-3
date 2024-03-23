@@ -96,7 +96,7 @@ public class PointsToPlane : MonoBehaviour
 
         hits.Clear();
 
-        Debug.Log(visionCone.hitPositions.Count);
+        // Debug.Log(visionCone.hitPositions.Count);
         foreach (Vector3 point in visionCone.hitPositions)
         {
             startPos.y = point.y;
