@@ -9,6 +9,8 @@ public class Door : MonoBehaviour, IInteractable
     [field: SerializeField] public bool bCanInteract { get; set; } = true;
     [field: SerializeField] public bool bInteracting { get; set; } = false;
 
+    public GameObject doorToRotate;
+
     public float fOpenDuration = 1f;
 
     public float fOpenAngle = -90f;
@@ -37,7 +39,7 @@ public class Door : MonoBehaviour, IInteractable
         bInteracting = true;
 
         float fElapsedTime = 0f;
-        Quaternion initialRotation = transform.rotation;
+        Quaternion initialRotation = doorToRotate.transform.rotation;
 
         float fOpenMultipler;
 
@@ -52,13 +54,13 @@ public class Door : MonoBehaviour, IInteractable
 
         while (fElapsedTime < fOpenDuration)
         {
-            transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, fElapsedTime / fOpenDuration);
+            doorToRotate.transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, fElapsedTime / fOpenDuration);
             fElapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // ensure the target rotation is set properly at the end of the loop
-        transform.rotation = targetRotation;
+        doorToRotate.transform.rotation = targetRotation;
         bInteracting = false;
 
         // flip bClockwise at end of interaction
