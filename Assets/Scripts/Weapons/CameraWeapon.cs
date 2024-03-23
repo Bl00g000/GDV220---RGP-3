@@ -22,6 +22,8 @@ public class CameraWeapon : MonoBehaviour
 
     bool bCanTakePicture = true;
 
+    public event Action<bool> OnCameraFlash;
+
     private void Awake()
     {
         if (instance == null)
@@ -90,6 +92,8 @@ public class CameraWeapon : MonoBehaviour
 
     IEnumerator CameraFlash()
     {
+        OnCameraFlash?.Invoke(true);
+
         while (cameraFlashLight.intensity < fFlashMaxIntensity)
         {
             cameraFlashLight.intensity += Time.deltaTime * fFlashInSpeed;
@@ -123,5 +127,10 @@ public class CameraWeapon : MonoBehaviour
         yield return new WaitUntil(() => cameraFlashLight.intensity <= 0);
 
         bCanTakePicture = true;
+
+        if (!transform.root.GetComponentInChildren<Flashlight>().bFlashLightActive)
+        {
+            OnCameraFlash?.Invoke(false);
+        }
     }
 }
