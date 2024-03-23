@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4875205927852220006}
   - component: {fileID: 4875205927852220005}
   - component: {fileID: 4875205927852220002}
-  m_Layer: 31
+  m_Layer: 29
   m_Name: ChasingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ MonoBehaviour:
   fMaxHealth: 10
   fHealth: 10
   fWanderSpeed: 3
-  fAttackSpeed: 12
+  fAttackingSpeed: 0
   fAggroRange: 20
   fSlowMultiplier: 0
   fWanderRadius: 20
@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 1704948448069983565, guid: dd5b3b61cd0844747ab472628327f21b,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 1704948448069983565, guid: dd5b3b61cd0844747ab472628327f21b,
         type: 3}
@@ -292,12 +292,12 @@ PrefabInstance:
     - target: {fileID: 1704948448194560740, guid: dd5b3b61cd0844747ab472628327f21b,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 1704948448240801787, guid: dd5b3b61cd0844747ab472628327f21b,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 29
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9092453381744933337, guid: dd5b3b61cd0844747ab472628327f21b, type: 3}
