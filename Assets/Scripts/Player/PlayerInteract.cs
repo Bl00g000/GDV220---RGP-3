@@ -6,13 +6,22 @@ public class PlayerInteract : MonoBehaviour
 {
     Collider[] nearbyCollisions;
     public float fInteractRange = 1.5f;
-    GameObject interactableObject = null;
+    [HideInInspector] public GameObject interactableObject = null;
     public KeyCode interactKey = KeyCode.F;
 
-    // Start is called before the first frame update
-    void Start()
+    public static PlayerInteract instance;
+
+    //Singleton
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame
@@ -38,19 +47,22 @@ public class PlayerInteract : MonoBehaviour
             // get distance from player to the current collider
             float fDistanceFromCurrentInteractable = Vector3.Distance(PlayerMovement.instance.transform.position, _collider.ClosestPoint(PlayerMovement.instance.transform.position));
 
-            // Check for the closest object that has a IInteractable interface attached
-            // AND insure it is the closest IInteractable
-            if (_collider.gameObject.GetComponent<IInteractable>() != null && fDistanceFromCurrentInteractable < fClosestObjectDistance)
+            // check for IInteractable interface as well as if the interactable is currently being interacted with OR is interactable at all anymore
+            if (_collider.gameObject.GetComponent<IInteractable>() != null && _collider.gameObject.GetComponent<IInteractable>().bCanInteract && !_collider.gameObject.GetComponent<IInteractable>().bInteracting)
             {
-                interactableObject = _collider.gameObject;
+                // check if the object is the closest object to the player
+                if (fDistanceFromCurrentInteractable < fClosestObjectDistance)
+                {
+                    interactableObject = _collider.gameObject;
 
-                fClosestObjectDistance = Vector3.Distance(PlayerMovement.instance.transform.position, interactableObject.transform.position);
+                    fClosestObjectDistance = Vector3.Distance(PlayerMovement.instance.transform.position, interactableObject.transform.position);
+                }
             }
         }
 
         if (interactableObject != null)
         {
-            
+            interactableObject.GetComponent<IInteractable>().interactUI.SetActive(true);
         }
     }
 

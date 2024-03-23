@@ -59,7 +59,7 @@ public class Flashlight : MonoBehaviour
         float scrollSpeed = Input.mouseScrollDelta.y;
 
         // Do something with the scroll speed
-        Debug.Log("Mouse Wheel Speed: " + scrollSpeed);
+        //Debug.Log("Mouse Wheel Speed: " + scrollSpeed);
 
         HandleInputs();
         HandleFlashLight();
