@@ -5,18 +5,28 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
-    public GameObject objectsCanvas { get; set; }
+    [field: SerializeField] public GameObject interactUI { get; set; }
+    [field: SerializeField] public bool bCanInteract { get; set; } = true;
+    [field: SerializeField] public bool bInteracting { get; set; } = false;
 
     public float fOpenDuration = 1f;
 
     public float fOpenAngle = -90f;
    
-    bool bIsOpening = false;
     bool bInitialInteraction = true;
+
+    private void Update()
+    {
+        // if this object isn't the current closest object to the player OR the interact option is in progress disable canvas
+        if (PlayerInteract.instance.interactableObject != gameObject)
+        {
+            interactUI.SetActive(false);
+        }
+    }
 
     public void Interact()
     {
-        if (!bIsOpening)
+        if (!bInteracting)
         {
             StartCoroutine(OpenDoor());
         }
@@ -24,7 +34,7 @@ public class Door : MonoBehaviour, IInteractable
 
     IEnumerator OpenDoor()
     {
-        bIsOpening = true;
+        bInteracting = true;
 
         float fElapsedTime = 0f;
         Quaternion initialRotation = transform.rotation;
@@ -49,7 +59,7 @@ public class Door : MonoBehaviour, IInteractable
 
         // ensure the target rotation is set properly at the end of the loop
         transform.rotation = targetRotation;
-        bIsOpening = false;
+        bInteracting = false;
 
         // flip bClockwise at end of interaction
         bInitialInteraction = !bInitialInteraction;
