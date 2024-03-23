@@ -1,7 +1,6 @@
 using MPUIKIT;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Searcher;
 using UnityEngine;
 
 public class Searchable : MonoBehaviour, IInteractable
