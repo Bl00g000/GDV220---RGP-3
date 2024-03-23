@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5572090851035658519}
   - component: {fileID: 5572090851035658513}
   - component: {fileID: 1358038783}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Tendril
   m_TagString: Enemy
   m_Icon: {fileID: 0}
