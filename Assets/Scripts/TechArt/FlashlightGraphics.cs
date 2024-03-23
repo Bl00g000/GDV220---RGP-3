@@ -7,17 +7,22 @@ public class FlashlightGraphics : MonoBehaviour
 {
     [Header("Optional Variables")]
     public Flashlight attachedFlashlight;
+    public CameraWeapon attachedCameraWeapon;
 
     public List<GameObject> toggleObjects = new List<GameObject>();
     public List<GameObject> toggleInverseObjects = new List<GameObject>();
+
     void Awake()
     {
-        if(attachedFlashlight == null) attachedFlashlight = transform.root.GetComponent<Flashlight>();
+        if(attachedFlashlight == null) attachedFlashlight = transform.root.GetComponentInChildren<Flashlight>();
+        if(attachedCameraWeapon == null) attachedCameraWeapon = transform.root.GetComponentInChildren<CameraWeapon>();
     }
 
     private void Start()
     {
         attachedFlashlight.OnFlashLightToggle += OnFlashlightToggle;
+        attachedCameraWeapon.OnCameraFlash += OnFlashlightToggle;
+        
     }
 
     // Update is called once per frame

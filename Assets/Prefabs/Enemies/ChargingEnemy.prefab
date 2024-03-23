@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8401317120382320130}
   - component: {fileID: 8401317120382320131}
   - component: {fileID: 1377078933176228541}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: ChargingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,13 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc056a0c09bd4143bc7119de6c1a732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 1377078933176228541}
+  fMaxHealth: 0
   fHealth: 10
   fWanderSpeed: 1
-  fAttackSpeed: 50
+  fAttackingSpeed: 0
   fAggroRange: 10
+  fSlowMultiplier: 0
   fWanderRadius: 10
-  playerTransform: {fileID: 0}
+  bFlashlighted: 0
 --- !u!33 &8401317120382320141
 MeshFilter:
   m_ObjectHideFlags: 0
