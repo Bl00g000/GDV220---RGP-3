@@ -256,6 +256,18 @@ PrefabInstance:
       propertyPath: shadowMap
       value: 
       objectReference: {fileID: 1481018964}
+    - target: {fileID: 1926669454, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: fFOVdeg
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926669454, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: iRayCount
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926669454, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: fFlashlightRange
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7593643068077876922, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
       propertyPath: m_Name

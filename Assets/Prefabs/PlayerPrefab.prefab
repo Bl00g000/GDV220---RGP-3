@@ -2066,9 +2066,9 @@ MonoBehaviour:
   shootThroughLayers:
   - serializedVersion: 2
     m_Bits: 64
-  iRayCount: 1000
-  fFOVdeg: 45
-  fFlashlightRange: 10
+  iRayCount: 32
+  fFOVdeg: 65
+  fFlashlightRange: 12
   hitOffset: 0.04
   hitPositions: []
   fZoneHeight: -0.1
