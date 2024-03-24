@@ -92,6 +92,8 @@ public class Flashlight : MonoBehaviour
 
     void HandleInputs()
     {
+        if (GameManager.instance.bIsPaused) return;
+
         // Recharge flashlight battery if held down and flashlight isn't currently on
         if (Input.GetKey(RechargeButton))
         {
