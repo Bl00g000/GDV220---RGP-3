@@ -2025,8 +2025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e73ae1ba84c42b4f84dd42fd45cd114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMoveSpeed: 5
-  moveSpeed: 5
+  currentMoveSpeed: 3
+  moveSpeed: 3
   strafeModifier: 0.8
   reverseModifier: 0.6
   rotSpeed: 200
