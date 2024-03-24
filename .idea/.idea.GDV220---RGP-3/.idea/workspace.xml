@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a5949de-3317-46fe-b542-8a4dd8d1049b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Metal Door Close.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Metal Door Close.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Metal Door Open.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Metal Door Open.mp3.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Interactables/SteelDoor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Interactables/SteelDoor.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactables/Door.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactables/Door.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/CameraWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/CameraWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Camera.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/Camera.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Camera.mp3.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/Camera.mp3.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/MAT/VG_LightDamage.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/MAT/VG_LightDamage.vfx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Tendril.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Tendril.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AndysAttic.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AndysAttic.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyTendril.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyTendril.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +39,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging andy-branch",
+    "git-widget-placeholder": "andy-branch",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -130,7 +125,7 @@
       <workItem from="1711114208324" duration="1488000" />
       <workItem from="1711170105358" duration="659000" />
       <workItem from="1711189144231" duration="3804000" />
-      <workItem from="1711198858547" duration="6282000" />
+      <workItem from="1711198858547" duration="8702000" />
     </task>
     <servers />
   </component>

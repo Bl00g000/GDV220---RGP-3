@@ -44,18 +44,28 @@ public class EnemyTendril : EnemyBase
         if (bFlashlighted)
         {
             visualEffect.enabled = true;
+            gameObject.layer = LayerMask.NameToLayer("Default");
 
-
-            // display damage indicator
+            // Display damage indicator
             bFlashlighted = false;
+            
+            if (fHealth <= 0f)
+            {
+                // Spawn Death VFX
+                StopAllCoroutines();
+                visualEffect.enabled = false;
+                DestroyImmediate(gameObject);
+            }
         }
         else
         {
             visualEffect.enabled = false;
-            //regen
+            gameObject.layer = LayerMask.NameToLayer("ObscurePostProcessMap");
+            // Regen
             if (fHealth < fMaxHealth)
             {
                 fHealth += (fMaxHealth - fHealth) * 0.01f;
+
             }
         }
     }
@@ -67,7 +77,7 @@ public class EnemyTendril : EnemyBase
             for (int i = 0; i < growVineMaterials.Count; i++)
             {
                 var mat = growVineMaterials[i];
-                mat.SetFloat("_Grow", fHealth/fMaxHealth);
+                mat.SetFloat("_Grow", fHealth / fMaxHealth);
             }
             yield return null;
             yield return null;
