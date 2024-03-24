@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        bIsPaused = false;
     }
 
     void Update()
@@ -42,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     public void PlayGame()
     {
+        bIsPaused = false;
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(1);
     }
 
@@ -74,13 +74,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1.0f;
             pauseMenu.SetActive(false);
         }
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(1);
-        bIsPaused = false;
-        Time.timeScale = 1.0f;
     }
 
     public void GameOver()
