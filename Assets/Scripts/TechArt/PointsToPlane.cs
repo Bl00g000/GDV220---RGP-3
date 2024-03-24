@@ -65,7 +65,7 @@ public class PointsToPlane : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         // if (currentMesh != null) Destroy(currentMesh);
 
