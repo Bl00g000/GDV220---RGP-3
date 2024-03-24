@@ -22,6 +22,11 @@ public class CameraWeapon : MonoBehaviour
 
     bool bCanTakePicture = true;
 
+    [Header("Audio")]
+    public AudioSource cameraFlashAudio;
+    float fInitialVolume;
+    float fCurrentDuration = 0;
+
     public event Action<bool> OnCameraFlash;
 
     private void Awake()
@@ -41,12 +46,16 @@ public class CameraWeapon : MonoBehaviour
     {
         playerVisionCone = gameObject.GetComponentInParent<VisionCone>();
         pointsToPlane = gameObject.transform.parent.GetComponentInChildren<PointsToPlane>();
+
+        // audio volume and fade time
+        fInitialVolume = cameraFlashAudio.volume;
     } 
 
     // Update is called once per frame
     void Update()
     {
         HandleInputs();
+        CameraAudioFadeOut();
 
         // get colliders in range
         collisions = Physics.OverlapSphere(gameObject.GetComponentInParent<PlayerMovement>().transform.position, playerVisionCone.fFlashlightRange + 10);
@@ -68,16 +77,15 @@ public class CameraWeapon : MonoBehaviour
             // check whether the flashlight on otherwise skip function
             if (fFilmCount <= 0) { return; }
 
-            fFilmCount--;
-
             // check through all nearby colliders and check if they are in the light currently
             foreach (var _collider in collisions)
             {
                 if (pointsToPlane.LightContainsObject(_collider.gameObject))
                 {
+
+                    // Do things to enemy when they are in flash here
                     if (_collider.CompareTag("Enemy"))
                     {
-                        Debug.Log("enemy hit");
                         EnemyBase enemyBase = _collider.GetComponent<EnemyBase>();
                         enemyBase.bFlashlighted = true;
                         enemyBase.fHealth -= fCameraFlashDamage;
@@ -85,6 +93,8 @@ public class CameraWeapon : MonoBehaviour
                 }
             }
 
+            cameraFlashAudio.Play();
+            fFilmCount--;
             bCanTakePicture = false;
             StartCoroutine(CameraFlash());
         }
@@ -131,6 +141,33 @@ public class CameraWeapon : MonoBehaviour
         if (!transform.root.GetComponentInChildren<Flashlight>().bFlashLightActive)
         {
             OnCameraFlash?.Invoke(false);
+        }
+    }
+
+    void CameraAudioFadeOut()
+    {
+        if (!bCanTakePicture)
+        {
+            fCurrentDuration += Time.deltaTime;
+
+            float targetVolume = Mathf.Lerp(fInitialVolume, 0, fCurrentDuration / cameraFlashAudio.clip.length);
+
+            // at about the half way point of the camera sound reduce pitch to remove weird aftersound
+            if (fCurrentDuration > 0.4f)
+            {
+                cameraFlashAudio.pitch = 0f;
+            }
+
+            // set the volume
+            cameraFlashAudio.volume = targetVolume;
+        }
+        else
+        {
+            // if flash is done reset values
+            cameraFlashAudio.Stop();
+            cameraFlashAudio.volume = fInitialVolume;
+            cameraFlashAudio.pitch = 1f;
+            fCurrentDuration = 0;
         }
     }
 }

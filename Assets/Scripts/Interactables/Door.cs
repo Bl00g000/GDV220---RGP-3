@@ -13,6 +13,10 @@ public class Door : MonoBehaviour, IInteractable
     public float fOpenDuration = 1f;
 
     public float fOpenAngle = -90f;
+
+    [Header("Audio")]
+    public AudioSource doorOpen;
+    public AudioSource doorClose;
    
     bool bInitialInteraction = true;
 
@@ -45,8 +49,8 @@ public class Door : MonoBehaviour, IInteractable
         // sets the angle either to the same angle as the initialInteraction to open/close
         // otherwise flip it with -1 multiplier to do the opposite action of the initial action
         // (e.g. if door starts open and then closes with initialInteraction, the flip would be opening)
-        if (bInitialInteraction) { fOpenMultipler = 1; }
-        else { fOpenMultipler = -1;}
+        if (bInitialInteraction) { fOpenMultipler = 1; doorOpen.Play(); }
+        else { fOpenMultipler = -1; doorClose.Play(); }
 
         // set the rotation target by using the above multipler and multiplying it with the angle
         Quaternion targetRotation = initialRotation * Quaternion.Euler(0, fOpenAngle * fOpenMultipler, 0);
