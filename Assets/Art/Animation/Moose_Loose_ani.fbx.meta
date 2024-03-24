@@ -3,7 +3,12 @@ guid: a40083acc177e1c46be8dbce7556fe4f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Moose6_remesh4
+    second: {fileID: 2100000, guid: 32c7cab55ff81cf42a53e27ad7b2eb31, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -117,7 +122,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01778
+    globalScale: 0.7
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

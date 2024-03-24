@@ -1863,8 +1863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e73ae1ba84c42b4f84dd42fd45cd114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMoveSpeed: 10
-  moveSpeed: 10
+  currentMoveSpeed: 3
+  moveSpeed: 3
   strafeModifier: 0.8
   reverseModifier: 0.6
   rotSpeed: 200
@@ -1904,9 +1904,9 @@ MonoBehaviour:
   shootThroughLayers:
   - serializedVersion: 2
     m_Bits: 64
-  iRayCount: 1000
-  fFOVdeg: 45
-  fFlashlightRange: 10
+  iRayCount: 32
+  fFOVdeg: 70
+  fFlashlightRange: 14
   hitOffset: 0.04
   hitPositions: []
   fZoneHeight: -0.1
