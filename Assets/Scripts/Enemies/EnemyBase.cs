@@ -45,6 +45,12 @@ public class EnemyBase : MonoBehaviour
         if (bFlashlighted)
         {
             fSlowMultiplier = 0.2f;
+
+            // Aggro enemies when flashlighted?!
+            if (!bAttacking)
+            {
+                Attack();
+            }
         }
         else
         {
@@ -54,7 +60,7 @@ public class EnemyBase : MonoBehaviour
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
             // Check if player is inside aggro range and there is a visible line between the enemy and player
-            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange && HasLOS())
+            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange && HasLOS() && !bAttacking)
             {
                 if (bWandering)
                 {
