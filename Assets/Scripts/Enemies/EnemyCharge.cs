@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyCharge : EnemyBase
 {
-    [SerializeField] LayerMask detectedLayers;
     bool bIsTurning = false;
     public Vector3 v3TargetPos;
 
@@ -33,6 +34,11 @@ public class EnemyCharge : EnemyBase
         bIsTurning = true;
         StartCoroutine(TurnTowardsPlayer());
         yield return new WaitUntil(() => !bIsTurning);
+
+        if (!bAttacking)
+        {
+            yield break;
+        }
 
         v3TargetPos = PlayerMovement.instance.transform.position;
 
@@ -65,10 +71,20 @@ public class EnemyCharge : EnemyBase
             navMeshAgent.transform.rotation = Quaternion.Lerp(navMeshAgent.transform.rotation, qTargetRot, Time.deltaTime * 5.0f);
 
             // Cast a ray towards the moose's forward vector
-            if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 2.0f, detectedLayers))
+            
+            if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 2.0f, playerLayer))
             {
                 // Break if it hits the player
-                if (hit.collider.gameObject == PlayerMovement.instance.gameObject) break;
+                break;
+            }
+            else if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 2.0f, playerLayer))
+            {
+                bAttacking = false;
+                break;
+            }
+            else if (bWandering)
+            {
+                break;
             }
 
             yield return null;

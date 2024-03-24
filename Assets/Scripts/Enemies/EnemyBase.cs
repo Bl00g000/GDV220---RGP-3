@@ -24,6 +24,9 @@ public class EnemyBase : MonoBehaviour
     protected bool bAttacking;
     public bool bFlashlighted;
 
+    [SerializeField] protected LayerMask playerLayer;
+    [SerializeField] protected LayerMask wallLayer;
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -50,8 +53,8 @@ public class EnemyBase : MonoBehaviour
 
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
-            // Check if player is inside aggro range
-            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange)
+            // Check if player is inside aggro range and there is a visible line between the enemy and player
+            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange && HasLOS())
             {
                 if (bWandering)
                 {
@@ -62,13 +65,17 @@ public class EnemyBase : MonoBehaviour
 
                 Attack();
             }
+            else
+            {
+                bAttacking = false;
+            }
         }
         else
         {
             bAttacking = false;
         }
 
-        if (!bWandering && !bAttacking && Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) > fAggroRange * 2)
+        if (!bWandering && !bAttacking && !HasLOS())
         {
             StartCoroutine(Wander());
         }
@@ -119,5 +126,28 @@ public class EnemyBase : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(3.0f, 5.0f));
 
         bWandering = false;
+    }
+
+    protected bool HasLOS()
+    {
+        RaycastHit playerHit;
+        RaycastHit wallHit;
+
+        Vector3 v3DirectionToPlayer = (PlayerMovement.instance.transform.position - navMeshAgent.transform.position).normalized;
+
+        // cast 2 rays, one that checks for player and one that checks for walls, if there is a wall between the moose and the player
+        if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out playerHit, fAggroRange * 2.0f, playerLayer))
+        {
+            if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out wallHit, fAggroRange * 2.0f, wallLayer))
+            {
+                if (Vector3.Distance(transform.position, playerHit.point) > Vector3.Distance(transform.position, wallHit.point))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        return false;
     }
 }

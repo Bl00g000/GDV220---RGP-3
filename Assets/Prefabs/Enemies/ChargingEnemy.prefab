@@ -56,9 +56,12 @@ MonoBehaviour:
   fSlowMultiplier: 0
   fWanderRadius: 10
   bFlashlighted: 0
-  detectedLayers:
+  playerLayer:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 8
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
   v3TargetPos: {x: 0, y: 0, z: 0}
 --- !u!65 &6793004949779170914
 BoxCollider:
