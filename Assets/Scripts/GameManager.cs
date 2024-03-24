@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     [SerializeField] GameObject pauseMenu;
     [HideInInspector] public bool bIsPaused;
+
+    [SerializeField] GameObject gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            GameOver();
         }
     }
 
@@ -66,5 +74,19 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1.0f;
             pauseMenu.SetActive(false);
         }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
+        bIsPaused = false;
+        Time.timeScale = 1.0f;
+    }
+
+    public void GameOver()
+    {
+        bIsPaused = true;
+        Time.timeScale = 0.0f;
+        gameOver.SetActive(true);
     }
 }
