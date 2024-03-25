@@ -5049,11 +5049,6 @@ PrefabInstance:
       propertyPath: shadowMap
       value: 
       objectReference: {fileID: 1481018964}
-    - target: {fileID: 5098383909192992748, guid: f5a9bada6e9277b4399b30f1da5d2e74,
-        type: 3}
-      propertyPath: fZoneHeight
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7593643068077876922, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
       propertyPath: m_Name
