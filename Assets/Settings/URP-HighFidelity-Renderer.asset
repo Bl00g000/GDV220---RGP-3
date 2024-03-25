@@ -20,7 +20,7 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 536870912
+        m_Bits: 2147483648
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
@@ -29,8 +29,8 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
-      stencilReference: 0
-      stencilCompareFunction: 2
+      stencilReference: 3
+      stencilCompareFunction: 3
       passOperation: 0
       failOperation: 0
       zFailOperation: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 2684354560
+        m_Bits: 536870912
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
-      stencilReference: 3
-      stencilCompareFunction: 2
+      stencilReference: 2
+      stencilCompareFunction: 4
       passOperation: 0
       failOperation: 0
       zFailOperation: 0
@@ -141,12 +141,12 @@ MonoBehaviour:
       type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  - {fileID: 3089207731849235924}
-  - {fileID: -5608149956428057763}
   - {fileID: -1142509298767988515}
+  - {fileID: 3089207731849235924}
   - {fileID: -6888425242830907539}
+  - {fileID: -5608149956428057763}
   - {fileID: 8144595865438496295}
-  m_RendererFeatureMap: adc0de57c6d2eee5d48d43961012df2a5db3fbef53d92bb2dd785a96d8fd24f06dd73af3bc6567a027a693a6c96a0771
+  m_RendererFeatureMap: adc0de57c6d2eee5dd785a96d8fd24f0d48d43961012df2a6dd73af3bc6567a05db3fbef53d92bb227a693a6c96a0771
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -217,7 +217,7 @@ MonoBehaviour:
     stencilSettings:
       overrideStencilState: 1
       stencilReference: 1
-      stencilCompareFunction: 5
+      stencilCompareFunction: 7
       passOperation: 0
       failOperation: 0
       zFailOperation: 0

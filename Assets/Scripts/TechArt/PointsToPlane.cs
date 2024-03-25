@@ -10,10 +10,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(MeshRenderer))]
 public class PointsToPlane : MonoBehaviour
 {
+
     [Header("Assigned Variables")]
     public VisionCone visionCone;
     public float shadowRadius;
-    public List<MeshFilter> shareMeshes;
     public GameObject shadowMap;
     public Camera shadowCamera;
     public DecalProjector shadowProjector;
@@ -62,10 +62,6 @@ public class PointsToPlane : MonoBehaviour
 
         // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
-        foreach(MeshFilter shareMesh in shareMeshes)
-        {
-            shareMesh.mesh = currentMesh;
-        }
 
         // Update shadows
 
