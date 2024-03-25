@@ -6227,30 +6227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 864510594088448075, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 536874967
-      objectReference: {fileID: 0}
     - target: {fileID: 864510594088448087, guid: 96249c7ca531b4949aba070ae242a814,
         type: 3}
       propertyPath: m_Name
       value: PlayerCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 864510594298076051, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 864510594298076060, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2080
-      objectReference: {fileID: 0}
-    - target: {fileID: 864510594579198909, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2147485696
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96249c7ca531b4949aba070ae242a814, type: 3}
