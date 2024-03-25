@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraWeapon : MonoBehaviour
 {
-    VisionCone playerVisionCone;
+    public VisionCone playerVisionCone;
     PointsToPlane pointsToPlane;
     Collider[] collisions;
     public float fFilmCount = 2;
@@ -44,7 +44,6 @@ public class CameraWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerVisionCone = gameObject.GetComponentInParent<VisionCone>();
         pointsToPlane = gameObject.transform.parent.GetComponentInChildren<PointsToPlane>();
 
         // audio volume and fade time

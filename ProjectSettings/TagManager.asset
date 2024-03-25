@@ -16,8 +16,8 @@ TagManager:
   - WallBackhit
   - Wall
   - LightMap
-  - 
-  - 
+  - BackWhiteVolume
+  - Fog
   - 
   - 
   - 
