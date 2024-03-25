@@ -43,7 +43,7 @@ public class EnemyCharge : EnemyBase
         v3TargetPos = PlayerMovement.instance.transform.position;
 
         //////////// Uncomment below if you want the moose to pause before charging!!
-        //yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
 
         // Charge at player position
         Debug.Log("Charging now!");

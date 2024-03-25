@@ -338,7 +338,7 @@ PrefabInstance:
     - target: {fileID: 8401317120382320128, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8401317120382320143, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
@@ -882,7 +882,7 @@ PrefabInstance:
     - target: {fileID: 8401317120382320128, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8401317120382320143, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
@@ -2863,7 +2863,7 @@ PrefabInstance:
     - target: {fileID: 8401317120382320128, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8401317120382320143, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
@@ -4087,7 +4087,7 @@ PrefabInstance:
     - target: {fileID: 8401317120382320128, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8401317120382320143, guid: 254e5ba79aa31ac45bb828d79acec556,
         type: 3}
@@ -5049,11 +5049,6 @@ PrefabInstance:
       propertyPath: shadowMap
       value: 
       objectReference: {fileID: 1481018964}
-    - target: {fileID: 5098383909192992748, guid: f5a9bada6e9277b4399b30f1da5d2e74,
-        type: 3}
-      propertyPath: fZoneHeight
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7593643068077876922, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
       propertyPath: m_Name
@@ -6232,30 +6227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 864510594088448075, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 536874967
-      objectReference: {fileID: 0}
     - target: {fileID: 864510594088448087, guid: 96249c7ca531b4949aba070ae242a814,
         type: 3}
       propertyPath: m_Name
       value: PlayerCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 864510594298076051, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 864510594298076060, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2080
-      objectReference: {fileID: 0}
-    - target: {fileID: 864510594579198909, guid: 96249c7ca531b4949aba070ae242a814,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 2147485696
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96249c7ca531b4949aba070ae242a814, type: 3}

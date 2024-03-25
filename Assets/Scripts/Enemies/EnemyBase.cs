@@ -39,12 +39,18 @@ public class EnemyBase : MonoBehaviour
         v3StartingPosition = transform.position;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, fAggroRange);
+    }
+
     // Update is called once per frame
     protected void Update()
     {
         if (bFlashlighted)
         {
             fSlowMultiplier = 0.2f;
+            Debug.Log("flashlighted - attack");
 
             // Aggro enemies when flashlighted?!
             if (!bAttacking)
@@ -60,7 +66,7 @@ public class EnemyBase : MonoBehaviour
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
             // Check if player is inside aggro range and there is a visible line between the enemy and player
-            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange && HasLOS() && !bAttacking)
+            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange && HasLOS())
             {
                 if (bWandering)
                 {

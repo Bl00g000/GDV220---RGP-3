@@ -1,13 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.EventSystems;
-using System.Data;
-using UnityEngine.UIElements;
-//using MPUIKIT;
-using Unity.VisualScripting;
-using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -64,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     public float LerpValue = 0.0f;
     public float TargetRotationValue = 0.0f;
     public float modelTurnForgiveness = 7.0f;
+    
+    // Animation Controller
+    private Animator animator;
 
     //Singleton
     private void Awake()
@@ -77,7 +71,11 @@ public class PlayerMovement : MonoBehaviour
             Destroy(this);
         }
 
-
+        animator = GetComponentInChildren<Animator>();
+        if (!animator)
+        {
+            Debug.LogWarning("Animator Not Found On Player");
+        }
     }
 
     // Start is called before the first frame update
@@ -220,11 +218,17 @@ public class PlayerMovement : MonoBehaviour
             //}
             playerController.Move(moveDirection * Time.deltaTime * currentMoveSpeed);
             //playerController.
+            
+            // Update Animation Controller (Andy)
+            animator.SetFloat("Speed_Blend", 1,0.1f, Time.deltaTime);
+            // Debug.Log(moveSpeed);
 
         }
         else
         {
             moveDirection = Vector3.zero;
+            
+            animator.SetFloat("Speed_Blend", 0,0.1f, Time.deltaTime);
             //IsTurningLeft = false;
             //IsTurningRight = false;
         }
