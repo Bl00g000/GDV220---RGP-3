@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Fog : MonoBehaviour
 {
+    public Camera fogCamera;
     public float distance;
+    public RenderTexture texture;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
     {
+
         transform.position = PlayerMovement.instance.transform.position;
         transform.position = new Vector3(transform.position.x, 0.01f, transform.position.z);
 
@@ -26,5 +26,8 @@ public class Fog : MonoBehaviour
         {
             transform.localScale = new Vector3(height, 1, height);
         }
+
+        fogCamera.orthographicSize = width / 2f;
+        Shader.SetGlobalTexture("_FogRenderTexture", texture);
     }
 }

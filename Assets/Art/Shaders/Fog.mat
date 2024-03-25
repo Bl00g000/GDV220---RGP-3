@@ -45,6 +45,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FogRenderTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -92,8 +96,8 @@ Material:
     - _EnvironmentReflections: 1
     - _Fade: 0.5
     - _Float: 0.45
-    - _FogHeight: -0.19
-    - _FogIntensity: 0.7
+    - _FogHeight: -0.2
+    - _FogIntensity: 0.25
     - _FogSpeed: 0.4
     - _GlossMapScale: 0
     - _Glossiness: 0
