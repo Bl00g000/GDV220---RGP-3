@@ -10,7 +10,6 @@ public class VisionCone : MonoBehaviour
     Vector3 v3dir;
     
     public LayerMask hitLayers;
-    public List<LayerMask> shootThroughLayers;
 
     public int iRayCount = 30;
     public float fFOVdeg = 45;
@@ -52,29 +51,6 @@ public class VisionCone : MonoBehaviour
             {
                 // If there is a hit, add the hit point to the hitpositions
                 Debug.DrawRay(playPos, hit.point - playPos, Color.blue);
-
-                // check if the layer requires a hit back
-                if(ListContainsLayer(shootThroughLayers, (LayerMask)hit.transform.gameObject.layer))
-                {
-                    Vector3 hitDirection = (hit.point - playPos).normalized;
-
-                    RaycastHit backHit;
-                    Ray backRay = new Ray(hit.point + hitDirection * 5f, -hitDirection);
-
-                    if (hit.collider.Raycast(backRay, out backHit, 5.1f))
-                    {
-                        Debug.DrawRay(playPos + rayDirection * fFlashlightRange, backRay.direction * Vector3.Distance(backHit.point, playPos + rayDirection * fFlashlightRange), Color.green);
-                        Debug.Log("Shot Through!, got new POS!!");
-
-                        hitPositions.Add(backHit.point + backHit.normal* hitOffset);
-
-                        continue;
-                    }
-                    else
-                    {
-                        Debug.LogWarning("didnt find hit back, this might be an issue, please tell NATHANIEL HUNTER thanks!!");
-                    }
-                }
 
                 // adds if no hit back was found or required!
                 hitPositions.Add(hit.point + (hit.point - playPos).normalized * hitOffset);

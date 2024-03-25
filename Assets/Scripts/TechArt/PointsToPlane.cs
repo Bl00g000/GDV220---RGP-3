@@ -11,23 +11,15 @@ using UnityEngine.UI;
 public class PointsToPlane : MonoBehaviour
 {
     [Header("Assigned Variables")]
+    public VisionCone visionCone;
     public float shadowRadius;
-
+    public List<MeshFilter> shareMeshes;
     public GameObject shadowMap;
     public Camera shadowCamera;
     public DecalProjector shadowProjector;
-    public int blurRadius;
-    public int blurQuality;
 
-    public RawImage testImage;
-
-    [Header("Optional Assigned Variables")]
-    public VisionCone visionCone;
-
+    [Header("Assigned Variables")]
     public GameObject startObject;
-
-    [Header("Settings")]
-    public float zoneHeight;
 
     // Found variables
     private MeshRenderer meshRenderer;
@@ -36,9 +28,8 @@ public class PointsToPlane : MonoBehaviour
 
     // Created Variables
     private Mesh currentMesh;
-
-    List<GameObject> hits;
-
+    private List<GameObject> hits;
+    
     public List<GameObject> touchingObjects;
     RaycastHit[] result;
 
@@ -55,7 +46,7 @@ public class PointsToPlane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (visionCone == null) visionCone = FindAnyObjectByType<VisionCone>();
+        if (visionCone == null) visionCone = GetComponent<VisionCone>();
         if (startObject == null) startObject = FindAnyObjectByType<PlayerMovement>().gameObject;
     }
 
@@ -67,15 +58,13 @@ public class PointsToPlane : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        // if (currentMesh != null) Destroy(currentMesh);
-
         CreateMesh(visionCone.hitPositions);
 
         // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
-        foreach (Transform child in gameObject.transform)
+        foreach(MeshFilter shareMesh in shareMeshes)
         {
-            child.GetComponent<MeshFilter>().mesh = currentMesh;
+            shareMesh.mesh = currentMesh;
         }
 
         // Update shadows
@@ -96,22 +85,9 @@ public class PointsToPlane : MonoBehaviour
 
         hits.Clear();
 
-        // Debug.Log(visionCone.hitPositions.Count);
         foreach (Vector3 point in visionCone.hitPositions)
         {
             startPos.y = point.y;
-            // RaycastHit[] allHits = Physics.RaycastAll(startPos,
-            //     (point - startPos).normalized,
-            //     Vector3.Distance(startPos, point));
-            // foreach (RaycastHit hit in allHits)
-            // {
-            //     if (!hits.Contains(hit.transform.gameObject))
-            //     {
-            //         hits.Add(hit.transform.gameObject);
-            //     }
-            // }
-            // Debug.DrawLine(transform.position, point, Color.green);
-
             var size = Physics.RaycastNonAlloc(startPos,
                 (point - startPos).normalized,
                 result,
@@ -130,19 +106,16 @@ public class PointsToPlane : MonoBehaviour
 
     public void CreateMesh(List<Vector3> points)
     {
-        // Mesh planeMesh = null;
-        // planeMesh = new Mesh();
         currentMesh.Clear();
-        // currentMesh = new Mesh();
 
         Vector3[] newVertices = new Vector3[points.Count + 1];
         for (int i = 0; i < points.Count; i++)
         {
             newVertices[i + 1] = transform.InverseTransformPoint(points[i]);
-            newVertices[i + 1].y = transform.InverseTransformPoint(Vector3.up * zoneHeight).y;
+            newVertices[i + 1].y = 0;
         }
         newVertices[0] = transform.InverseTransformPoint(startObject.transform.position);
-        newVertices[0].y = transform.InverseTransformPoint(Vector3.up * zoneHeight).y;
+        newVertices[0].y = 0;
 
         List<int> triangles = new List<int>();
         for (int i = 1; i < points.Count; i++)
