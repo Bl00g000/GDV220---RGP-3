@@ -17,6 +17,7 @@ public class VisionCone : MonoBehaviour
     public float hitOffset;
     public List<Vector3> hitPositions = new List<Vector3>();
     public float fZoneHeight;
+
     // Start is called before the first frame update
     void Start()
     {
