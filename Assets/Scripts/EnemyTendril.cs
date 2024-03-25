@@ -44,7 +44,6 @@ public class EnemyTendril : EnemyBase
         if (bFlashlighted)
         {
             visualEffect.enabled = true;
-            gameObject.layer = LayerMask.NameToLayer("Default");
 
             // Display damage indicator
             bFlashlighted = false;
@@ -60,7 +59,7 @@ public class EnemyTendril : EnemyBase
         else
         {
             visualEffect.enabled = false;
-            gameObject.layer = LayerMask.NameToLayer("ObscurePostProcessMap");
+
             // Regen
             if (fHealth < fMaxHealth)
             {

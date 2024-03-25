@@ -7,11 +7,12 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    VisionCone playerVisionCone;
+    public VisionCone flashlightVisionCone;
     PointsToPlane pointsToPlane;
     public float fFlashLightDPS = 2.0f;
     Collider[] collisions;
     public bool bFlashLightActive = false;
+    private float startFloorIntensity;
     public Light floorLight;
 
     public float fMaxCharge = 10.0f;
@@ -33,6 +34,7 @@ public class Flashlight : MonoBehaviour
 
     private void Awake()
     {
+        startFloorIntensity = floorLight.intensity;
         if (instance == null)
         {
             instance = this;
@@ -48,7 +50,6 @@ public class Flashlight : MonoBehaviour
     {
         fCurrentCharge = fMaxCharge;
 
-        playerVisionCone = gameObject.GetComponentInParent<VisionCone>();
         pointsToPlane = gameObject.transform.parent.GetComponentInChildren<PointsToPlane>();
     }
 
@@ -65,7 +66,7 @@ public class Flashlight : MonoBehaviour
         HandleFlashLight();
         RechargeBattery();
 
-        collisions = Physics.OverlapSphere(gameObject.GetComponentInParent<PlayerMovement>().transform.position, playerVisionCone.fFlashlightRange + 10);
+        collisions = Physics.OverlapSphere(gameObject.GetComponentInParent<PlayerMovement>().transform.position, flashlightVisionCone.fFlashlightRange + 10);
         CheckForEnmiesHit();
     }
 
@@ -133,7 +134,7 @@ public class Flashlight : MonoBehaviour
         }
         else if (!bFlashLightActive && fCurrentCharge > 0)
         {
-            floorLight.intensity = Mathf.Lerp(0f, 100f, fCurrentCharge / fMaxCharge);
+            floorLight.intensity = Mathf.Lerp(0f, startFloorIntensity, fCurrentCharge / fMaxCharge);
 
             // invoke event and set flashlightactive bool
             OnFlashLightToggle?.Invoke(true);
@@ -161,7 +162,7 @@ public class Flashlight : MonoBehaviour
 
                 float fCurrentInternsity = fCurrentCharge / fMaxCharge;
 
-                floorLight.intensity = Mathf.Lerp(0f, 100f, fCurrentInternsity);
+                floorLight.intensity = Mathf.Lerp(0f, startFloorIntensity, fCurrentInternsity);
             }
             else // if battery has run out disable flashlight bool and invoke the action
             {

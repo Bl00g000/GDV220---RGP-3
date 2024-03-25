@@ -54,6 +54,7 @@ public class UIInteractPrompt : MonoBehaviour
         }
     }
 
+    // Enables the prompt on the UI
     public void Interact(GameObject objectToSpawn, Vector3 objectScale, string objectName, string objectBlurb)
     {
         foreach(Transform child in GetComponentsInChildren<Transform>(true))
