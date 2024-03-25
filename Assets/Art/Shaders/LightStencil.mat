@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FlashlightStencil
+  m_Name: LightStencil
   m_Shader: {fileID: 4800000, guid: a6ee0b2b94621614190ea16334959746, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

@@ -13,6 +13,7 @@ public class PointsToPlane : MonoBehaviour
 
     [Header("Assigned Variables")]
     public VisionCone visionCone;
+    public List<MeshFilter> sharedMeshFilters;
     public float shadowRadius;
     public GameObject shadowMap;
     public Camera shadowCamera;
@@ -62,7 +63,10 @@ public class PointsToPlane : MonoBehaviour
 
         // Assign meshes and colliders
         meshFilter.mesh = currentMesh;
-
+        foreach(MeshFilter rend in sharedMeshFilters)
+        {
+            rend.mesh = currentMesh;
+        }
         // Update shadows
 
         shadowMap.transform.position = new Vector3(startObject.transform.position.x,
