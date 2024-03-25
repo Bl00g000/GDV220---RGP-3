@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2a5949de-3317-46fe-b542-8a4dd8d1049b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GDV220---RGP-3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Animation/Character/AC_Player.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Animation/Character/AC_Player.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Animation/Character/Jog Forward.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Animation/Character/Jog Forward.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Animation/Character/Standard Walk.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Animation/Character/Standard Walk.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Props/Tendril.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Props/Tendril.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene_Iteration_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene_Iteration_1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
