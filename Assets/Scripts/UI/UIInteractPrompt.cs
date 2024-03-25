@@ -17,6 +17,9 @@ public class UIInteractPrompt : MonoBehaviour
     public float rotationSpeed;
     public float rotateDistance;
 
+    public GameObject flashlightPickupButton;
+    public GameObject cameraPickupButton;
+
     private GameObject spawnedObject;
     private bool interacting;
     private bool active;
@@ -37,6 +40,8 @@ public class UIInteractPrompt : MonoBehaviour
     {
         if (active == true)
         {
+            Time.timeScale = 0.0f;
+
             if(Input.GetMouseButtonDown(0) && Vector2.Distance(new Vector2(0.5f,0.5f), Camera.main.ScreenToViewportPoint(Input.mousePosition)) < rotateDistance)
             {
                 interacting = true;
@@ -61,6 +66,8 @@ public class UIInteractPrompt : MonoBehaviour
         {
             child.gameObject.SetActive(true);
         }
+        flashlightPickupButton.SetActive(false);
+        cameraPickupButton.SetActive(false);
 
         active = true;
         spawnedObject = Instantiate(objectToSpawn, spawnLocation.transform);
@@ -82,6 +89,9 @@ public class UIInteractPrompt : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
+        Destroy(spawnedObject);
+
+        Time.timeScale = 1.0f;
         active = false;
     }
 }

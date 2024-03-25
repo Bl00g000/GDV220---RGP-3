@@ -21,6 +21,7 @@ public class CameraWeapon : MonoBehaviour
     public float fFlashOutSpeed = 10;
 
     bool bCanTakePicture = true;
+    public bool bHasCamera = false;
 
     [Header("Audio")]
     public AudioSource cameraFlashAudio;
@@ -53,6 +54,9 @@ public class CameraWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale <= 0f) { return; } 
+        if (!bHasCamera) { return; }
+
         HandleInputs();
         CameraAudioFadeOut();
 

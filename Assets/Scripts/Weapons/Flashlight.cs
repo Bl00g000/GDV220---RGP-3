@@ -12,6 +12,7 @@ public class Flashlight : MonoBehaviour
     public float fFlashLightDPS = 2.0f;
     Collider[] collisions;
     public bool bFlashLightActive = false;
+    public bool bHasFlashLight = false;
     private float startFloorIntensity;
     public Light floorLight;
 
@@ -56,6 +57,9 @@ public class Flashlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale <= 0f) { return; }
+        if (!bHasFlashLight) { return; }
+
         // Get the mouse wheel movement speed
         float scrollSpeed = Input.mouseScrollDelta.y;
 
