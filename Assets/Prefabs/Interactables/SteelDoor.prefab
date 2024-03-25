@@ -651,6 +651,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3078498441373315453, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4447750862171299271, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_FalloffDistance

@@ -5893,36 +5893,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1566455892}
     m_Modifications:
-    - target: {fileID: 2718274690825379352, guid: c5696f29ac30b0140849c9492564b56e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2718274690825379352, guid: c5696f29ac30b0140849c9492564b56e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7933534
-      objectReference: {fileID: 0}
-    - target: {fileID: 2718274690825379352, guid: c5696f29ac30b0140849c9492564b56e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.60876137
-      objectReference: {fileID: 0}
-    - target: {fileID: 2718274690825379352, guid: c5696f29ac30b0140849c9492564b56e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2718274690825379352, guid: c5696f29ac30b0140849c9492564b56e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2718274690825379352, guid: c5696f29ac30b0140849c9492564b56e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 75
-      objectReference: {fileID: 0}
     - target: {fileID: 3822882727273362972, guid: c5696f29ac30b0140849c9492564b56e,
         type: 3}
       propertyPath: m_NavMeshLayer
@@ -5936,7 +5906,12 @@ PrefabInstance:
     - target: {fileID: 4398282490711583312, guid: c5696f29ac30b0140849c9492564b56e,
         type: 3}
       propertyPath: m_text
-      value: 'F: Interact'
+      value: (F) Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398282490711583312, guid: c5696f29ac30b0140849c9492564b56e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 4980340282672315200, guid: c5696f29ac30b0140849c9492564b56e,
         type: 3}
