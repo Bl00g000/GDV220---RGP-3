@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 195326caca89ded4daa3e2821eeab866
+guid: 605e69c7d4f7d8f4b95f7a99432814c3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Boar_Run
+      name: Rat_Run
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 52
-      lastFrame: 63
+      firstFrame: 21
+      lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -60,7 +60,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 52
+      additiveReferencePoseFrame: 21
     isReadable: 0
   meshes:
     lODScreenPercentages: []
