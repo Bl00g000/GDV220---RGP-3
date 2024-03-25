@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 106910936}
   - component: {fileID: 106910939}
   - component: {fileID: 106910938}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: PlayerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 02cc1b4ca659b9f4cac95f2210809e2d, type: 2}
+  - {fileID: 2100000, guid: c850841868c866b4bad2a57dffaf25f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,13 +94,13 @@ GameObject:
   - component: {fileID: 130642384}
   - component: {fileID: 130642386}
   - component: {fileID: 130642385}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FlashlightConeMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &130642384
 Transform:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 02cc1b4ca659b9f4cac95f2210809e2d, type: 2}
+  - {fileID: 2100000, guid: c850841868c866b4bad2a57dffaf25f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02492a20437ccc4ca81f5c9999da0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashlightVisionCone: {fileID: 0}
+  flashlightVisionCone: {fileID: 1233890452844857831}
   fFlashLightDPS: 1
   bFlashLightActive: 0
   floorLight: {fileID: 1925234789}
@@ -293,15 +293,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedFlashlight: {fileID: 360119845}
-  visionRenderers:
-  - {fileID: 130642386}
-  - {fileID: 106910938}
   attachedCameraWeapon: {fileID: 0}
   toggleObjects:
   - {fileID: 744291178}
   - {fileID: 1925234786}
-  visionMaterial: {fileID: 2100000, guid: 02cc1b4ca659b9f4cac95f2210809e2d, type: 2}
-  flashlightMaterial: {fileID: 2100000, guid: ee0b60efd11d1b44fb1801df0e2bedc2, type: 2}
+  - {fileID: 130642383}
 --- !u!1 &744291178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6075ded94c09742aa75f81241aa903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerVisionCone: {fileID: 0}
+  playerVisionCone: {fileID: 1233890452844857831}
   fFilmCount: 100
   cameraFlashLight: {fileID: 1674043848}
   fFlashMaxIntensity: 500
