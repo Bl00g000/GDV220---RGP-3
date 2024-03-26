@@ -11,6 +11,8 @@ public class PlayerHealthBarUI : MonoBehaviour
     public MPImage healthBar;
     public bool bShowingHealthBar = true;
 
+    private RectTransform rect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,8 @@ public class PlayerHealthBarUI : MonoBehaviour
             PlayerData.instance.healthBarUI = this;
         //}
         HideCanvas();
-        
+
+        rect = GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -34,6 +37,8 @@ public class PlayerHealthBarUI : MonoBehaviour
 
                 healthBar.fillAmount = 1f-(PlayerData.instance.fCurrentHealth / PlayerData.instance.fMaxHealth);
 
+                //float fillAmount = Mathf.Clamp(1f - (PlayerData.instance.fCurrentHealth / PlayerData.instance.fMaxHealth),0,1f);
+                //rect.anchoredPosition = new Vector3((-(rect.sizeDelta.x / 2f)) + (rect.sizeDelta.x * fillAmount), rect.anchoredPosition.y, 0);
             }
         }
     }
