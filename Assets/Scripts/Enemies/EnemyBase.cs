@@ -178,6 +178,6 @@ public class EnemyBase : MonoBehaviour
 
     public void TakeDamage(float _fDamage)
     {
-        fHealth -= _fDamage * Time.deltaTime;
+        fHealth -= _fDamage;
     }
 }
