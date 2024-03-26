@@ -18739,6 +18739,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 323738475146639086, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+        type: 3}
+      propertyPath: outlineMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a0a3529ba2b65d4bab1c2f5f6627761, type: 2}
     - target: {fileID: 5574059535664482660, guid: f5a9bada6e9277b4399b30f1da5d2e74,
         type: 3}
       propertyPath: shadowMap
@@ -22038,6 +22043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlashlightPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531430646196567429, guid: cdc750ca34be0724eb1cead67aab66f8,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdc750ca34be0724eb1cead67aab66f8, type: 3}
