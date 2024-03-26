@@ -12,6 +12,7 @@ public class PlayerData : MonoBehaviour
 
     public float fMaxHealth = 100.0f;
     public float fCurrentHealth = 0.0f;
+    public bool bCanTakeDamage = true;
 
     public int iHealthPills = 0;
 
@@ -72,8 +73,12 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    void TakeDamage(float _damage)
+    void TakeDamage(float _damage, bool _shouldLockoutDamage = false)
     {
+        if(!bCanTakeDamage)
+        {
+            return;
+        }
         //means that damage always subtracts hp
         if(_damage < 0)
         {
@@ -82,6 +87,13 @@ public class PlayerData : MonoBehaviour
 
         //Does the damage
         fCurrentHealth -= _damage;
+
+        if(_shouldLockoutDamage)
+        {
+            bCanTakeDamage = false;
+            StartCoroutine(LockoutDamage());
+        }
+
         healthBarUI.ShowCanvas();
         //start coroutine
         StartCoroutine(HideHealthBarCrouton());
@@ -89,7 +101,7 @@ public class PlayerData : MonoBehaviour
         if (fCurrentHealth <= 0.0f)
         {
             //PlayerMovement.instance.canMove = false;
-            GameManager.instance.GameOver();
+            GameManager.instance.GameOver(false);
         }
     }
 
@@ -141,7 +153,7 @@ public class PlayerData : MonoBehaviour
 
     }
 
- 
+ //timer to hide health bar
     IEnumerator HideHealthBarCrouton()
     {
         iUICroutonCounter++;
@@ -151,7 +163,12 @@ public class PlayerData : MonoBehaviour
         {
             healthBarUI.HideCanvas();
         }
-        
-       
+    }
+
+    //timer to allow damage again
+    IEnumerator LockoutDamage()
+    {
+        yield return new WaitForSeconds(1.2f);
+        bCanTakeDamage = true;
     }
 }

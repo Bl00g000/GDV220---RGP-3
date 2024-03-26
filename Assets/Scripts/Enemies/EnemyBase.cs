@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public class EnemyBase : MonoBehaviour
@@ -31,10 +32,12 @@ public class EnemyBase : MonoBehaviour
 
 
     protected Animator animator;
+    private VisualEffect visualEffect;
 
-    private void Awake()
+    protected void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        visualEffect = GetComponentInChildren<VisualEffect>();
     }
 
     // Start is called before the first frame update
@@ -60,6 +63,7 @@ public class EnemyBase : MonoBehaviour
       
         if (bFlashlighted)
         {
+            visualEffect.enabled = true;
             fSlowMultiplier = 0.2f;
             Debug.Log("flashlighted - attack");
 
@@ -72,6 +76,7 @@ public class EnemyBase : MonoBehaviour
         else
         {
             fSlowMultiplier = 1.0f;
+            visualEffect.enabled = false;
         }
 
         if (PlayerMovement.instance.gameObject.activeSelf)
@@ -105,9 +110,11 @@ public class EnemyBase : MonoBehaviour
 
         bFlashlighted = false;
         
-        animator.SetFloat("Blend_Speed", navMeshAgent.velocity.magnitude/3f, 0f, Time.deltaTime);
+        if (animator)
+        {
+            animator.SetFloat("Blend_Speed", navMeshAgent.velocity.magnitude/3f, 0f, Time.deltaTime);
+        }
     }
-
     public virtual void Attack()
     {
         // Function to be overriden by child classes
@@ -174,5 +181,10 @@ public class EnemyBase : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void TakeDamage(float _fDamage)
+    {
+        fHealth -= _fDamage;
     }
 }
