@@ -58,6 +58,7 @@ public class Searchable : MonoBehaviour, IInteractable
         // checks that the player is holding down interact key
         while (!Input.GetKeyUp(PlayerInteract.instance.interactKey))
         {
+            bCanInteract = false;
             // enables the searchUI and slowly fills the radial image 
             searchUI.SetActive(true);
             fCurrentSearchTime += Time.deltaTime * fSearchSpeed;
@@ -68,9 +69,6 @@ public class Searchable : MonoBehaviour, IInteractable
             // successfully searched the interactable
             if (fCurrentSearchTime >= fSearchTime)
             {
-                // disable being able to search the item AGAIN
-                bCanInteract = false;
-
                 bInteracting = false;
                 searchUI.SetActive(false);
 
@@ -80,10 +78,23 @@ public class Searchable : MonoBehaviour, IInteractable
 
                     if (chanceToFind < fCamAmmoChance)
                     {
+                        GameObject newFoundText;
                         // here is where you find the selected item
-                        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
-                        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Flash Bulb";
-                        yield return new WaitForSeconds(1f);
+                        if (CameraWeapon.instance.fFilmCount < 3)
+                        {
+                            CameraWeapon.instance.fFilmCount++;
+
+                            bHasCamAmmo = false;
+                            newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Flash Bulb";
+                            yield return new WaitForSeconds(1f);
+                        }
+                        else
+                        {
+                            newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "(Max) flash bulbs";
+                            yield return new WaitForSeconds(1f);
+                        }
                     }
                 }
 
@@ -93,20 +104,36 @@ public class Searchable : MonoBehaviour, IInteractable
 
                     if (chanceToFind < fCamAmmoChance)
                     {
-                        // here is where you find the selected item
-                        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
-                        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Health Pills";
+                        if (PlayerData.instance.iHealthPills < 3)
+                        {
+                            bHasHealth = false;
+                            // here is where you find the selected item
+
+                            PlayerData.instance.iHealthPills++;
+
+                            var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Health Pills";
+                            yield return new WaitForSeconds(1f);
+                        }
+                        else
+                        {
+                            // here is where you find the selected item
+                            var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "(Max) Health Pills";
+                            yield return new WaitForSeconds(1f);
+                        }
+
+
                     }
                 }
 
-
-
-
-                break;
+                if (bHasHealth || bHasCamAmmo)
+                {
+                    // disable being able to search the item AGAIN
+                    bCanInteract = true;
                 }
-                
-
-
+                break;
+            }
             yield return null;
         }
 
@@ -116,7 +143,13 @@ public class Searchable : MonoBehaviour, IInteractable
         {
             bInteracting = false;
             searchUI.SetActive(false);
-            
+
+            if (bHasHealth || bHasCamAmmo)
+            {
+                // disable being able to search the item AGAIN
+                bCanInteract = true;
+            }
+
             // if you cancelled the search
             // maybe do something here?
         }
