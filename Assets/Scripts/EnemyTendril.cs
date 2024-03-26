@@ -58,7 +58,8 @@ public class EnemyTendril : EnemyBase
         }
         else
         {
-            visualEffect.enabled = false;
+            // test 
+            // visualEffect.enabled = false;
 
             // Regen
             if (fHealth < fMaxHealth)
