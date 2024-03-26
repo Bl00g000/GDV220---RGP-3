@@ -10,6 +10,6 @@ public class EnemyChase : EnemyBase
         navMeshAgent.speed = fAttackingSpeed * fSlowMultiplier;
         navMeshAgent.SetDestination(PlayerMovement.instance.transform.position);
 
-        CheckDamagePlayer();
+        CheckDamagePlayer(10.0f, true); ;
     }
 }

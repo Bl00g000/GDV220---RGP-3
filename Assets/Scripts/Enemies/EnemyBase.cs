@@ -121,14 +121,17 @@ public class EnemyBase : MonoBehaviour
         // depending on how enemy attacks
     }
 
-    protected void CheckDamagePlayer()
+    protected void CheckDamagePlayer(float _damage, bool _shouldDamageLockout)
     {
+
         float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
         if (fDistFromPlayer <= 1.0f)
         {
             // DEAL DAMAGE HERE
             Debug.Log("DEATH TO THE PLAYER!");
-            PlayerMovement.instance.gameObject.SetActive(false);
+
+            PlayerData.instance.TakeDamage(_damage, _shouldDamageLockout);
+           // PlayerMovement.instance.gameObject.SetActive(false);
         }
     }
 

@@ -55,7 +55,7 @@ public class EnemyCharge : EnemyBase
         yield return new WaitUntil(() => Vector3.Distance(v3TargetPos, transform.position) <= 1.0f);
         navMeshAgent.ResetPath();
 
-        CheckDamagePlayer();
+        CheckDamagePlayer(20.0f, true); ;
 
         bAttacking = false;
     }

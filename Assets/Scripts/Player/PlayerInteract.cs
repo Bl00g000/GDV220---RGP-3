@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerInteract : MonoBehaviour
 {
     Collider[] nearbyCollisions;
@@ -11,6 +10,9 @@ public class PlayerInteract : MonoBehaviour
 
     public static PlayerInteract instance;
 
+    public Material outlineMaterial;
+
+    private GameObject previousInteractable;
     //Singleton
     private void Awake()
     {
@@ -27,8 +29,51 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        previousInteractable = interactableObject;
+
         GetNearbyInteractables();
         Interact();
+
+        // outlines eventually
+
+        //if (previousInteractable != interactableObject)
+        //{
+        //    if (previousInteractable != null)
+        //    {
+        //        RemoveOutline(previousInteractable);
+        //    }
+
+        //    if(interactableObject != null)
+        //    {
+        //        AddOutline(interactableObject);
+        //    }
+        //}
+    }
+    public void RemoveOutline(GameObject obj)
+    {
+        foreach (MeshRenderer rend in obj.GetComponentsInChildren<MeshRenderer>())
+        {
+            Material[] rendMats = new Material[rend.materials.Length-1];
+            for (int i = 0; i < rendMats.Length; i++)
+            {
+                rendMats[i] = rend.materials[i];
+            }
+            rend.materials = rendMats;
+        }
+    }
+
+    public void AddOutline(GameObject obj)
+    {
+        foreach (MeshRenderer rend in obj.GetComponentsInChildren<MeshRenderer>())
+        {
+            Material[] rendMats = new Material[rend.materials.Length+1];
+            for (int i = 0; i < rend.materials.Length; i++)
+            {
+                rendMats[i] = rend.materials[i];
+            }
+            rendMats[rend.materials.Length] = outlineMaterial;
+            rend.materials = rendMats;
+        }
     }
 
     void GetNearbyInteractables()

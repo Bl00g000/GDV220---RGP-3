@@ -14,6 +14,9 @@ public class EnemyTendril : EnemyBase
     [Range(0, 1)]
     public float minGrow = 0.2f;
 
+    float fPlayerDamage = 1.0f;
+    bool bPlayerDamageLockout = false;
+
     void Awake()
     {
         growVineMaterials = new List<Material>();
@@ -63,6 +66,7 @@ public class EnemyTendril : EnemyBase
 
             }
         }
+        CheckDamagePlayer( fPlayerDamage * Time.deltaTime, bPlayerDamageLockout);
     }
 
     private IEnumerator SlowUpdate()

@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moose_Idle
       objectReference: {fileID: 0}
+    - target: {fileID: 2607616870676714892, guid: 10f10931404626c44aa87e79fabb8d48,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10f10931404626c44aa87e79fabb8d48, type: 3}
 --- !u!4 &543450653096520382 stripped

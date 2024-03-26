@@ -9,6 +9,7 @@ public class UIInteractPrompt : MonoBehaviour
 
     public GameObject testFlashlight;
     public GameObject testCamera;
+    public GameObject testCorpse;
 
     public GameObject spawnLocation;
     public TMPro.TextMeshProUGUI nameText;
@@ -19,6 +20,7 @@ public class UIInteractPrompt : MonoBehaviour
 
     public GameObject flashlightPickupButton;
     public GameObject cameraPickupButton;
+    public GameObject corpseEndGameButton;
 
     private GameObject spawnedObject;
     private bool interacting;
@@ -68,6 +70,7 @@ public class UIInteractPrompt : MonoBehaviour
         }
         flashlightPickupButton.SetActive(false);
         cameraPickupButton.SetActive(false);
+        corpseEndGameButton.SetActive(false);
 
         active = true;
         spawnedObject = Instantiate(objectToSpawn, spawnLocation.transform);
