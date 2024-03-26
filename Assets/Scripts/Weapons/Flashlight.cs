@@ -89,7 +89,7 @@ public class Flashlight : MonoBehaviour
                     Debug.Log("enemy hit");
                     EnemyBase enemyBase = _collider.GetComponent<EnemyBase>();
                     enemyBase.bFlashlighted = true;
-                    enemyBase.fHealth -= fFlashLightDPS * Time.deltaTime;
+                    enemyBase.TakeDamage(fFlashLightDPS);
                 }
             }
         }
