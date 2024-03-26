@@ -59,7 +59,6 @@ public class Flashlight : MonoBehaviour
     {
         if (Time.timeScale <= 0f) { return; }
         if (!bHasFlashLight) { return; }
-        CheckForEnmiesHit();
 
         // Get the mouse wheel movement speed
         float scrollSpeed = Input.mouseScrollDelta.y;
