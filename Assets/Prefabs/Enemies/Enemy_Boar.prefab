@@ -59,10 +59,10 @@ MonoBehaviour:
   bFlashlighted: 0
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &2354907225942484352
 MonoBehaviour:
   m_ObjectHideFlags: 0
