@@ -8,9 +8,9 @@ public class EnemyChase : EnemyBase
 
     public override void Attack()
     {
+        bAttacking = true;
         if (bIsPaused) return;
 
-        bAttacking = true;
         navMeshAgent.speed = fAttackingSpeed * fSlowMultiplier;
         navMeshAgent.SetDestination(PlayerMovement.instance.transform.position);
     }
@@ -36,6 +36,7 @@ public class EnemyChase : EnemyBase
     //{
     //    if (_collision.gameObject == PlayerData.instance.gameObject)
     //    {
+    //        Debug.Log("Collided with player");
     //        StartCoroutine(HitPlayerPause());
     //    }
     //}
