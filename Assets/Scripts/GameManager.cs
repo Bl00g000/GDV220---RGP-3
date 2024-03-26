@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,9 +33,15 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
 
+        // FOR TESTING
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            GameOver();
+            GameOver(false);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Q)) 
+        {
+            GameOver(true);
         }
     }
 
@@ -76,10 +83,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void GameOver(bool _bWon)
     {
         bIsPaused = true;
         Time.timeScale = 0.0f;
+
+        if (!_bWon)
+        {
+            gameOver.GetComponentInChildren<TextMeshProUGUI>().text = "GAME OVER...";
+        }
+        else
+        {
+            gameOver.GetComponentInChildren<TextMeshProUGUI>().text = "VICTORY!";
+        }
+
         gameOver.SetActive(true);
     }
 }

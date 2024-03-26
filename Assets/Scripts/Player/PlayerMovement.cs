@@ -221,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
             
             // Update Animation Controller (Andy)
             animator.SetFloat("Speed_Blend", 1,0.1f, Time.deltaTime);
-            // Debug.Log(moveSpeed);
+             Debug.Log(moveSpeed);
 
         }
         else

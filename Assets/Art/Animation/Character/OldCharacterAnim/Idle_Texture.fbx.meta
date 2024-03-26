@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c34e81495ef4d4f4e9156a46b64a8c02
+guid: d4a80ad6e0ff3e14d97b01b8f31894dd
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Character_CrouchSlow
+      name: Character_Idle
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 79
+      lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

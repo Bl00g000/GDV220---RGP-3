@@ -89,7 +89,7 @@ public class PlayerData : MonoBehaviour
         if (fCurrentHealth <= 0.0f)
         {
             //PlayerMovement.instance.canMove = false;
-            GameManager.instance.GameOver();
+            GameManager.instance.GameOver(false);
         }
     }
 
