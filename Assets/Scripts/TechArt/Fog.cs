@@ -9,9 +9,15 @@ public class Fog : MonoBehaviour
     public float distance;
     public RenderTexture texture;
     // Start is called before the first frame update
-
+    public float lagAmount = 0.5f;
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        Shader.SetGlobalVector("_PlayerPosition", PlayerMovement.instance.transform.position);
+    }
+
     void Update()
     {
 
@@ -29,5 +35,16 @@ public class Fog : MonoBehaviour
 
         fogCamera.orthographicSize = width / 2f;
         Shader.SetGlobalTexture("_FogRenderTexture", texture);
+
+        StartCoroutine(FogLagBehind());
+    }
+
+    private IEnumerator FogLagBehind()
+    {
+        Vector3 currentPosition = PlayerMovement.instance.transform.position;
+
+        yield return new WaitForSeconds(lagAmount);
+
+        Shader.SetGlobalVector("_PlayerPosition", currentPosition);
     }
 }

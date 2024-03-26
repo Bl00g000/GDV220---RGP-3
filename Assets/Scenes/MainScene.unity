@@ -2827,12 +2827,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00121ab78bd8814a928fc2bae2ecc41, type: 3}
---- !u!1 &238578506 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7836186311254332330, guid: d4a47b889e311074f87541829a6ced5d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2014079513}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &245653438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18439,6 +18433,11 @@ PrefabInstance:
       propertyPath: fogCamera
       value: 
       objectReference: {fileID: 1700989858}
+    - target: {fileID: 4152998267985737080, guid: 3fcad7fd28141764db8e31e7ffe0d953,
+        type: 3}
+      propertyPath: lagAmount
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4479059174589763048, guid: 3fcad7fd28141764db8e31e7ffe0d953,
         type: 3}
       propertyPath: m_RootOrder
@@ -20715,66 +20714,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7674986604318619507, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: bHasHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674986604318619507, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: bHasCamAmmo
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674986604318619507, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: objectCanvas
-      value: 
-      objectReference: {fileID: 238578506}
-    - target: {fileID: 7674986604318619507, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: fHealthChance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674986604318619507, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: fCamAmmoChance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674986604318619507, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: scrollingTextPF
-      value: 
-      objectReference: {fileID: 6730258568751694421, guid: d936bbfe70576a04485ee50da7c5ca3f,
-        type: 3}
     - target: {fileID: 7674986604318619516, guid: d4a47b889e311074f87541829a6ced5d,
         type: 3}
       propertyPath: m_Name
       value: Cabinet
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229080741102284147, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229080741102284147, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229080741102284147, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7933534
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229080741102284147, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.60876137
-      objectReference: {fileID: 0}
-    - target: {fileID: 8229080741102284147, guid: d4a47b889e311074f87541829a6ced5d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4a47b889e311074f87541829a6ced5d, type: 3}

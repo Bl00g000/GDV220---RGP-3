@@ -71,6 +71,7 @@ public class UIInteractPrompt : MonoBehaviour
 
         active = true;
         spawnedObject = Instantiate(objectToSpawn, spawnLocation.transform);
+        spawnedObject.transform.localPosition = Vector3.zero;
         spawnedObject.transform.localRotation = Quaternion.identity;
         spawnedObject.transform.localScale = objectScale;
         foreach (Transform t in spawnedObject.GetComponentsInChildren<Transform>())
