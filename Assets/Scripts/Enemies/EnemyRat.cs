@@ -39,7 +39,7 @@ public class EnemyRat : EnemyBase
             //}
         }
 
-        CheckDamagePlayer();
+        CheckDamagePlayer(5.0f, true);
     }
 
     Vector3 GetOutOfLightDirection()
