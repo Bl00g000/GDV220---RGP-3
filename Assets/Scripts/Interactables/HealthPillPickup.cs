@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashlightPickup : MonoBehaviour, IInteractable
+public class HealthPillPickup : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public GameObject interactUI { get; set; }
     [field: SerializeField] public bool bCanInteract { get; set; } = true;
     [field: SerializeField] public bool bInteracting { get; set; } = false;
 
-    public GameObject flashlightUI;
+    public GameObject healthPillUI;
 
     public GameObject scrollingTextPF;
 
@@ -28,21 +28,21 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
         if (!bInteracting)
         {
             bCanInteract = false;
-            UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testFlashlight, Vector3.one, "Flashlight", "THIS IS A FLASHLIGHT WOOHOO");
-            UIInteractPrompt.instance.flashlightPickupButton.SetActive(true);
-
+            //UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testFlashlight, Vector3.one, "Flashlight", "THIS IS A FLASHLIGHT WOOHOO");
+            //UIInteractPrompt.instance.flashlightPickupButton.SetActive(true);
+            CloseInteractWindow();
         }
     }
 
     public void CloseInteractWindow()
     {
         UIInteractPrompt.instance.Close();
-        flashlightUI.SetActive(true);
-        Flashlight.instance.bHasFlashLight = true;
+        healthPillUI.SetActive(true);
+        PlayerData.instance.AddHealthPillToInventory(1);
         // here is where you find the selected item
 
         var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
-        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Flashlight";
+        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Health Pills";
 
         Destroy(gameObject);
     }

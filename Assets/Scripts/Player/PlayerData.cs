@@ -8,6 +8,8 @@ public class PlayerData : MonoBehaviour
 
     public PlayerHealthBarUI healthBarUI;
 
+    public GameObject scrollingTextPF;
+
     public float fMaxHealth = 100.0f;
     public float fCurrentHealth = 0.0f;
 
@@ -17,6 +19,9 @@ public class PlayerData : MonoBehaviour
 
     public bool bShowingHealthBar = true;
     public bool bHealthIsChanging = false;
+
+
+    private int iUICroutonCounter = 0;
 
     //Singleton
     private void Awake()
@@ -77,7 +82,7 @@ public class PlayerData : MonoBehaviour
         fCurrentHealth -= _damage;
         healthBarUI.ShowCanvas();
         //start coroutine
-
+        StartCoroutine(HideHealthBarCrouton());
 
         if (fCurrentHealth <= 0.0f)
         {
@@ -98,7 +103,12 @@ public class PlayerData : MonoBehaviour
         fCurrentHealth += _healthRestored;
         healthBarUI.ShowCanvas();
         //start coroutine
+        StartCoroutine(HideHealthBarCrouton());
         //UI effect?
+
+        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "- Health Pills";
+
 
         if (fCurrentHealth > fMaxHealth)
         {
@@ -117,7 +127,7 @@ public class PlayerData : MonoBehaviour
     }
 
     //Adds health pill to inventory
-    void AddHealthPillToInventory(int _quantity)
+   public void AddHealthPillToInventory(int _quantity)
     {
         iHealthPills += _quantity;
         //UI?
@@ -129,9 +139,17 @@ public class PlayerData : MonoBehaviour
 
     }
 
-   // IEnumerator HideHealthBarCoroutine()
-   // {
-   //     
-   // }
-   //
+ 
+    IEnumerator HideHealthBarCrouton()
+    {
+        iUICroutonCounter++;
+        yield return new WaitForSeconds(2.0f);
+        iUICroutonCounter--;
+        if(iUICroutonCounter == 0)
+        {
+            healthBarUI.HideCanvas();
+        }
+        
+       
+    }
 }

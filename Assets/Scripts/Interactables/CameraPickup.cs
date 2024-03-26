@@ -39,7 +39,7 @@ public class CameraPickup : MonoBehaviour, IInteractable
         CameraWeapon.instance.bHasCamera = true;
 
         var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
-        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Camera";
+        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Camera";
 
         Destroy(gameObject);
     }

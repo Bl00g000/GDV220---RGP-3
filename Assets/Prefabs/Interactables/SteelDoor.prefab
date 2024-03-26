@@ -343,6 +343,7 @@ MonoBehaviour:
   doorToRotate: {fileID: 3822882727273362972}
   fOpenDuration: 1
   fOpenAngle: 90
+  bInitialInteraction: 1
   doorOpen: {fileID: 1053383473}
   doorClose: {fileID: 988478508}
 --- !u!65 &533692978
@@ -516,11 +517,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 954129591, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
       propertyPath: m_text
-      value: 'F: Interact'
+      value: (F) Open Gate
       objectReference: {fileID: 0}
     - target: {fileID: 954129591, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
       propertyPath: m_fontSize
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 954129591, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
       propertyPath: m_fontSizeBase
@@ -589,7 +590,7 @@ PrefabInstance:
     - target: {fileID: 1779087821435644159, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -0.133
       objectReference: {fileID: 0}
     - target: {fileID: 1779087821435644159, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
@@ -614,12 +615,12 @@ PrefabInstance:
     - target: {fileID: 1779087821435644159, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1
+      value: 1.328
       objectReference: {fileID: 0}
     - target: {fileID: 1779087821435644159, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2
+      value: 2.853
       objectReference: {fileID: 0}
     - target: {fileID: 1779087821435644159, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
@@ -639,7 +640,7 @@ PrefabInstance:
     - target: {fileID: 1893916907243265734, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 10.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1893916907243265734, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
@@ -648,8 +649,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1893916907243265734, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893916907243265734, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893916907243265734, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3078498441373315453, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
@@ -684,7 +695,7 @@ PrefabInstance:
     - target: {fileID: 7241626503726680947, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7241626503726680947, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
@@ -704,6 +715,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4398282491378661095}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4266431494126035137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 449443286014891558, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+    type: 3}
+  m_PrefabInstance: {fileID: 4398282491378661095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2023876598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266431494126035137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37c06ff912130c409771a48f4b2a9e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6458347540043608279 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7253467495718241840, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
