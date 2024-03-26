@@ -73,7 +73,7 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    void TakeDamage(float _damage, bool _shouldLockoutDamage = false)
+    public void TakeDamage(float _damage, bool _shouldLockoutDamage = false)
     {
         if(!bCanTakeDamage)
         {
@@ -105,7 +105,7 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    void Heal(float _healthRestored)
+    public void Heal(float _healthRestored)
     {
         //heal always heals
         if(_healthRestored < 0)

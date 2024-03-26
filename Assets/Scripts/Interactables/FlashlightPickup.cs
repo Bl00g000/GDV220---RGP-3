@@ -13,6 +13,8 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
 
     public GameObject scrollingTextPF;
 
+    public Material outlineMat;
+
     // Update is called once per frame
     void Update()
     {
