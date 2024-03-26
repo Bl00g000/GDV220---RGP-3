@@ -30,7 +30,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected LayerMask wallLayer;
 
 
-    private Animator animator;
+    protected Animator animator;
 
     private void Awake()
     {
@@ -104,19 +104,8 @@ public class EnemyBase : MonoBehaviour
         }
 
         bFlashlighted = false;
-
-        if (animator)
-        {
-            if (bWandering)
-            {
-                animator.SetFloat("Blend_Speed", 1f, 0.2f, Time.deltaTime);
-            }
-            else
-            {
-                animator.SetFloat("Blend_Speed", 0f, 0.2f, Time.deltaTime);
-            }
-            
-        }
+        
+        animator.SetFloat("Blend_Speed", navMeshAgent.velocity.magnitude/3f, 0f, Time.deltaTime);
     }
 
     public virtual void Attack()
