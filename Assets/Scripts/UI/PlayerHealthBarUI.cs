@@ -18,7 +18,7 @@ public class PlayerHealthBarUI : MonoBehaviour
     {
         //if(PlayerData.instance)
         //{
-            PlayerData.instance.healthBarUI = this;
+       //     PlayerData.instance.healthBarUI = this;
         //}
         HideCanvas();
 
