@@ -6,7 +6,7 @@ public class PlayerData : MonoBehaviour
 {
     public static PlayerData instance;
 
-    public PlayerHealthBarUI healthBarUI;
+    //public PlayerHealthBarUI healthBarUI;
 
     public GameObject scrollingTextPF;
 
@@ -94,9 +94,9 @@ public class PlayerData : MonoBehaviour
             StartCoroutine(LockoutDamage());
         }
 
-        healthBarUI.ShowCanvas();
+        //healthBarUI.ShowCanvas();
         //start coroutine
-        StartCoroutine(HideHealthBarCrouton());
+        //StartCoroutine(HideHealthBarCrouton());
 
         if (fCurrentHealth <= 0.0f)
         {
@@ -115,9 +115,9 @@ public class PlayerData : MonoBehaviour
 
         //does the healing
         fCurrentHealth += _healthRestored;
-        healthBarUI.ShowCanvas();
+        //healthBarUI.ShowCanvas();
         //start coroutine
-        StartCoroutine(HideHealthBarCrouton());
+        //StartCoroutine(HideHealthBarCrouton());
         //UI effect?
 
         var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
@@ -154,16 +154,16 @@ public class PlayerData : MonoBehaviour
     }
 
  //timer to hide health bar
-    IEnumerator HideHealthBarCrouton()
-    {
-        iUICroutonCounter++;
-        yield return new WaitForSeconds(2.0f);
-        iUICroutonCounter--;
-        if(iUICroutonCounter == 0)
-        {
-            healthBarUI.HideCanvas();
-        }
-    }
+    //IEnumerator HideHealthBarCrouton()
+    //{
+    //    iUICroutonCounter++;
+    //    yield return new WaitForSeconds(2.0f);
+    //    iUICroutonCounter--;
+    //    if(iUICroutonCounter == 0)
+    //    {
+    //        healthBarUI.HideCanvas();
+    //    }
+    //}
 
     //timer to allow damage again
     IEnumerator LockoutDamage()
