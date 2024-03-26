@@ -56,6 +56,8 @@ public class PlayerData : MonoBehaviour
         if (Input.GetKeyDown("u"))
         {
             AddHealthPillToInventory(1);
+            var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
+            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Health Pills";
         }
 
         //use health pill on spacebar
@@ -106,7 +108,7 @@ public class PlayerData : MonoBehaviour
         StartCoroutine(HideHealthBarCrouton());
         //UI effect?
 
-        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
         newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "- Health Pills";
 
 

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class EnemyCharge : EnemyBase
@@ -12,6 +10,7 @@ public class EnemyCharge : EnemyBase
     void Update()
     {
         base.Update();
+        animator.SetFloat("Blend_Speed", navMeshAgent.velocity.magnitude/3f, 0f, Time.deltaTime);
         Debug.DrawRay(navMeshAgent.transform.position, navMeshAgent.transform.forward * 10.0f, Color.cyan);
     }
 
@@ -48,7 +47,7 @@ public class EnemyCharge : EnemyBase
         // Charge at player position
         Debug.Log("Charging now!");
         navMeshAgent.SetDestination(v3TargetPos);
-
+        
         // Wait until charge is finished
         yield return new WaitUntil(() => Vector3.Distance(v3TargetPos, transform.position) <= 1.0f);
         navMeshAgent.ResetPath();
@@ -61,7 +60,6 @@ public class EnemyCharge : EnemyBase
     private IEnumerator TurnTowardsPlayer()
     {
         RaycastHit hit;
-        
         while (true)
         {
             Vector3 v3ChargePos = (PlayerMovement.instance.transform.position - navMeshAgent.transform.position).normalized;
