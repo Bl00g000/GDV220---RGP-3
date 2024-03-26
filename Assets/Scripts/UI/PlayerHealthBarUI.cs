@@ -32,7 +32,7 @@ public class PlayerHealthBarUI : MonoBehaviour
             if(bShowingHealthBar)
             {
 
-                healthBar.fillAmount = (PlayerData.instance.fCurrentHealth / PlayerData.instance.fMaxHealth);
+                healthBar.fillAmount = 1f-(PlayerData.instance.fCurrentHealth / PlayerData.instance.fMaxHealth);
 
             }
         }
