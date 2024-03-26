@@ -36,7 +36,7 @@ ModelImporter:
       name: Boar_Idle
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 2
+      firstFrame: 0
       lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
@@ -126,7 +126,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
