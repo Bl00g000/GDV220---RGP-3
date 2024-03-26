@@ -52,7 +52,7 @@ MonoBehaviour:
   fMaxHealth: 10
   fHealth: 10
   fWanderSpeed: 3
-  fAttackingSpeed: 0
+  fAttackingSpeed: 5
   fAggroRange: 20
   fSlowMultiplier: 0
   fWanderRadius: 20
@@ -88,7 +88,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &7763863434821025977
 NavMeshAgent:
@@ -343,6 +343,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7390193191123760806, guid: c864ae07ba111534591a50bc144405f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: -2601618511002105073, guid: c864ae07ba111534591a50bc144405f7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8a7ca6d89cddcb42b774e577ade1b66, type: 2}
     - target: {fileID: 919132149155446097, guid: c864ae07ba111534591a50bc144405f7,
         type: 3}
       propertyPath: m_Name
