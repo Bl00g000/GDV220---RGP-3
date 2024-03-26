@@ -1853,6 +1853,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarUI: {fileID: 0}
+  scrollingTextPF: {fileID: 6730258568751694421, guid: d936bbfe70576a04485ee50da7c5ca3f,
+    type: 3}
   fMaxHealth: 100
   fCurrentHealth: 0
   iHealthPills: 0

@@ -10,10 +10,10 @@ public class ScrollingUpTextUI : MonoBehaviour
     public string textToDisplay = "default";
 
     bool bRunOnce = false;
-
+    
     private void Start()
     {
-        textToDisplay = "+ " + textToDisplay;
+        //textToDisplay = "+ " + textToDisplay;
     }
 
     // Update is called once per frame
