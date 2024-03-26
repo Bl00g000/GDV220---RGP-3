@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -44,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject UIOverlayObject = null;    //UI overlay
 
     public bool canMove = true;         //Movement bool - turns off when powered off/dead/in screen.
+    public bool canRotate = true;         //Rotation bool - turns off when powered off/dead/in screen.
+    public bool knockingBack = false;
     public bool respawning = false;     //respawning bool
 
 
@@ -94,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("c"))
         {
+            KnockPlayerBack(8.0f, new Vector3(1.0f, 0.0f,0.4f));
            // UIOverlayObject.gameObject.GetComponent<InGameMenu>().ToggleCamControls();
         }
 
@@ -193,17 +197,8 @@ public class PlayerMovement : MonoBehaviour
         //Player movement catch (eg no move if respawning etc
         if (canMove && (verticalInput != 0 || horizontalInput != 0))
         {
-            
-
-            //W MOVES TOWARD 
-            //////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////
-            //UNCOMMENT THIS TO SEE HOW MOVING TOWARDS THE MOUSE WORKS!!!!
+            //Move direction based on wasd input
             moveDirection = new Vector3(horizontalInput, 0, verticalInput);
-            //////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////
             moveDirection.Normalize();
 
             //changes speed depending on direction
@@ -223,6 +218,15 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed_Blend", 1,0.1f, Time.deltaTime);
              Debug.Log(moveSpeed);
 
+        }
+        else if(knockingBack)
+        {
+            playerController.Move(moveDirection * Time.deltaTime * currentMoveSpeed);
+            //playerController.
+            currentMoveSpeed *= 0.98f;
+            // Update Animation Controller (Andy)
+            animator.SetFloat("Speed_Blend", 1, 0.1f, Time.deltaTime);
+            Debug.Log(moveSpeed);
         }
         else
         {
@@ -251,7 +255,10 @@ public class PlayerMovement : MonoBehaviour
     private void RotatePlayer()
     {
 
-        
+        if(!canRotate)
+        {
+            return;
+        }
         //Mouse to world point
         float distance;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -321,24 +328,28 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-
- 
-
-    public void Victory()
+    public void KnockPlayerBack(float _knockbackSpeed, Vector3 _knockbackDirection)
     {
         canMove = false;
-        //do a lil dance
-       // UIOverlayObject.gameObject.GetComponent<InGameMenu>().VictoryMessage();
-
+        canRotate = false;
+        knockingBack = true;
+        //set rotation here!!!!!!
+        moveDirection = _knockbackDirection;
+        currentMoveSpeed = _knockbackSpeed;
+        StartCoroutine(KnockbackCrouton());
     }
 
-    public void PlayerDefeat()
+    IEnumerator KnockbackCrouton()
     {
-        //terminal = null;
-        canMove = false;
-        //do a lil sad face
-       // UIOverlayObject.gameObject.GetComponent<InGameMenu>().DefeatMessage();
+
+
+        yield return new WaitForSeconds(1.2f);
+        canMove = true;
+        canRotate = true;
+        knockingBack = false;
+        currentMoveSpeed = moveSpeed;
     }
+
 
     private void OnDestroy()
     {
