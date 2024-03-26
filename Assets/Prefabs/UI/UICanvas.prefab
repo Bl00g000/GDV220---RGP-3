@@ -4787,7 +4787,8 @@ MonoBehaviour:
     type: 3}
   testCamera: {fileID: 919132149155446097, guid: e2cc3022594684e44a58daf7cd7f72ef,
     type: 3}
-  testCorpse: {fileID: 0}
+  testCorpse: {fileID: 919132149155446097, guid: 48885418bda60ef40a544d74e9e1cd4d,
+    type: 3}
   spawnLocation: {fileID: 778513386}
   nameText: {fileID: 2146922835}
   blurbText: {fileID: 139501074}
@@ -4795,7 +4796,7 @@ MonoBehaviour:
   rotateDistance: 0.3
   flashlightPickupButton: {fileID: 753382396}
   cameraPickupButton: {fileID: 4309284229054880482}
-  corpseEndGameButton: {fileID: 0}
+  corpseEndGameButton: {fileID: 4278260626143420764}
 --- !u!1 &7621732293905333494
 GameObject:
   m_ObjectHideFlags: 0
