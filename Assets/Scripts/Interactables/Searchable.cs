@@ -1,6 +1,7 @@
 using MPUIKIT;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Searchable : MonoBehaviour, IInteractable
@@ -11,10 +12,25 @@ public class Searchable : MonoBehaviour, IInteractable
 
     public GameObject searchUI;
 
+    public GameObject objectCanvas;
+
+    public GameObject scrollingTextPF;
+
     public MPImage radialSearchImage;
 
+    [Header("items that can be found")]
+    public bool bHasCamAmmo = false;
+    public bool bHasHealth = false;
+
+    [Header("% chance to find items (only if respective item is ticked above)")]
+    [Range(0f, 1f)]
+    public float fCamAmmoChance = 0;
+    [Range(0f, 1f)]
+    public float fHealthChance = 0;
+
+    [Header("Searching")]
     public float fSearchTime = 2.0f;
-    public float fSearchSpeed = 1.0f;
+    float fSearchSpeed = 1.0f;
 
     // Update is called once per frame
     void Update()
@@ -57,9 +73,40 @@ public class Searchable : MonoBehaviour, IInteractable
 
                 bInteracting = false;
                 searchUI.SetActive(false);
-                Debug.Log("Search Successful");
+
+                if (bHasCamAmmo)
+                {
+                    float chanceToFind = Random.Range(0f, 1f);
+
+                    if (chanceToFind < fCamAmmoChance)
+                    {
+                        // here is where you find the selected item
+                        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+                        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Flash Bulb";
+                        yield return new WaitForSeconds(1f);
+                    }
+                }
+
+                if (bHasHealth)
+                {
+                    float chanceToFind = Random.Range(0f, 1f);
+
+                    if (chanceToFind < fCamAmmoChance)
+                    {
+                        // here is where you find the selected item
+                        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+                        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Health Pills";
+                    }
+                }
+
+
+
+
                 break;
-            }
+                }
+                
+
+
             yield return null;
         }
 
@@ -69,7 +116,9 @@ public class Searchable : MonoBehaviour, IInteractable
         {
             bInteracting = false;
             searchUI.SetActive(false);
-            Debug.Log("Search UnSuccessful");
+            
+            // if you cancelled the search
+            // maybe do something here?
         }
 
     }
