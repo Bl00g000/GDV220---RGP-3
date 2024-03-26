@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fMaxHealth: 3
   fHealth: 3
+  fDamage: 0
   fWanderSpeed: 0
   fAttackingSpeed: 0
   fAggroRange: 0
@@ -368,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fMaxHealth: 3
   fHealth: 3
+  fDamage: 1
   fWanderSpeed: 0
   fAttackingSpeed: 0
   fAggroRange: 0

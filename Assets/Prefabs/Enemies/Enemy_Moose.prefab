@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fMaxHealth: 10
   fHealth: 10
+  fDamage: 20
   fWanderSpeed: 1
   fAttackingSpeed: 20
   fAggroRange: 10

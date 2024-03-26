@@ -55,8 +55,6 @@ public class EnemyCharge : EnemyBase
         yield return new WaitUntil(() => Vector3.Distance(v3TargetPos, transform.position) <= 1.0f);
         navMeshAgent.ResetPath();
 
-        CheckDamagePlayer(20.0f, true); ;
-
         bAttacking = false;
     }
 
@@ -93,5 +91,25 @@ public class EnemyCharge : EnemyBase
 
         yield return null;
         bIsTurning = false;
+    }
+
+    private void OnCollisionEnter(Collision _collision)
+    {
+        if (_collision.gameObject == PlayerData.instance.gameObject)
+        {
+            StopAllCoroutines();
+            StartCoroutine(PlayerHit());
+        }
+    }
+
+    private IEnumerator PlayerHit()
+    {
+        // Stop moose and apply knockback to player
+        navMeshAgent.ResetPath();
+        PlayerMovement.instance.KnockPlayerBack(navMeshAgent.velocity.magnitude / 2.0f, navMeshAgent.transform.forward);
+
+        yield return new WaitForSeconds(1.5f);
+
+        bAttacking = false;
     }
 }

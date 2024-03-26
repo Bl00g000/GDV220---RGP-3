@@ -1857,6 +1857,7 @@ MonoBehaviour:
     type: 3}
   fMaxHealth: 100
   fCurrentHealth: 0
+  bCanTakeDamage: 1
   iHealthPills: 0
   fHealthPillHeal: 20
   bShowingHealthBar: 1
@@ -1876,6 +1877,7 @@ MonoBehaviour:
   fInteractRange: 2.5
   interactableObject: {fileID: 0}
   interactKey: 102
+  outlineMaterial: {fileID: 0}
 --- !u!114 &6297152477191412696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,6 +1909,8 @@ MonoBehaviour:
   lookDirection: {x: 0, y: 0, z: 0}
   UIOverlayObject: {fileID: 0}
   canMove: 1
+  canRotate: 1
+  knockingBack: 0
   respawning: 0
   LerpValue: 0
   TargetRotationValue: 0
@@ -1939,10 +1943,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.6
+  m_Radius: 0.7150642
+  m_Height: 3.1800704
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.24225521, z: 0.21506423}
 --- !u!1 &7593643068584604370
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,6 +2348,14 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8247617984700888908}
   m_PrefabAsset: {fileID: 0}
+--- !u!81 &911642629911567759
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129927885517556253}
+  m_Enabled: 1
 --- !u!95 &8035017317998238435
 Animator:
   serializedVersion: 5
@@ -2365,11 +2377,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!81 &911642629911567759
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9129927885517556253}
-  m_Enabled: 1
