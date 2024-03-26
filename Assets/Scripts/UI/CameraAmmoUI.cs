@@ -5,17 +5,27 @@ using UnityEngine;
 
 public class CameraAmmoUI : MonoBehaviour
 {
-    TMP_Text cameraText;
+    public List<GameObject> bulbs = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        cameraText = gameObject.GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        cameraText.text = CameraWeapon.instance.fFilmCount.ToString();
+        for (int i = 0; i < bulbs.Count; i++)
+        {
+            if (i >= CameraWeapon.instance.fFilmCount)
+            {
+                bulbs[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                bulbs[i].gameObject.SetActive(true);
+            }
+              
+        }
     }
 }
