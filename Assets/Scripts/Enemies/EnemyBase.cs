@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -27,6 +29,14 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected LayerMask wallLayer;
 
+
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -47,6 +57,7 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+      
         if (bFlashlighted)
         {
             fSlowMultiplier = 0.2f;
@@ -93,6 +104,19 @@ public class EnemyBase : MonoBehaviour
         }
 
         bFlashlighted = false;
+
+        if (animator)
+        {
+            if (bWandering)
+            {
+                animator.SetFloat("Blend_Speed", 1f, 0.2f, Time.deltaTime);
+            }
+            else
+            {
+                animator.SetFloat("Blend_Speed", 0f, 0.2f, Time.deltaTime);
+            }
+            
+        }
     }
 
     public virtual void Attack()
@@ -126,7 +150,7 @@ public class EnemyBase : MonoBehaviour
     {
         // Set wander speed and position
         navMeshAgent.speed = fWanderSpeed * fSlowMultiplier;
-
+        
         Vector3 v3WanderPos = FindNewWanderPos();
         navMeshAgent.SetDestination(v3WanderPos);
         bWandering = true;

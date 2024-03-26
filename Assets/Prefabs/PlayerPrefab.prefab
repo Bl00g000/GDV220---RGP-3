@@ -1852,8 +1852,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f196b83978be05041bc51813e719cc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarUI: {fileID: 0}
   fMaxHealth: 100
   fCurrentHealth: 0
+  iHealthPills: 0
+  fHealthPillHeal: 20
+  bShowingHealthBar: 1
+  bHealthIsChanging: 0
 --- !u!114 &323738475146639086
 MonoBehaviour:
   m_ObjectHideFlags: 0

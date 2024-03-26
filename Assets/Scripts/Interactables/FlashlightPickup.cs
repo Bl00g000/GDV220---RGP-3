@@ -11,6 +11,8 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
 
     public GameObject flashlightUI;
 
+    public GameObject scrollingTextPF;
+
     // Update is called once per frame
     void Update()
     {
@@ -37,6 +39,11 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
         UIInteractPrompt.instance.Close();
         flashlightUI.SetActive(true);
         Flashlight.instance.bHasFlashLight = true;
+        // here is where you find the selected item
+
+        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Flashlight";
+
         Destroy(gameObject);
     }
 }

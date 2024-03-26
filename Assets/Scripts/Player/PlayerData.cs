@@ -6,6 +6,8 @@ public class PlayerData : MonoBehaviour
 {
     public static PlayerData instance;
 
+    public PlayerHealthBarUI healthBarUI;
+
     public float fMaxHealth = 100.0f;
     public float fCurrentHealth = 0.0f;
 
@@ -13,9 +15,27 @@ public class PlayerData : MonoBehaviour
 
     public float fHealthPillHeal = 20.0f;
 
+    public bool bShowingHealthBar = true;
+    public bool bHealthIsChanging = false;
+
+    //Singleton
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        //healthBarUI = GetComponent<PlayerHealthBarUI>();
         fCurrentHealth = fMaxHealth;
     }
 
@@ -55,7 +75,8 @@ public class PlayerData : MonoBehaviour
 
         //Does the damage
         fCurrentHealth -= _damage;
-        //update ui
+        healthBarUI.ShowCanvas();
+        //start coroutine
 
 
         if (fCurrentHealth <= 0.0f)
@@ -75,10 +96,11 @@ public class PlayerData : MonoBehaviour
 
         //does the healing
         fCurrentHealth += _healthRestored;
-
+        healthBarUI.ShowCanvas();
+        //start coroutine
         //UI effect?
 
-        if(fCurrentHealth > fMaxHealth)
+        if (fCurrentHealth > fMaxHealth)
         {
             fCurrentHealth = fMaxHealth;
         }
@@ -107,4 +129,9 @@ public class PlayerData : MonoBehaviour
 
     }
 
+   // IEnumerator HideHealthBarCoroutine()
+   // {
+   //     
+   // }
+   //
 }

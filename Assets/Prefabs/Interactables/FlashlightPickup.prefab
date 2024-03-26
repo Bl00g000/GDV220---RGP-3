@@ -50,6 +50,9 @@ MonoBehaviour:
   <interactUI>k__BackingField: {fileID: 2127829028747680478}
   <bCanInteract>k__BackingField: 1
   <bInteracting>k__BackingField: 0
+  flashlightUI: {fileID: 9156470267738835656}
+  scrollingTextPF: {fileID: 6730258568751694421, guid: d936bbfe70576a04485ee50da7c5ca3f,
+    type: 3}
 --- !u!65 &1998243034332199065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -226,6 +229,12 @@ RectTransform:
 --- !u!1 &2127829028747680478 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 449443286014891558, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1998243034006752504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9156470267738835656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7253467495718241840, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
     type: 3}
   m_PrefabInstance: {fileID: 1998243034006752504}
   m_PrefabAsset: {fileID: 0}
