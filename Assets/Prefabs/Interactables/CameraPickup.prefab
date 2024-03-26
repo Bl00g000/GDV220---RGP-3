@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12285b6ad7da694a872c3c101383f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <interactUI>k__BackingField: {fileID: 0}
+  <interactUI>k__BackingField: {fileID: 647752014339529548}
   <bCanInteract>k__BackingField: 1
   <bInteracting>k__BackingField: 0
-  cameraUI: {fileID: 647752014339529548}
+  cameraUI: {fileID: 0}
   scrollingTextPF: {fileID: 6730258568751694421, guid: d936bbfe70576a04485ee50da7c5ca3f,
     type: 3}
 --- !u!65 &7805927034365634845
@@ -148,6 +148,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7805927034365634844}
     m_Modifications:
+    - target: {fileID: 954129591, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
+      propertyPath: m_text
+      value: (F) Pick up Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 954129591, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 449443286014891558, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_Name
@@ -292,6 +300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241626503726680947, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 5.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}

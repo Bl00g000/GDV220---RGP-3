@@ -434,6 +434,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7674986604318619504}
     m_Modifications:
+    - target: {fileID: 954129591, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
+      propertyPath: m_text
+      value: (F) Search Cabinet
+      objectReference: {fileID: 0}
+    - target: {fileID: 954129591, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
+      propertyPath: m_fontSize
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 449443286014891558, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_Name
@@ -574,10 +582,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.21
       objectReference: {fileID: 0}
+    - target: {fileID: 7241626503726680947, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7253467495718241840, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8631151830688203045, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
         type: 3}
