@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
@@ -10,15 +11,23 @@ public class Door : MonoBehaviour, IInteractable
 
     public GameObject doorToRotate;
 
+    TMP_Text interactText;
+
     public float fOpenDuration = 1f;
 
     public float fOpenAngle = -90f;
 
+    [Tooltip("if door starts open set this to false")]
+    public bool bInitialInteraction = true;
+
     [Header("Audio")]
     public AudioSource doorOpen;
     public AudioSource doorClose;
-   
-    bool bInitialInteraction = true;
+
+    private void Start()
+    {
+        interactText = gameObject.GetComponentInChildren<TMP_Text>();
+    }
 
     private void Update()
     {
@@ -36,6 +45,9 @@ public class Door : MonoBehaviour, IInteractable
         {
             interactUI.SetActive(false);
         }
+
+        if (bInitialInteraction) { interactText.text = "(F) Open Door"; }
+        else { interactText.text = "(F) Close Door"; }
     }
 
     public void Interact()
@@ -49,6 +61,8 @@ public class Door : MonoBehaviour, IInteractable
     IEnumerator OpenDoor()
     {
         bInteracting = true;
+
+        yield return new WaitForSeconds(0);
 
         float fElapsedTime = 0f;
         Quaternion initialRotation = doorToRotate.transform.rotation;
@@ -71,12 +85,12 @@ public class Door : MonoBehaviour, IInteractable
             yield return null;
         }
 
+        // flip bClockwise at end of interaction
+        bInitialInteraction = !bInitialInteraction;
+
         // ensure the target rotation is set properly at the end of the loop
         doorToRotate.transform.rotation = targetRotation;
         bInteracting = false;
-
-        // flip bClockwise at end of interaction
-        bInitialInteraction = !bInitialInteraction;
     }
 }
 
