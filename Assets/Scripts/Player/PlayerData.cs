@@ -73,7 +73,7 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    public void TakeDamage(float _damage, bool _shouldLockoutDamage = false)
+    public void TakeDamage(float _damage, bool _shouldLockoutDamage = true)
     {
         if(!bCanTakeDamage)
         {
