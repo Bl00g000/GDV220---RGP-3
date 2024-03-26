@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4138036634483680617}
   - component: {fileID: 1377078933176228541}
   m_Layer: 0
-  m_Name: ChargingEnemy
+  m_Name: Enemy_Moose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
