@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class EnemyTendril : EnemyBase
 {
-    private VisualEffect visualEffect;
     Tendril tendril;
 
     public List<MeshRenderer> tendrilMeshes;
@@ -18,7 +16,6 @@ public class EnemyTendril : EnemyBase
 
     void Awake()
     {
-        visualEffect = GetComponent<VisualEffect>();
         growVineMaterials = new List<Material>();
     }
 
@@ -43,7 +40,6 @@ public class EnemyTendril : EnemyBase
     {
         if (bFlashlighted)
         {
-            visualEffect.enabled = true;
 
             // Display damage indicator
             bFlashlighted = false;
@@ -52,7 +48,6 @@ public class EnemyTendril : EnemyBase
             {
                 // Spawn Death VFX
                 StopAllCoroutines();
-                visualEffect.enabled = false;
                 DestroyImmediate(gameObject);
             }
         }

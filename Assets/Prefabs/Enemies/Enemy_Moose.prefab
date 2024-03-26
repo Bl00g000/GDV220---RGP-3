@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6793004949779170914}
   - component: {fileID: 4138036634483680617}
   - component: {fileID: 1377078933176228541}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Enemy_Moose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,6 +178,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4aebdf65a18345f4785c9dba0c15fe63, type: 2}
+    - target: {fileID: -3237372139176792555, guid: 10f10931404626c44aa87e79fabb8d48,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: -2374854028772355885, guid: 10f10931404626c44aa87e79fabb8d48,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
