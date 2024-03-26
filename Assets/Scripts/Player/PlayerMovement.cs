@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject UIOverlayObject = null;    //UI overlay
 
-    protected bool canMove = true;         //Movement bool - turns off when powered off/dead/in screen.
+    public bool canMove = true;         //Movement bool - turns off when powered off/dead/in screen.
     public bool respawning = false;     //respawning bool
 
 
