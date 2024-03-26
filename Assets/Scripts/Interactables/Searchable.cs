@@ -82,6 +82,8 @@ public class Searchable : MonoBehaviour, IInteractable
                         // here is where you find the selected item
                         if (CameraWeapon.instance.fFilmCount < 3)
                         {
+                            CameraWeapon.instance.fFilmCount++;
+
                             bHasCamAmmo = false;
                             newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
                             newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Flash Bulb";
@@ -106,6 +108,9 @@ public class Searchable : MonoBehaviour, IInteractable
                         {
                             bHasHealth = false;
                             // here is where you find the selected item
+
+                            PlayerData.instance.iHealthPills++;
+
                             var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
                             newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Health Pills";
                             yield return new WaitForSeconds(1f);
@@ -138,7 +143,13 @@ public class Searchable : MonoBehaviour, IInteractable
         {
             bInteracting = false;
             searchUI.SetActive(false);
-            
+
+            if (bHasHealth || bHasCamAmmo)
+            {
+                // disable being able to search the item AGAIN
+                bCanInteract = true;
+            }
+
             // if you cancelled the search
             // maybe do something here?
         }
