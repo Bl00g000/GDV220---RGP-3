@@ -9,9 +9,10 @@ public class EventEnemySpawner : MonoBehaviour
     // So make sure that the order of enemies in the list matches
     // the order of the CHILDREN under this object if you want specific
     // enemies to spawn at specific spawn points
-    [Tooltip("Enemies in this list will spawn at the positions of the child spawn point with a matching index.")]
+    [Tooltip("Enemies in this list will spawn at the positions of the child spawn point with a matching index.\n" +
+        "If uneven sizes, the smaller list will wrap around to fulfil the bigger list.")]
     [SerializeField] private List<GameObject> enemiesToSpawn;
-    private List<Vector3> spawnPoints = new List<Vector3>();
+    private List<GameObject> spawnPoints = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +25,11 @@ public class EventEnemySpawner : MonoBehaviour
             // Add spawn point locations here
             foreach (Transform child in transform)
             {
-                spawnPoints.Add(child.position);
+                spawnPoints.Add(child.gameObject);
+
+                // Disable renderer and nose
                 child.GetComponent<Renderer>().enabled = false;
+                child.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
@@ -37,11 +41,50 @@ public class EventEnemySpawner : MonoBehaviour
         // Make sure its the player entering
         if (other.gameObject == PlayerMovement.instance.gameObject)
         {
-            // Spawn enemies at spawn points
-            for (int i = 0; i < spawnPoints.Count; i++)
+            // Wrap enemy indices around to spawn them at all locations
+            // Useful for if we want to spawn only 1 or 2 kinds of enemy in multiple locations
+            if (spawnPoints.Count >= enemiesToSpawn.Count)
             {
-                Instantiate(enemiesToSpawn[i], spawnPoints[i], Quaternion.identity);
+                int iEnemiesIndex = 0;
+
+                // Spawn enemies at spawn points
+                for (int i = 0; i < spawnPoints.Count; i++)
+                {
+                    Instantiate(enemiesToSpawn[iEnemiesIndex], spawnPoints[i].transform.position, spawnPoints[i].transform.rotation);
+                    iEnemiesIndex++;
+
+                    // Reset enemy index
+                    if (iEnemiesIndex > enemiesToSpawn.Count - 1)
+                    {
+                        iEnemiesIndex = 0;
+                    }
+                }
             }
+            // Wrap spawn point indices around to spawn all enemies
+            // Useful for if we want to spawn multiple enemies in 1 or 2 locations
+            else if(enemiesToSpawn.Count >= spawnPoints.Count)
+            {
+                int iSpawnIndex = 0;
+
+                // Spawn enemies at spawn points
+                for (int i = 0; i < enemiesToSpawn.Count; i++)
+                {
+                    Instantiate(enemiesToSpawn[i], spawnPoints[iSpawnIndex].transform.position, spawnPoints[iSpawnIndex].transform.rotation);
+                    iSpawnIndex++;
+
+                    // Reset spawn index
+                    if (iSpawnIndex > spawnPoints.Count - 1)
+                    {
+                        iSpawnIndex = 0;
+                    }
+                }
+            }
+
+            //// Spawn enemies at spawn points
+            //for (int i = 0; i < spawnPoints.Count; i++)
+            //{
+            //    Instantiate(enemiesToSpawn[i], spawnPoints[i], Quaternion.identity);
+            //}
         }
 
         // Disable the trigger so it can only be triggered once
