@@ -22,6 +22,15 @@ public class Door : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        if (Flashlight.instance.bHasFlashLight)
+        {
+            bCanInteract = true;
+        }
+        else
+        {
+            bCanInteract = false;
+        }
+
         // if this object isn't the current closest object to the player OR the interact option is in progress disable canvas
         if (PlayerInteract.instance.interactableObject != gameObject)
         {

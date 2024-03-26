@@ -47,6 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12285b6ad7da694a872c3c101383f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <interactUI>k__BackingField: {fileID: 0}
+  <bCanInteract>k__BackingField: 1
+  <bInteracting>k__BackingField: 0
+  cameraUI: {fileID: 647752014339529548}
+  scrollingTextPF: {fileID: 6730258568751694421, guid: d936bbfe70576a04485ee50da7c5ca3f,
+    type: 3}
 --- !u!65 &7805927034365634845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -289,6 +295,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40, type: 3}
+--- !u!1 &647752014339529548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7253467495718241840, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,
+    type: 3}
+  m_PrefabInstance: {fileID: 7805927034154163580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8423050395978675587 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1779087821435644159, guid: 18d48fcf4c9c9604eb8e89a54cfc4a40,

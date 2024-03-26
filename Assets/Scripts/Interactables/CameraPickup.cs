@@ -10,6 +10,8 @@ public class CameraPickup : MonoBehaviour, IInteractable
 
     public GameObject cameraUI;
 
+    public GameObject scrollingTextPF;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +37,10 @@ public class CameraPickup : MonoBehaviour, IInteractable
         UIInteractPrompt.instance.Close();
         cameraUI.SetActive(true);
         CameraWeapon.instance.bHasCamera = true;
+
+        var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
+        newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Camera";
+
         Destroy(gameObject);
     }
 }
