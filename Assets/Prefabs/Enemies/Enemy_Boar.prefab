@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 1046403902643290530}
   - component: {fileID: 7763863434821025982}
   - component: {fileID: 7763863434821025977}
-  m_Layer: 29
+  m_Layer: 31
   m_Name: Enemy_Boar
   m_TagString: Enemy
   m_Icon: {fileID: 0}

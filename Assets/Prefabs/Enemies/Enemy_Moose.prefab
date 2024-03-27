@@ -53,7 +53,7 @@ MonoBehaviour:
   fHealth: 10
   fDamage: 20
   fWanderSpeed: 1
-  fAttackingSpeed: 20
+  fAttackingSpeed: 10
   fAggroRange: 10
   fSlowMultiplier: 0
   fWanderRadius: 10

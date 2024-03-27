@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 644507889341408050}
   - component: {fileID: 644507889341408048}
   - component: {fileID: 745259529}
-  m_Layer: 0
+  - component: {fileID: 5893940334874507147}
+  m_Layer: 31
   m_Name: EnemyRat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -95,8 +96,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.44549924, y: 1.4411607, z: 1}
-  m_Center: {x: 0, y: 0.22058034, z: 0}
+  m_Size: {x: 0.62, y: 0.96417964, z: 1.8053169}
+  m_Center: {x: 0, y: 0.36756033, z: -0.1745739}
+--- !u!65 &5893940334874507147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644507889341408046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.67, y: 1.08, z: 2.13}
+  m_Center: {x: 0, y: 0.36756033, z: -0.1745739}
 --- !u!1001 &1523268147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,6 +202,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rat_Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1484457956217858969, guid: 67bbe72319de973448c1cd82e8271e52,
+        type: 3}
+      propertyPath: m_Layer
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531171212770817160, guid: 67bbe72319de973448c1cd82e8271e52,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 8697658199696305303, guid: 67bbe72319de973448c1cd82e8271e52,
         type: 3}

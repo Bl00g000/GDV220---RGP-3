@@ -6,9 +6,9 @@ using UnityEngine.VFX;
 
 public class EnemyCharge : EnemyBase
 {
-    bool bIsTurning = false;
     public Vector3 v3TargetPos;
-
+    bool bIsTurning = false;
+    bool bIsPaused = false;
     
     void Update()
     {
@@ -28,6 +28,8 @@ public class EnemyCharge : EnemyBase
 
     private IEnumerator Charge()
     {
+        if (bIsPaused) yield break;
+
         bAttacking = true;
         navMeshAgent.speed = fAttackingSpeed * fSlowMultiplier;
 
@@ -60,6 +62,8 @@ public class EnemyCharge : EnemyBase
 
     private IEnumerator TurnTowardsPlayer()
     {
+        if (bIsPaused) yield break;
+
         RaycastHit hit;
         while (true)
         {
@@ -93,23 +97,37 @@ public class EnemyCharge : EnemyBase
         bIsTurning = false;
     }
 
-    private void OnCollisionEnter(Collision _collision)
-    {
-        if (_collision.gameObject == PlayerData.instance.gameObject)
-        {
-            StopAllCoroutines();
-            StartCoroutine(PlayerHit());
-        }
-    }
-
     private IEnumerator PlayerHit()
     {
+        if (bIsPaused) yield break;
+
         // Stop moose and apply knockback to player
+        bIsPaused = true;
+        bAttacking = false;
+
         navMeshAgent.ResetPath();
         PlayerMovement.instance.KnockPlayerBack(navMeshAgent.velocity.magnitude / 2.0f, navMeshAgent.transform.forward);
 
         yield return new WaitForSeconds(1.5f);
 
-        bAttacking = false;
+        bIsPaused = false;
+    }
+
+    //private void OnCollisionEnter(Collision _collision)
+    //{
+    //    if (_collision.gameObject == PlayerData.instance.gameObject)
+    //    {
+    //        StopAllCoroutines();
+    //        StartCoroutine(PlayerHit());
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == PlayerData.instance.gameObject)
+        {
+            PlayerData.instance.TakeDamage(fDamage);
+            StartCoroutine(PlayerHit());
+        }
     }
 }
