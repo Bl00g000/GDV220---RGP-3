@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 602973420}
   - component: {fileID: 602973421}
   m_Layer: 29
-  m_Name: Tendril (1)
+  m_Name: Tendril
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fMaxHealth: 3
   fHealth: 3
+  fDamage: 0
   fWanderSpeed: 0
   fAttackingSpeed: 0
   fAggroRange: 0
@@ -368,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fMaxHealth: 3
   fHealth: 3
+  fDamage: 1
   fWanderSpeed: 0
   fAttackingSpeed: 0
   fAggroRange: 0

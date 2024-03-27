@@ -14,6 +14,7 @@ public class EnemyBase : MonoBehaviour
 
     public float fMaxHealth;
     public float fHealth;
+    public float fDamage;
     public float fWanderSpeed;
     public float fAttackingSpeed;
     public float fAggroRange;
@@ -52,10 +53,10 @@ public class EnemyBase : MonoBehaviour
         v3StartingPosition = transform.position;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(transform.position, fAggroRange);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawSphere(transform.position, fAggroRange);
+    //}
 
     // Update is called once per frame
     protected void Update()
@@ -63,7 +64,7 @@ public class EnemyBase : MonoBehaviour
       
         if (bFlashlighted)
         {
-            visualEffect.enabled = true;
+            if (visualEffect) visualEffect.enabled = true;
             fSlowMultiplier = 0.2f;
             Debug.Log("flashlighted - attack");
 
@@ -76,7 +77,7 @@ public class EnemyBase : MonoBehaviour
         else
         {
             fSlowMultiplier = 1.0f;
-            visualEffect.enabled = false;
+            if (visualEffect) visualEffect.enabled = false;
         }
 
         if (PlayerMovement.instance.gameObject.activeSelf)
@@ -121,19 +122,19 @@ public class EnemyBase : MonoBehaviour
         // depending on how enemy attacks
     }
 
-    protected void CheckDamagePlayer(float _damage, bool _shouldDamageLockout)
-    {
-
-        float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
-        if (fDistFromPlayer <= 1.0f)
-        {
-            // DEAL DAMAGE HERE
-            Debug.Log("DEATH TO THE PLAYER!");
-
-            PlayerData.instance.TakeDamage(_damage, _shouldDamageLockout);
-           // PlayerMovement.instance.gameObject.SetActive(false);
-        }
-    }
+    //protected void CheckDamagePlayer()
+    //{
+    //
+    //    float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
+    //    if (fDistFromPlayer <= 1.0f)
+    //    {
+    //        // DEAL DAMAGE HERE
+    //        Debug.Log("DEATH TO THE PLAYER!");
+    //
+    //        PlayerData.instance.TakeDamage(fDamage);
+    //       // PlayerMovement.instance.gameObject.SetActive(false);
+    //    }
+    //}
 
     protected Vector3 FindNewWanderPos()
     {

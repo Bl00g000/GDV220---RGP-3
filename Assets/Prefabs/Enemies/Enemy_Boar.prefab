@@ -68,7 +68,7 @@ VisualEffect:
       - m_Value: {x: 270, y: -0, z: 0}
         m_Name: New Transform_angles
         m_Overridden: 1
-      - m_Value: {x: -7.7, y: 0, z: -68.41}
+      - m_Value: {x: -9.404, y: 0.0000014305115, z: -83.728}
         m_Name: New Transform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 7763863434821025978}
   - component: {fileID: 5289331614917629383}
   - component: {fileID: 2354907225942484352}
+  - component: {fileID: 1046403902643290530}
   - component: {fileID: 7763863434821025982}
   - component: {fileID: 7763863434821025977}
   m_Layer: 29
@@ -216,8 +217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fMaxHealth: 10
   fHealth: 10
-  fWanderSpeed: 3
-  fAttackingSpeed: 5
+  fDamage: 10
+  fWanderSpeed: 2
+  fAttackingSpeed: 3
   fAggroRange: 20
   fSlowMultiplier: 0
   fWanderRadius: 20
@@ -242,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthCanvas: {fileID: 1836697074381608335}
   healthBar: {fileID: 1836697074808048164}
---- !u!65 &7763863434821025982
+--- !u!65 &1046403902643290530
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,8 +255,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.57, y: 1.6328421, z: 1.48}
+  m_Center: {x: 0, y: 0.78301644, z: 0.2785797}
+--- !u!65 &7763863434821025982
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763863434821025983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.71, z: 2.23}
+  m_Center: {x: 0, y: 0.78301644, z: 0.19863892}
 --- !u!195 &7763863434821025977
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -456,7 +471,7 @@ PrefabInstance:
     - target: {fileID: -8963829243775713138, guid: 7585eb0a1ed6b4b4e85f4bfd830d32e3,
         type: 3}
       propertyPath: m_Layer
-      value: 29
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7585eb0a1ed6b4b4e85f4bfd830d32e3,
         type: 3}
@@ -520,9 +535,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2601618511002105073, guid: 7585eb0a1ed6b4b4e85f4bfd830d32e3,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2601618511002105073, guid: 7585eb0a1ed6b4b4e85f4bfd830d32e3,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e107a85c1a421f448a028715840050f8, type: 2}
+    - target: {fileID: -370564134496430571, guid: 7585eb0a1ed6b4b4e85f4bfd830d32e3,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7585eb0a1ed6b4b4e85f4bfd830d32e3,
         type: 3}
       propertyPath: m_Name
