@@ -13,6 +13,8 @@ public class EndGameInteraction : MonoBehaviour, IInteractable
 
     public GameObject scrollingTextPF;
 
+    public AudioSource audioSource;
+
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +30,7 @@ public class EndGameInteraction : MonoBehaviour, IInteractable
         if (!bInteracting)
         {
             bCanInteract = false;
+            audioSource.Play();
             UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testCorpse, Vector3.one, "A BODY...", "OH NO YOUR FRIEND IS DEAD!");
             UIInteractPrompt.instance.corpseEndGameButton.SetActive(true);
         }
