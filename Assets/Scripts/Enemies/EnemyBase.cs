@@ -72,14 +72,11 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        Debug.Log("Wandering: " + bWandering);
-
         // Flashlighted check
         if (bFlashlighted)
         {
             if (visualEffect) visualEffect.enabled = true;
             fSlowMultiplier = 0.2f;
-            Debug.Log("flashlighted - attack");
 
             // Aggro enemies when flashlighted?!
             if (bWandering)
