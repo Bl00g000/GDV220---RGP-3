@@ -30,7 +30,7 @@ public class CameraPickup : MonoBehaviour, IInteractable
         {
             bCanInteract = false;
             audioSource.Play();
-            UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testCamera, Vector3.one*0.5f, "Camera", "SAY CHEESE! :3");
+            UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testCamera, Vector3.one*0.5f, "Camera", "Illuminate, eradicate, exsanguinate.");
             UIInteractPrompt.instance.cameraPickupButton.SetActive(true);
         }
     }

@@ -31,7 +31,7 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
         {
             bCanInteract = false;
             audioSource.Play();
-            UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testFlashlight, Vector3.one, "Flashlight", "Those who live in the dark can't stand the light");
+            UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testFlashlight, Vector3.one, "Flashlight", "Those who live in the dark can't stand the light.");
             UIInteractPrompt.instance.flashlightPickupButton.SetActive(true);
 
         }
