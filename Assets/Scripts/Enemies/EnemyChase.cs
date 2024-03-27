@@ -22,7 +22,7 @@ public class EnemyChase : EnemyBase
         bAttacking = false;
         bIsPaused = true;
 
-        navMeshAgent.isStopped = true;
+        //navMeshAgent.isStopped = true;
         navMeshAgent.ResetPath();
 
         yield return new WaitForSeconds(1.0f);
