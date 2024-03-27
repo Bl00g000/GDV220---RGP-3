@@ -72,7 +72,7 @@ public class EnemyTendril : EnemyBase
             // Regen
             if (fHealth < fMaxHealth)
             {
-                fHealth += (fMaxHealth - fHealth) * 0.01f;
+                fHealth += (fMaxHealth - fHealth) * 0.15f * Time.deltaTime;
 
             }
         }
