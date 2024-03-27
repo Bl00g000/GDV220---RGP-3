@@ -78,12 +78,12 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    public void TakeDamage(float _damage, bool _shouldLockoutDamage = true)
+    public void TakeDamage(float _damage, bool _shouldLockoutDamage = false)
     {
-        if(!bCanTakeDamage)
-        {
-            return;
-        }
+        //if(!bCanTakeDamage)
+        //{
+        //    return;
+        //}
         //means that damage always subtracts hp
         if(_damage < 0)
         {

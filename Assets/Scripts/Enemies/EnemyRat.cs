@@ -89,8 +89,10 @@ public class EnemyRat : EnemyBase
 
     private void OnTriggerStay(Collider _collision)
     {
-        if (_collision.gameObject == PlayerData.instance.gameObject)
+        if (_collision.gameObject == PlayerData.instance.gameObject && bCanDamagePlayer)
         {
+            bCanDamagePlayer = false;
+            StartCoroutine(PlayerDamageCD());
             PlayerData.instance.TakeDamage(fDamage);
         }
     }

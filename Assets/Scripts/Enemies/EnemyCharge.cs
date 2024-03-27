@@ -120,10 +120,14 @@ public class EnemyCharge : EnemyBase
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == PlayerData.instance.gameObject)
+        if (other.gameObject == PlayerData.instance.gameObject && bCanDamagePlayer)
         {
             PlayerData.instance.TakeDamage(fDamage);
             StartCoroutine(PlayerHit());
+            bCanDamagePlayer = false;
+            StartCoroutine(PlayerDamageCD());
         }
     }
+
+    
 }

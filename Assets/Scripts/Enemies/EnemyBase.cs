@@ -36,6 +36,9 @@ public class EnemyBase : MonoBehaviour
     protected Animator animator;
     private VisualEffect visualEffect;
 
+    public float fDamagePlayerCooldown = 0.3f;
+    public bool bCanDamagePlayer = true;
+
     // event
 
     public event Action<float> OnDamageTaken;
@@ -208,5 +211,24 @@ public class EnemyBase : MonoBehaviour
         {
             OnDamageTaken?.Invoke(_fDamage);
         }
+    }
+
+    public IEnumerator PlayerDamageCD()
+    {
+        float fElapsedTime = 0f;
+
+        while (fElapsedTime < fDamagePlayerCooldown)
+        {
+            fElapsedTime += Time.deltaTime;
+
+            if (fElapsedTime > fDamagePlayerCooldown)
+            {
+                bCanDamagePlayer = true;
+                break;
+            }
+            yield return null;
+        }
+
+        yield return null;
     }
 }

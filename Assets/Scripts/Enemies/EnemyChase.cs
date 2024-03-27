@@ -41,12 +41,14 @@ public class EnemyChase : EnemyBase
     //    }
     //}
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject == PlayerData.instance.gameObject)
+        if (other.gameObject == PlayerData.instance.gameObject && bCanDamagePlayer)
         {
+            bCanDamagePlayer = false;
             PlayerData.instance.TakeDamage(fDamage);
             StartCoroutine(HitPlayerPause());
+            StartCoroutine(PlayerDamageCD());
         }
     }
 }
