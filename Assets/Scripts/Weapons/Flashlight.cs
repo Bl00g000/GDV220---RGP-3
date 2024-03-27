@@ -341,11 +341,11 @@ public class Flashlight : MonoBehaviour
     {
         ToggleFlashLight(false); //off
         flickerAudio.Play();
-        yield return new WaitForSeconds(0.03f);
+        yield return new WaitForSeconds(0.02f);
         if (!bFlickering) { yield break; }
 
         ToggleFlashLight(false);//on
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.08f);
         if (!bFlickering) { yield break; }
 
         ToggleFlashLight(false);//off
@@ -370,7 +370,7 @@ public class Flashlight : MonoBehaviour
 
         ToggleFlashLight(false);//off
         flickerAudio.Play();
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
         if (!bFlickering) { yield break; }
 
         ToggleFlashLight(false);//on

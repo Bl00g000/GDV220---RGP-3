@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public bool bInTendrils = false;
-    public float fTendrilMultiplier = 0.45f;
+    public float fTendrilMultiplier = 0.50f;
     public bool bIsWinding = false;
     public float fWindingMultiplier = 0.55f;
 
@@ -148,55 +148,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        //testInverseVec = transform.InverseTransformDirection(Vector3.forward);
-        //testInverseVec = transform.InverseTransformDirection(lookDirection);
-
-        //testmovedirvec = playerController.transform.forward;
-
-        //testsubtractedVec1 = testInverseVec - moveDirection;
-        //testsubtractedVec2 = moveDirection - testInverseVec;
-
-        //testsubtractedVec3 =  moveDirection - testmovedirvec;
-        // testsubtractedVec4 = testmovedirvec - moveDirection ;
-
-        // testaddedvec = testmovedirvec + moveDirection ;
-        //Ab =  (float)testInverseVec.y - (float)moveDirection.y;
-        //Bb =   moveDirection.y - testInverseVec.y;
-        //Vb = testInverseVec.y + moveDirection.y;
-        //Db = testInverseVec.y;
-        //moveLookDiff =  transform.rotation.eulerAngles;
-
-        // calculate movement direction
-        if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
-        {
-
-
-            //testaddedvec = new Vector3(testaddedvec.y, 0.0f, testaddedvec.x);
-
-        }
-
-        if (Mathf.Abs(testaddedvec.x) < 1.0f)
-        {
-            //currentMoveSpeed *= strafeModifier;
-        }
-
-        if (Mathf.Abs(testaddedvec.z) < 1.0f)
-        {
-           // currentMoveSpeed *= reverseModifier;
-        }
-
-
-
-
-        //Character is moving straight sideways
-        if (Mathf.Abs( moveDirection.x)  != 0  )
-         {
-           // currentMoveSpeed *= strafeModifier;
-         }
-         if(moveDirection.z < 0)
-         {
-            //currentMoveSpeed *= reverseModifier;
-         }
+       
 
          
 
