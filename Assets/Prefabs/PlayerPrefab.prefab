@@ -1411,10 +1411,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   iRayCount: 200
-  fVisionFOVdeg: 45
-  fFlashlightFOVdeg: 70
-  fVisionRange: 12
-  fFlashlightRange: 8
+  fVisionFOVdeg: 70
+  fFlashlightFOVdeg: 110
+  fVisionRange: 8
+  fFlashlightRange: 12
   hitOffset: 0.04
   hitPositions: []
   fZoneHeight: 1
@@ -1877,7 +1877,7 @@ MonoBehaviour:
   fInteractRange: 2.5
   interactableObject: {fileID: 0}
   interactKey: 102
-  outlineMaterial: {fileID: 0}
+  outlineMaterial: {fileID: 2100000, guid: 7a0a3529ba2b65d4bab1c2f5f6627761, type: 2}
 --- !u!114 &6297152477191412696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1932,7 +1932,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!1 &7593643068584604370
 GameObject:
   m_ObjectHideFlags: 0
