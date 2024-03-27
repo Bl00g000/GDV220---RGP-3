@@ -34,15 +34,15 @@ public class GameManager : MonoBehaviour
             PauseGame();
         }
 
-        // FOR TESTING
-        if (Input.GetKeyDown(KeyCode.E)) 
-        {
-            GameOver(false);
-        }
+        //// FOR TESTING
+        //if (Input.GetKeyDown(KeyCode.E)) 
+        //{
+        //    GameOver(false);
+        //}
         
         if (Input.GetKeyDown(KeyCode.Q)) 
         {
-            GameOver(true);
+            UISpeech.instance.Speak("Good try Callan... Can't win that easy;)");
         }
     }
 
