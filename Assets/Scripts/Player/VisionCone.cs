@@ -57,7 +57,7 @@ public class VisionCone : MonoBehaviour
                 if (Physics.Raycast(playPos, rayDirection, out hit, fVisionRange, hitLayers))
                 {
                     // If there is a hit, add the hit point to the hitpositions
-                    Debug.DrawRay(playPos, hit.point - playPos, Color.blue);
+                    //Debug.DrawRay(playPos, hit.point - playPos, Color.blue);
 
                     // adds if no hit back was found or required!
                     hitPositions.Add(hit.point + (hit.point - playPos).normalized * hitOffset);
@@ -67,7 +67,7 @@ public class VisionCone : MonoBehaviour
                 {
                     // If no hit, add point at the end of the range
                     hitPositions.Add(playPos + rayDirection * fVisionRange);
-                    Debug.DrawRay(playPos, rayDirection * fVisionRange, Color.red);
+                    //Debug.DrawRay(playPos, rayDirection * fVisionRange, Color.red);
                 }
             }
         }
@@ -88,7 +88,7 @@ public class VisionCone : MonoBehaviour
                 if (Physics.Raycast(playPos, rayDirection, out hit, fFlashlightRange, hitLayers))
                 {
                     // If there is a hit, add the hit point to the hitpositions
-                    Debug.DrawRay(playPos, hit.point - playPos, Color.blue);
+                    //Debug.DrawRay(playPos, hit.point - playPos, Color.blue);
 
                     // adds if no hit back was found or required!
                     hitPositions.Add(hit.point + (hit.point - playPos).normalized * hitOffset);
@@ -98,7 +98,7 @@ public class VisionCone : MonoBehaviour
                 {
                     // If no hit, add point at the end of the range
                     hitPositions.Add(playPos + rayDirection * fFlashlightRange);
-                    Debug.DrawRay(playPos, rayDirection * fFlashlightRange, Color.red);
+                    //Debug.DrawRay(playPos, rayDirection * fFlashlightRange, Color.red);
                 }
             }
         }

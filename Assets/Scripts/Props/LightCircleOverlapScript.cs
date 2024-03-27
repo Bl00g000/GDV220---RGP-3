@@ -32,11 +32,9 @@ public class LightCircleOverlapScript : MonoBehaviour
         // check through all colliders in Interact Range
         foreach (Collider _collider in nearbyCollisions)
         {
-           
-
-            if(_collider.gameObject.GetComponent<EnemyBase>())
+            if (_collider.gameObject.GetComponent<EnemyBase>())
             {
-                _collider.gameObject.GetComponent<EnemyBase>().TakeDamage(2 * Time.deltaTime); ;
+                _collider.gameObject.GetComponent<EnemyBase>().bFlashlighted = true;
             }
         }
     }
