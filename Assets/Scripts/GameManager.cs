@@ -35,14 +35,14 @@ public class GameManager : MonoBehaviour
         }
 
         //// FOR TESTING
-        //if (Input.GetKeyDown(KeyCode.E)) 
-        //{
-        //    GameOver(false);
-        //}
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            UISpeech.instance.Speak("No giving up this time :)");
+        }
         
         if (Input.GetKeyDown(KeyCode.Q)) 
         {
-            UISpeech.instance.Speak("Good try Callan... Can't win that easy;)");
+            UISpeech.instance.Speak("Good try... Can't win that easy ;)");
         }
     }
 
@@ -88,7 +88,6 @@ public class GameManager : MonoBehaviour
     {
         bIsPaused = true;
         Time.timeScale = 0.0f;
-
 
         if (!_bWon)
         {
