@@ -19075,6 +19075,10 @@ PrefabInstance:
       propertyPath: flashlightVisionCone
       value: 
       objectReference: {fileID: 1412547150}
+    - target: {fileID: 360119845, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: fChargeDrainPerSecond
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 887326827, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
       propertyPath: playerVisionCone
       value: 

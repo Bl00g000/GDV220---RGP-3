@@ -16,9 +16,11 @@ public class Flashlight : MonoBehaviour
     private float startFloorIntensity;
     public Light floorLight;
 
-    public float fMaxCharge = 10.0f;
-    public float fChargeGainMultiplier = 10.0f;
-    public float fChargeDrainPerSecond = 2.5f;
+   public  float fMaxCharge = 10.0f;
+     public float fChargeGainMultiplier = 0.28f;
+    // float fChargeGainMultiplierScript = 3.5f;
+    public float fChargeDrainPerSecond = 4.5f;
+     //float fChargeDrainPerSecondScript = 1.5f;
     public float fCurrentCharge;
 
     protected bool bFlickering = false;
@@ -138,12 +140,38 @@ public class Flashlight : MonoBehaviour
     void RechargeBattery()
     {
         // if the flashlight is not active allow the player to recharge their flashlight battery
-        if (!bFlashLightActive)
+        if (!bFlashLightActive && fCurrentCharge < fMaxCharge)
         {
             
             if (!windUpAudio.isPlaying && MathF.Abs(Input.mouseScrollDelta.y) > 0) // TODO: THIS NEEDS REWORKING THE SOUND SUCKS WOOHOO
             { 
                 windUpAudio.Play();
+
+
+
+
+                
+            }
+
+            //float chargeValue = MathF.Abs(Input.mouseScrollDelta.y ) * (Time.deltaTime);
+            if(MathF.Abs(Input.mouseScrollDelta.y) > 0)
+            {
+                
+                PlayerMovement.instance.bIsWinding = true;
+                float chargeValue =  Time.deltaTime * (fChargeGainMultiplier) ;
+               // if(chargeValue > 1/fChargeGainMinTime)
+               // {
+               //     chargeValue = 1/fChargeGainMinTime; 
+               // }
+                // float resultantValue = initialCharge + chargeValue;
+                // if()
+                // {
+                //
+                // }
+                fCurrentCharge += chargeValue;
+                fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
+
+
                 if (fCurrentCharge >= 0.05f)
                 {
                     bHasFlickered2 = false;
@@ -156,12 +184,16 @@ public class Flashlight : MonoBehaviour
                 {
                     bHasFlickered0 = false;
                 }
-            }
 
-            fCurrentCharge += MathF.Abs(Input.mouseScrollDelta.y * fChargeGainMultiplier) * Time.deltaTime;
-            fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
+            }
+            
 
             
+        }
+
+        if(!windUpAudio.isPlaying )
+        {
+            PlayerMovement.instance.bIsWinding = false;
         }
     }
 

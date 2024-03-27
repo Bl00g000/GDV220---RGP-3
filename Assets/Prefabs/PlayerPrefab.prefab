@@ -274,8 +274,8 @@ MonoBehaviour:
   bHasFlashLight: 0
   floorLight: {fileID: 1925234789}
   fMaxCharge: 10
-  fChargeGainMultiplier: 10
-  fChargeDrainPerSecond: 1
+  fChargeGainMultiplier: 9
+  fChargeDrainPerSecond: 1.8
   fCurrentCharge: 0
   flashlightOnAudio: {fileID: 2679479868059307040}
   outOfChargeAudio: {fileID: 4233885776707387655}
@@ -606,8 +606,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e41eb8b40ab5acf478ff304af390e86c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.139
-  m_Pitch: 3
+  m_Volume: 0.08
+  m_Pitch: 2.84
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -2464,8 +2464,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c7af57973b1f8684fa9515dde9fadf38, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.16
-  m_Pitch: 1.41
+  m_Volume: 0.12
+  m_Pitch: 1.57
   Loop: 0
   Mute: 0
   Spatialize: 0

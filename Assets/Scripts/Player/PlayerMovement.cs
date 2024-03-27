@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public float reverseModifier = 0.6f;
     public float rotSpeed = 20.0f;
     public float gravity = -9.8f;
+
+    public bool bIsWinding = false;
+    public float fWindingMultiplier = 0.55f;
 
     public GameObject respawnLocation;    //Spawn Location object
 
@@ -189,6 +193,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        if(!knockingBack )
+        {
+            currentMoveSpeed = moveSpeed;
+        }
+
+
         //Get movement input
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
@@ -203,7 +213,10 @@ public class PlayerMovement : MonoBehaviour
 
             //changes speed depending on direction
             //SpeedControl();
-
+            if (bIsWinding)
+            {
+                currentMoveSpeed  *= fWindingMultiplier;
+            }
 
             //Turn character according to movement
             
