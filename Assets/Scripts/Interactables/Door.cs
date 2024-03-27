@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Door : MonoBehaviour, IInteractable
 {
@@ -11,9 +12,12 @@ public class Door : MonoBehaviour, IInteractable
 
     public GameObject doorToRotate;
 
+    NavMeshObstacle obstacle;
+
     TMP_Text interactText;
 
     public float fOpenDuration = 1f;
+    float fNavObstacleChangeTime;
 
     public float fOpenAngle = -90f;
 
@@ -26,7 +30,9 @@ public class Door : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        fNavObstacleChangeTime = fOpenDuration / 2;
         interactText = gameObject.GetComponentInChildren<TMP_Text>();
+        obstacle = gameObject.GetComponent<NavMeshObstacle>();
     }
 
     private void Update()
@@ -78,9 +84,20 @@ public class Door : MonoBehaviour, IInteractable
         // set the rotation target by using the above multipler and multiplying it with the angle
         Quaternion targetRotation = initialRotation * Quaternion.Euler(0, fOpenAngle * fOpenMultipler, 0);
 
+        bool bNavmeshChange = true;
+
         while (fElapsedTime < fOpenDuration)
         {
             doorToRotate.transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, fElapsedTime / fOpenDuration);
+
+            if (fElapsedTime > fNavObstacleChangeTime && bNavmeshChange)
+            {
+                if (bInitialInteraction) { obstacle.carving = false; }
+                else { obstacle.carving = true; }
+
+                bNavmeshChange = false;
+            }
+
             fElapsedTime += Time.deltaTime;
             yield return null;
         }

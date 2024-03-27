@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 5912941372628270769}
   - component: {fileID: 8174791857678944146}
   - component: {fileID: 533692978}
+  - component: {fileID: 1253371399}
   m_Layer: 0
   m_Name: SteelDoor
   m_TagString: Untagged
@@ -359,6 +360,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0779676, y: 2.570123, z: 0.11224365}
   m_Center: {x: -0.004389286, y: 1.1701821, z: 0.004142761}
+--- !u!208 &1253371399
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4980340282672315200}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &709378290215016433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -398,47 +415,47 @@ PrefabInstance:
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0.9968796
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00024425983
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.08364868
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9995366
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.009883754
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000044703478
+      value: -0.028790623
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.00028469134
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -1.133
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4007778095016278871, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
@@ -453,12 +470,12 @@ PrefabInstance:
     - target: {fileID: 4383599331617874413, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_NavMeshLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4383599331617874413, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6720214911031123779, guid: caab1011695eac1469dbb7ade4837854,
         type: 3}
