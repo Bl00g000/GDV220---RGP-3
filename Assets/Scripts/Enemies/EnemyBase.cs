@@ -201,17 +201,16 @@ public class EnemyBase : MonoBehaviour
     public void TakeDamage(float _fDamage)
     {
         fHealth -= _fDamage;
-<<<<<<< Updated upstream
+
+        if (_fDamage > 0)
+        {
+            OnDamageTaken?.Invoke(_fDamage);
+        }
 
         // THE ENEMIES DIE NOW AND SO DOES TEDDY
         if (fHealth <= 0)
         {
             Destroy(gameObject);
-=======
-        if (_fDamage > 0)
-        {
-            OnDamageTaken?.Invoke(_fDamage);
->>>>>>> Stashed changes
         }
     }
 }

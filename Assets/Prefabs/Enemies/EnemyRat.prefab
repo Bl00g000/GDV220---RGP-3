@@ -54,9 +54,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -89,7 +89,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -104,7 +104,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.1388889
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e34f8a590bf30b745a09c33c92ed463c, type: 3}
   - {fileID: 8300000, guid: d04af6db8d7593a49af5292a426b3753, type: 3}
   - {fileID: 8300000, guid: 5638788423b40994a817753a0382dfb6, type: 3}
-  volumeScale: 4
+  volumeScale: 3
 --- !u!1 &644507889341408046
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0
   volumeSpeed: 3
-  volumeMax: 0.4
+  volumeMax: 0.5
 --- !u!1 &4004386512860708943
 GameObject:
   m_ObjectHideFlags: 0
