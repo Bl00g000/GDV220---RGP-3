@@ -96,6 +96,10 @@ public class Searchable : MonoBehaviour, IInteractable
                             yield return new WaitForSeconds(1f);
                         }
                     }
+                    else
+                    {
+                        bHasCamAmmo = false;
+                    }
                 }
 
                 if (bHasHealth)
@@ -124,6 +128,10 @@ public class Searchable : MonoBehaviour, IInteractable
                         }
 
 
+                    }
+                    else
+                    {
+                        bHasHealth = false;
                     }
                 }
 
