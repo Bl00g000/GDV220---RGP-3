@@ -176,6 +176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -612780603553236571, guid: 67bbe72319de973448c1cd82e8271e52,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -612780603553236571, guid: 67bbe72319de973448c1cd82e8271e52,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e107a85c1a421f448a028715840050f8, type: 2}
@@ -183,6 +188,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rat_Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697658199696305303, guid: 67bbe72319de973448c1cd82e8271e52,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67bbe72319de973448c1cd82e8271e52, type: 3}
