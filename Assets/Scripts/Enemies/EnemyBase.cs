@@ -162,7 +162,6 @@ public class EnemyBase : MonoBehaviour
         
         Vector3 v3WanderPos = FindNewWanderPos();
         navMeshAgent.SetDestination(v3WanderPos);
-        Debug.Log("New wander destination");
 
         // Wait until path has been completed -- DIFFERENT FROM PATHSTATUS!!!
         yield return new WaitUntil(() => !navMeshAgent.hasPath);
