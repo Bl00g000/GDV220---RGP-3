@@ -61,6 +61,7 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        Debug.Log("Flashlighted: " + bFlashlighted);
         if (bFlashlighted)
         {
             if (visualEffect) visualEffect.enabled = true;
@@ -113,7 +114,10 @@ public class EnemyBase : MonoBehaviour
             StartCoroutine(Wander());
         }
 
-        bFlashlighted = false;
+        if (!Flashlight.instance.pointsToPlane.LightContainsObject(gameObject))
+        {
+            bFlashlighted = false;
+        }
         
         if (animator)
         {
@@ -198,7 +202,6 @@ public class EnemyBase : MonoBehaviour
         // THE ENEMIES DIE NOW AND SO DOES TEDDY
         if (fHealth <= 0)
         {
-            Debug.Log(gameObject.name + " DIED");
             Destroy(gameObject);
         }
     }

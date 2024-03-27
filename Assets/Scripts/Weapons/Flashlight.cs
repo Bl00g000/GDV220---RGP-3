@@ -8,7 +8,7 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     public VisionCone flashlightVisionCone;
-    PointsToPlane pointsToPlane;
+    public PointsToPlane pointsToPlane;
     public float fFlashLightDPS = 2.0f;
     Collider[] collisions;
     public bool bFlashLightActive = false;
