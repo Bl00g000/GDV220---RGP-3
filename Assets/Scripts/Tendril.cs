@@ -10,6 +10,8 @@ using UnityEngine.Serialization;
 public class Tendril : MonoBehaviour
 {
     float health = 100f;
+    float maxHealth = 100f;
+    float minHealth = 10.0f;
 
     public List<MeshRenderer> tendrilMeshes;
     public float timeToGrow = 5f;
@@ -69,20 +71,28 @@ public class Tendril : MonoBehaviour
         if (other.tag == "Light")
         {
             Debug.Log("LightDetected");
-            if (health > 0f)
+            if (health > minHealth)
             {
                 health -= 2f;
-                if (health < 0f) health = 0f;
+                if (health <= 0f) { health = minHealth; }
+            }
+            else
+            {
+                health = minHealth;
             }
         }
     }
 
     void FixedUpdate()
     {
-        if (health < 100f)
+        if (health < minHealth)
+        {
+            health = minHealth;
+        }
+        if (health < maxHealth)
         {
             health += 1f;
-            if (health > 100f) health = 100f;
+            if (health > maxHealth) { health = maxHealth; }
         }
     }
 }

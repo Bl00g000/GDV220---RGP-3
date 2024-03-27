@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public float reverseModifier = 0.6f;
     public float rotSpeed = 20.0f;
     public float gravity = -9.8f;
+
+
+    public bool bInTendrils = false;
+    public float fTendrilMultiplier = 0.45f;
+    public bool bIsWinding = false;
+    public float fWindingMultiplier = 0.55f;
 
     public GameObject respawnLocation;    //Spawn Location object
 
@@ -95,12 +102,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown("c"))
-        {
-            KnockPlayerBack(8.0f, new Vector3(1.0f, 0.0f,0.4f));
-           // UIOverlayObject.gameObject.GetComponent<InGameMenu>().ToggleCamControls();
-        }
-
+       
 
         if (canMove)
         {
@@ -133,18 +135,30 @@ public class PlayerMovement : MonoBehaviour
 
         currentMoveSpeed = moveSpeed;
 
-       testInverseVec = transform.InverseTransformDirection(Vector3.forward);
+
+        
+        if (bIsWinding)
+        {
+            currentMoveSpeed *= fWindingMultiplier;
+        }
+        if(bInTendrils)
+        {
+            currentMoveSpeed *= fTendrilMultiplier;
+        }
+
+
+        //testInverseVec = transform.InverseTransformDirection(Vector3.forward);
         //testInverseVec = transform.InverseTransformDirection(lookDirection);
 
-        testmovedirvec = playerController.transform.forward;
+        //testmovedirvec = playerController.transform.forward;
 
         //testsubtractedVec1 = testInverseVec - moveDirection;
         //testsubtractedVec2 = moveDirection - testInverseVec;
 
-        testsubtractedVec3 =  moveDirection - testmovedirvec;
-        testsubtractedVec4 = testmovedirvec - moveDirection ;
+        //testsubtractedVec3 =  moveDirection - testmovedirvec;
+        // testsubtractedVec4 = testmovedirvec - moveDirection ;
 
-        testaddedvec = testmovedirvec + moveDirection ;
+        // testaddedvec = testmovedirvec + moveDirection ;
         //Ab =  (float)testInverseVec.y - (float)moveDirection.y;
         //Bb =   moveDirection.y - testInverseVec.y;
         //Vb = testInverseVec.y + moveDirection.y;
@@ -152,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         //moveLookDiff =  transform.rotation.eulerAngles;
 
         // calculate movement direction
-        if(Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
+        if (Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
         {
 
 
@@ -167,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Mathf.Abs(testaddedvec.z) < 1.0f)
         {
-            currentMoveSpeed *= reverseModifier;
+           // currentMoveSpeed *= reverseModifier;
         }
 
 
@@ -189,6 +203,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+
+        if (!knockingBack)
+        {
+            SpeedControl();
+        }
+
         //Get movement input
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
@@ -202,8 +222,9 @@ public class PlayerMovement : MonoBehaviour
             moveDirection.Normalize();
 
             //changes speed depending on direction
-            //SpeedControl();
-
+            
+           
+            
 
             //Turn character according to movement
             
