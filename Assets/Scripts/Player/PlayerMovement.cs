@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float fWindingMultiplier = 0.55f;
 
     public GameObject respawnLocation;    //Spawn Location object
+    public AudioSource tendrilEnterAudio;
 
     //public Rigidbody trackRigidBody;    //RigidBody
     [HideInInspector]public CharacterController playerController;    //CharacterController
@@ -348,6 +349,13 @@ public class PlayerMovement : MonoBehaviour
     {
         
     }
+
+
+    //public void PlayInTendrilAudio()
+    //{
+    //    
+    //}
+
 
     public void KnockPlayerBack(float _knockbackSpeed, Vector3 _knockbackDirection)
     {
