@@ -93,7 +93,7 @@ public class CameraWeapon : MonoBehaviour
                     {
                         EnemyBase enemyBase = _collider.GetComponent<EnemyBase>();
                         enemyBase.bFlashlighted = true;
-                        enemyBase.fHealth -= fCameraFlashDamage;
+                        enemyBase.TakeDamage(fCameraFlashDamage);
                     }
                 }
             }

@@ -86,10 +86,14 @@ public class Flashlight : MonoBehaviour
             {
                 if (_collider.CompareTag("Enemy"))
                 {
-                    Debug.Log("enemy hit");
                     EnemyBase enemyBase = _collider.GetComponent<EnemyBase>();
                     enemyBase.bFlashlighted = true;
-                    enemyBase.TakeDamage(fFlashLightDPS * Time.deltaTime);
+
+                    // Do damage if the enemy is a tendril
+                    if (enemyBase.gameObject.GetComponent<EnemyTendril>() != null)
+                    {
+                        enemyBase.TakeDamage(fFlashLightDPS * Time.deltaTime);
+                    }
                 }
             }
         }
