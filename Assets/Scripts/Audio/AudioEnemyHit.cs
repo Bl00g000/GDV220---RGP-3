@@ -13,8 +13,7 @@ public class AudioEnemyHit : MonoBehaviour
     {
         m_audioSource = GetComponent<AudioSource>();
 
-        enemyBase = transform.root.GetComponent<EnemyBase>();
-        enemyBase.OnDamageTaken += OnEnemyDamaged;
+        enemyBase = transform.parent.parent.GetComponent<EnemyBase>();
     }
 
     private void OnEnemyDamaged(float damage)

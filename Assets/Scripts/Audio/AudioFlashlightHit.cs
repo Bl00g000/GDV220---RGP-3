@@ -13,7 +13,7 @@ public class AudioFlashlightHit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EnemyBase = transform.root.GetComponent<EnemyBase>();
+        EnemyBase = transform.parent.parent.GetComponent<EnemyBase>();
         m_audioSource = GetComponent<AudioSource>();
         wantedVolume = 0;
     }
