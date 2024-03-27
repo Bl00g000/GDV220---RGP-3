@@ -12,6 +12,8 @@ public class EnemyBase : MonoBehaviour
 
     protected NavMeshAgent navMeshAgent;
 
+    public bool bCanDie = true;
+
     public float fMaxHealth;
     public float fHealth;
     public float fDamage;
@@ -35,6 +37,9 @@ public class EnemyBase : MonoBehaviour
 
     protected Animator animator;
     private VisualEffect visualEffect;
+
+    public float fDamagePlayerCooldown = 0.3f;
+    public bool bCanDamagePlayer = true;
 
     // event
 
@@ -67,14 +72,11 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        Debug.Log("Wandering: " + bWandering);
-
         // Flashlighted check
         if (bFlashlighted)
         {
             if (visualEffect) visualEffect.enabled = true;
             fSlowMultiplier = 0.2f;
-            Debug.Log("flashlighted - attack");
 
             // Aggro enemies when flashlighted?!
             if (bWandering)
@@ -160,7 +162,6 @@ public class EnemyBase : MonoBehaviour
         
         Vector3 v3WanderPos = FindNewWanderPos();
         navMeshAgent.SetDestination(v3WanderPos);
-        Debug.Log("New wander destination");
 
         // Wait until path has been completed -- DIFFERENT FROM PATHSTATUS!!!
         yield return new WaitUntil(() => !navMeshAgent.hasPath);
@@ -201,12 +202,38 @@ public class EnemyBase : MonoBehaviour
         // THE ENEMIES DIE NOW AND SO DOES TEDDY
         if (fHealth <= 0)
         {
-            Destroy(gameObject);
+
+            if(_fDamage == PlayerData.instance.cameraWeapon.fCameraFlashDamage|| bCanDie)
+            {
+                Destroy(gameObject);
+            }
+            
+
+            
         }
 
         if (_fDamage > 0)
         {
             OnDamageTaken?.Invoke(_fDamage);
         }
+    }
+
+    public IEnumerator PlayerDamageCD()
+    {
+        float fElapsedTime = 0f;
+
+        while (fElapsedTime < fDamagePlayerCooldown)
+        {
+            fElapsedTime += Time.deltaTime;
+
+            if (fElapsedTime > fDamagePlayerCooldown)
+            {
+                bCanDamagePlayer = true;
+                break;
+            }
+            yield return null;
+        }
+
+        yield return null;
     }
 }

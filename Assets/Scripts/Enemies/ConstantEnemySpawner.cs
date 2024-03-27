@@ -15,7 +15,21 @@ public class ConstantEnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnPoint = transform.GetChild(0).transform.position;
+        GetComponent<Renderer>().enabled = false;
+
+        foreach (Transform child in transform)
+        {
+            // Set spawn point and disable sprite renderer
+            if (child.GetComponent<SpriteRenderer>() != null)
+            {
+                spawnPoint = child.position;
+                child.GetComponent<SpriteRenderer>().enabled = false;
+                continue;
+            }
+
+            tendrils.Add(child.GetComponent<EnemyTendril>());
+        }
+
         transform.GetChild(0).GetComponent<Renderer>().enabled = false;
 
         ////////// UNCOMMENT BELOW TO DISABLE CUBE ON START
@@ -25,12 +39,12 @@ public class ConstantEnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckTendrilsDeath();
+
         if (!bIsSpawning)
         {
             StartCoroutine(SpawnEnemies());
         }
-
-        CheckTendrilsDeath();
     }
 
     private IEnumerator SpawnEnemies()
@@ -39,8 +53,8 @@ public class ConstantEnemySpawner : MonoBehaviour
 
         bIsSpawning = true;
 
-        // Child count - 1 because spawn point is a child
-        while (transform.childCount - 1 < iMaxNumSpawns)
+        // Child count - num tendrils - 1 (spawn point)
+        while (transform.childCount - tendrils.Count - 1 < iMaxNumSpawns)
         {
             int iEnemySpawning = Random.Range(0, enemiesToSpawn.Count);     // int - max exclusive
             var enemySpawned = Instantiate(enemiesToSpawn[iEnemySpawning], spawnPoint, transform.rotation);
@@ -59,15 +73,24 @@ public class ConstantEnemySpawner : MonoBehaviour
 
         foreach (Transform child in transform)
         {
-            if (child.gameObject.GetComponent<EnemyBase>() != null)
+            if (child.gameObject.GetComponent<EnemyTendril>() != null)
             {
-                tendrils.Add(child.gameObject.GetComponent<EnemyBase>());
+                tendrils.Add(child.gameObject.GetComponent<EnemyTendril>());
             }
         }
 
         // If no tendrils found, destroy spawner
         if (tendrils.Count <= 0)
         {
+            // Unparent all spawns so they don't die when we destroy this
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject.GetComponent<EnemyBase>() != null)
+                {
+                    child.SetParent(null);
+                }
+            }
+
             Destroy(gameObject);
         }
     }

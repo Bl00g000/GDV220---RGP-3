@@ -9,6 +9,8 @@ public class PlayerData : MonoBehaviour
 
     //public PlayerHealthBarUI healthBarUI;
 
+    public CameraWeapon cameraWeapon;
+
     public GameObject scrollingTextPF;
 
     public float fMaxHealth = 100.0f;
@@ -67,23 +69,23 @@ public class PlayerData : MonoBehaviour
         //}
         //
         ////use health pill on spacebar
-        //if (Input.GetKeyDown("r"))
-        //{
-        //    if(fCurrentHealth < fMaxHealth && iHealthPills > 0)
-        //    {
-        //        UseHealthPill();
-        //    }
-        //}
+        if (Input.GetKeyDown("r"))
+        {
+            if(fCurrentHealth < fMaxHealth && iHealthPills > 0)
+            {
+                UseHealthPill();
+            }
+        }
 
 
     }
 
-    public void TakeDamage(float _damage, bool _shouldLockoutDamage = true)
+    public void TakeDamage(float _damage, bool _shouldLockoutDamage = false)
     {
-        if(!bCanTakeDamage)
-        {
-            return;
-        }
+        //if(!bCanTakeDamage)
+        //{
+        //    return;
+        //}
         //means that damage always subtracts hp
         if(_damage < 0)
         {

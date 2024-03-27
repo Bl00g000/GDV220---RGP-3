@@ -18,9 +18,10 @@ public class EventEnemySpawner : MonoBehaviour
     void Start()
     {
         // Disable the sprite renderer on start
-        //GetComponent<Renderer>().enabled = false;
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;       // Collider disabled until camera pickup
 
-        if (transform.childCount > 0 && enemiesToSpawn.Count > 0)
+        if (transform.childCount > 0)
         {
             // Add spawn point locations here
             foreach (Transform child in transform)
@@ -34,6 +35,17 @@ public class EventEnemySpawner : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (PlayerData.instance.cameraWeapon.bHasCamera)
+        {
+            if (!GetComponent<Collider>().enabled)
+            {
+                GetComponent<Collider>().enabled = true;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (enemiesToSpawn.Count == 0) return;
@@ -43,7 +55,7 @@ public class EventEnemySpawner : MonoBehaviour
         {
             // Wrap enemy indices around to spawn them at all locations
             // Useful for if we want to spawn only 1 or 2 kinds of enemy in multiple locations
-            if (spawnPoints.Count >= enemiesToSpawn.Count)
+            if (spawnPoints.Count > enemiesToSpawn.Count)
             {
                 int iEnemiesIndex = 0;
 
@@ -62,7 +74,7 @@ public class EventEnemySpawner : MonoBehaviour
             }
             // Wrap spawn point indices around to spawn all enemies
             // Useful for if we want to spawn multiple enemies in 1 or 2 locations
-            else if(enemiesToSpawn.Count >= spawnPoints.Count)
+            else if(enemiesToSpawn.Count > spawnPoints.Count)
             {
                 int iSpawnIndex = 0;
 
@@ -79,15 +91,17 @@ public class EventEnemySpawner : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                // Spawn enemies at spawn points
+                for (int i = 0; i < enemiesToSpawn.Count; i++)
+                {
+                    Instantiate(enemiesToSpawn[i], spawnPoints[i].transform.position, spawnPoints[i].transform.rotation);
+                }
+            }
 
-            //// Spawn enemies at spawn points
-            //for (int i = 0; i < spawnPoints.Count; i++)
-            //{
-            //    Instantiate(enemiesToSpawn[i], spawnPoints[i], Quaternion.identity);
-            //}
+            // Disable the trigger so it can only be triggered once
+            Destroy(gameObject);
         }
-
-        // Disable the trigger so it can only be triggered once
-        GetComponent<Collider>().enabled = false;
     }
 }
