@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,10 @@ public class PlayerData : MonoBehaviour
 
 
     private int iUICroutonCounter = 0;
+
+    // Events
+
+    public event Action<float> OnPlayerDamaged;
 
     //Singleton
     private void Awake()
@@ -88,7 +93,10 @@ public class PlayerData : MonoBehaviour
         //Does the damage
         fCurrentHealth -= _damage;
 
-        if(_shouldLockoutDamage)
+        // evokes event
+        OnPlayerDamaged?.Invoke(_damage);
+
+        if (_shouldLockoutDamage)
         {
             bCanTakeDamage = false;
             StartCoroutine(LockoutDamage());
