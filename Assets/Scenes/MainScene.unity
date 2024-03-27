@@ -74948,19 +74948,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 593998869}
+      objectReference: {fileID: 319443444}
     - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 319443444}
+      objectReference: {fileID: 593998869}
     - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -74969,17 +74974,22 @@ PrefabInstance:
     - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameOver
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIInteractPrompt, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6047375873776961722, guid: cce2c9ab2f7e92342b70e8637e3595a4,
         type: 3}
