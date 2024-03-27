@@ -100,13 +100,15 @@ public class EnemyCharge : EnemyBase
     private IEnumerator PlayerHit()
     {
         if (bIsPaused) yield break;
-
-        // Stop moose and apply knockback to player
         bIsPaused = true;
         bAttacking = false;
 
+        // Stop moose and apply knockback to player
+        navMeshAgent.velocity = Vector3.zero;
         navMeshAgent.ResetPath();
-        PlayerMovement.instance.KnockPlayerBack(navMeshAgent.velocity.magnitude / 2.0f, navMeshAgent.transform.forward);
+        
+        float fKnockbackSpeed = Mathf.Max(navMeshAgent.velocity.magnitude, 10.0f);
+        PlayerMovement.instance.KnockPlayerBack(fKnockbackSpeed, navMeshAgent.transform.forward);
 
         yield return new WaitForSeconds(1.5f);
 
