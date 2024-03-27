@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 
 public class StreetLamp : MonoBehaviour
 {
+    public GameObject lightShaft;
+    
 
     public enum E_LightType
     {
@@ -25,6 +28,15 @@ public class StreetLamp : MonoBehaviour
 
     //Flicker variables
     private bool bFlickerInProgress = false;
+
+
+    private void Awake()
+    {
+        if (lightShaft)
+        {
+            lightShaft.SetActive(false);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +68,7 @@ public class StreetLamp : MonoBehaviour
 
     void ConstantUpdate()
     {
-
+        
     }
 
     void FlickerUpdate()
@@ -115,6 +127,7 @@ public class StreetLamp : MonoBehaviour
         {
             bLightIsOn = false;
             SpotLightRoot.SetActive(false);
+            if (lightShaft) lightShaft.SetActive(false);
             //streetLightFlickerAudio.Play();
         }
         else
@@ -122,6 +135,7 @@ public class StreetLamp : MonoBehaviour
 
             bLightIsOn = true;
             SpotLightRoot.SetActive(true);
+            if (lightShaft) lightShaft.SetActive(true);
             //streetlightOnAudio.Play();
             streetLightFlickerAudio.Play();
         }
