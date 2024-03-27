@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: caf1b07c699a947418d7f1de2e8ee5dc
-  - enabled: 1
-    path: Assets/Scenes/NathansNook.unity
-    guid: d0166496cddba5049bf2cf8758cf7320
   m_configObjects: {}

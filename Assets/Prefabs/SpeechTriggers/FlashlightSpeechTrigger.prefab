@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4686127493471835025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.43, y: -0.0000009536743, z: -88.05942}
-  m_LocalScale: {x: 2.853989, y: 4.8560624, z: 2.9032848}
+  m_LocalScale: {x: 8.3878145, y: 4.8560624, z: 7.039415}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: Darn! Forgot my flashlight again ...
-  timeBetweenLetters: 0.04
+  timeBetweenLetters: 0.06
   deleteAfterMessage: 0
