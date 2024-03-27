@@ -11,6 +11,8 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
 
     public GameObject flashlightUI;
 
+    public AudioSource audioSource;
+
     public GameObject scrollingTextPF;
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class FlashlightPickup : MonoBehaviour, IInteractable
         if (!bInteracting)
         {
             bCanInteract = false;
+            audioSource.Play();
             UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testFlashlight, Vector3.one, "Flashlight", "THIS IS A FLASHLIGHT WOOHOO");
             UIInteractPrompt.instance.flashlightPickupButton.SetActive(true);
 

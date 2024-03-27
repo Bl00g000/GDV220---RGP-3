@@ -10,6 +10,8 @@ public class CameraPickup : MonoBehaviour, IInteractable
 
     public GameObject cameraUI;
 
+    public AudioSource audioSource;
+
     public GameObject scrollingTextPF;
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class CameraPickup : MonoBehaviour, IInteractable
         if (!bInteracting)
         {
             bCanInteract = false;
+            audioSource.Play();
             UIInteractPrompt.instance.Interact(UIInteractPrompt.instance.testCamera, Vector3.one*0.5f, "Camera", "SAY CHEESE! :3");
             UIInteractPrompt.instance.cameraPickupButton.SetActive(true);
         }
