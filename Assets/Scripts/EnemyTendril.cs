@@ -72,7 +72,7 @@ public class EnemyTendril : EnemyBase
             // Regen
             if (fHealth < fMaxHealth)
             {
-                fHealth += (fMaxHealth - fHealth) * 0.01f;
+                fHealth += (fMaxHealth - fHealth) * 0.15f * Time.deltaTime;
 
             }
         }
@@ -125,7 +125,7 @@ public class EnemyTendril : EnemyBase
         {
             PlayerMovement.instance.bInTendrils = true;
             // Turn IFrames off for tendril damage
-            PlayerData.instance.TakeDamage(fDamage * Time.fixedDeltaTime, false);
+            PlayerData.instance.TakeDamage(fDamage  * Time.fixedDeltaTime, false);
         }
     }
     private void OnTriggerExit(Collider _collision)

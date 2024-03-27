@@ -276,7 +276,7 @@ MonoBehaviour:
   floorLight: {fileID: 1925234789}
   fMaxCharge: 10
   fChargeGainMultiplier: 9
-  fChargeDrainPerSecond: 1.8
+  fChargeDrainPerSecond: 1.3
   fCurrentCharge: 0
   flashlightOnAudio: {fileID: 1274214858866839554}
   outOfChargeAudio: {fileID: 1026908372706598181}
