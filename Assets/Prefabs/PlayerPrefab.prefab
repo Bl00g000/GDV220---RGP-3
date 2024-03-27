@@ -222,7 +222,7 @@ MonoBehaviour:
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 15}
   m_Size: {x: 30, y: 30, z: 30}
-  m_FadeFactor: 0.6
+  m_FadeFactor: 0.65
 --- !u!1 &360119843
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 1
   m_Range: 2
   m_SpotAngle: 38.46328
   m_InnerSpotAngle: 17
@@ -1036,7 +1036,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925234786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.285, z: 0.132}
+  m_LocalPosition: {x: 0, y: 1.579, z: 0.426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1055,10 +1055,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
+  m_Intensity: 25
   m_Range: 10
-  m_SpotAngle: 110
-  m_InnerSpotAngle: 110
+  m_SpotAngle: 150
+  m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
