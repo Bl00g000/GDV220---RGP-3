@@ -22,6 +22,8 @@ public class EnemyCharge : EnemyBase
         if (!bAttacking)
         {
             bWandering = false;
+
+            if (fAggroRange == fOrigAggroRange) fAggroRange *= 5.0f;
             StartCoroutine(Charge());
         }
     }
@@ -31,7 +33,7 @@ public class EnemyCharge : EnemyBase
         if (bIsPaused) yield break;
 
         bAttacking = true;
-        navMeshAgent.speed = fAttackingSpeed * fSlowMultiplier;
+        navMeshAgent.speed = fAttackingSpeed;
 
         // Prep time (IT STOMPIN ITS FEETS!)
         //Debug.Log("Preparing to charge...");
@@ -39,22 +41,17 @@ public class EnemyCharge : EnemyBase
         StartCoroutine(TurnTowardsPlayer());
         yield return new WaitUntil(() => !bIsTurning);
 
-        if (!bAttacking)
-        {
-            yield break;
-        }
-
         v3TargetPos = PlayerMovement.instance.transform.position;
 
         //////////// Uncomment below if you want the moose to pause before charging!!
         yield return new WaitForSeconds(0.5f);
 
         // Charge at player position
-        Debug.Log("Charging now!");
+        //Debug.Log("Charging now!");
         navMeshAgent.SetDestination(v3TargetPos);
         
         // Wait until charge is finished
-        yield return new WaitUntil(() => Vector3.Distance(v3TargetPos, transform.position) <= 1.0f);
+        yield return new WaitUntil(() => Vector3.Distance(v3TargetPos, transform.position) <= 1.0f && !bIsPaused);
         navMeshAgent.ResetPath();
 
         bAttacking = false;
@@ -75,18 +72,15 @@ public class EnemyCharge : EnemyBase
 
             // Cast a ray towards the moose's forward vector
             
-            if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 5.0f, playerLayer))
+            if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange, playerLayer))
             {
                 // Break if it hits the player
                 break;
             }
-            else if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 5.0f, wallLayer))
+            else if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange, wallLayer))
             {
+                // Break if it hits wall and stop attacking
                 bAttacking = false;
-                break;
-            }
-            else if (bWandering)
-            {
                 break;
             }
 
@@ -110,7 +104,7 @@ public class EnemyCharge : EnemyBase
         float fKnockbackSpeed = Mathf.Max(navMeshAgent.velocity.magnitude, 10.0f);
         PlayerMovement.instance.KnockPlayerBack(fKnockbackSpeed, navMeshAgent.transform.forward);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
 
         bIsPaused = false;
     }

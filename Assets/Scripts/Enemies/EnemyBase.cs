@@ -17,6 +17,7 @@ public class EnemyBase : MonoBehaviour
     public float fDamage;
     public float fWanderSpeed;
     public float fAttackingSpeed;
+    protected float fOrigAggroRange;
     public float fAggroRange;
     [HideInInspector] public float fSlowMultiplier;
 
@@ -52,6 +53,7 @@ public class EnemyBase : MonoBehaviour
         bAttacking = false;
         bFlashlighted = false;
         fSlowMultiplier = 1.0f;
+        fOrigAggroRange = fAggroRange;
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         v3StartingPosition = transform.position;
@@ -65,6 +67,9 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        Debug.Log("Wandering: " + bWandering);
+
+        // Flashlighted check
         if (bFlashlighted)
         {
             if (visualEffect) visualEffect.enabled = true;
@@ -74,8 +79,8 @@ public class EnemyBase : MonoBehaviour
             // Aggro enemies when flashlighted?!
             if (bWandering)
             {
-                bWandering = false;
                 StopCoroutine(Wander());
+                bWandering = false;
                 navMeshAgent.ResetPath();
             }
 
@@ -87,16 +92,17 @@ public class EnemyBase : MonoBehaviour
             if (visualEffect) visualEffect.enabled = false;
         }
 
+        // Player instance check
         if (PlayerMovement.instance.gameObject.activeSelf)
         {
             // Check if player is inside aggro range and there is a visible line between the enemy and player
-            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange && HasLOS())
+            if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fOrigAggroRange && HasLOS(fOrigAggroRange))
             {
                 // If within aggro range, stop wandering
                 if (bWandering)
                 {
-                    bWandering = false;
                     StopCoroutine(Wander());
+                    bWandering = false;
                     navMeshAgent.ResetPath();
                 }
 
@@ -112,8 +118,9 @@ public class EnemyBase : MonoBehaviour
             bAttacking = false;
         }
 
-        if (!bWandering && !bAttacking && !HasLOS())
+        if (!bAttacking || !HasLOS(fAggroRange))
         {
+            //fAggroRange = fOrigAggroRange;
             StartCoroutine(Wander());
         }
 
@@ -133,20 +140,6 @@ public class EnemyBase : MonoBehaviour
         // depending on how enemy attacks
     }
 
-    //protected void CheckDamagePlayer()
-    //{
-    //
-    //    float fDistFromPlayer = Vector3.Distance(transform.position, PlayerMovement.instance.transform.position);
-    //    if (fDistFromPlayer <= 1.0f)
-    //    {
-    //        // DEAL DAMAGE HERE
-    //        Debug.Log("DEATH TO THE PLAYER!");
-    //
-    //        PlayerData.instance.TakeDamage(fDamage);
-    //       // PlayerMovement.instance.gameObject.SetActive(false);
-    //    }
-    //}
-
     protected Vector3 FindNewWanderPos()
     {
         Vector3 v3MinPos = v3StartingPosition - new Vector3(fWanderRadius, 0.0f, fWanderRadius);
@@ -159,13 +152,16 @@ public class EnemyBase : MonoBehaviour
 
     protected IEnumerator Wander()
     {
+        if (bWandering) yield break;
+
+        bWandering = true;
         // Set wander speed and position
         navMeshAgent.speed = fWanderSpeed * fSlowMultiplier;
         
         Vector3 v3WanderPos = FindNewWanderPos();
         navMeshAgent.SetDestination(v3WanderPos);
-        bWandering = true;
-        
+        Debug.Log("New wander destination");
+
         // Wait until path has been completed -- DIFFERENT FROM PATHSTATUS!!!
         yield return new WaitUntil(() => !navMeshAgent.hasPath);
 
@@ -175,7 +171,7 @@ public class EnemyBase : MonoBehaviour
         bWandering = false;
     }
 
-    protected bool HasLOS()
+    protected bool HasLOS(float _fAggroRange)
     {
         RaycastHit playerHit;
         RaycastHit wallHit;
@@ -183,9 +179,9 @@ public class EnemyBase : MonoBehaviour
         Vector3 v3DirectionToPlayer = (PlayerMovement.instance.transform.position - navMeshAgent.transform.position).normalized;
 
         // cast 2 rays, one that checks for player and one that checks for walls, if there is a wall between the moose and the player
-        if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out playerHit, fAggroRange * 5.0f, playerLayer))
+        if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out playerHit, _fAggroRange, playerLayer))
         {
-            if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out wallHit, fAggroRange * 5.0f, wallLayer))
+            if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out wallHit, _fAggroRange, wallLayer))
             {
                 if (Vector3.Distance(transform.position, playerHit.point) > Vector3.Distance(transform.position, wallHit.point))
                 {
