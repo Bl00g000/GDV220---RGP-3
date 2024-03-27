@@ -14,7 +14,6 @@ public class AudioStep : MonoBehaviour
 
     void Step()
     {
-        Debug.Log("Step");
         if (grassStepSounds.Count == 0) return;
 
         AudioClip stepClip = grassStepSounds[Random.Range(0, grassStepSounds.Count)];

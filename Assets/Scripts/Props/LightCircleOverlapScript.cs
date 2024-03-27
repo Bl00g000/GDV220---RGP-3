@@ -35,9 +35,13 @@ public class LightCircleOverlapScript : MonoBehaviour
             if (_collider.gameObject.GetComponent<EnemyBase>())
             {
                 _collider.gameObject.GetComponent<EnemyBase>().bFlashlighted = true;
+                
+                // Do damage to tendrils
+                if (_collider.gameObject.GetComponent<EnemyTendril>() != null)
+                {
+                    _collider.gameObject.GetComponent<EnemyTendril>().TakeDamage(0.5f * Time.deltaTime);
+                }
             }
         }
     }
-    
-
 }

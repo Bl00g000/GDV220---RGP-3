@@ -190,5 +190,12 @@ public class EnemyBase : MonoBehaviour
     public void TakeDamage(float _fDamage)
     {
         fHealth -= _fDamage;
+
+        // THE ENEMIES DIE NOW AND SO DOES TEDDY
+        if (fHealth <= 0)
+        {
+            Debug.Log(gameObject.name + " DIED");
+            Destroy(gameObject);
+        }
     }
 }
