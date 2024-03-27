@@ -82,7 +82,7 @@ public class EnemyTendril : EnemyBase
         }
     }
 
-    private void OnCollisionStay(Collision _collision)
+    private void OnTriggerStay(Collider _collision)
     {
         // If player stays in tendril collision box then deal damage over time
         if (_collision.gameObject ==  PlayerData.instance.gameObject)
