@@ -53,27 +53,27 @@ public class PlayerData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TEST DAMAGE ON Y PRESS
-        if(Input.GetKeyDown("y"))
-        {
-            TakeDamage(5);
-        }
-        //TEST addign health pill on U PRESS
-        if (Input.GetKeyDown("u"))
-        {
-            AddHealthPillToInventory(1);
-            var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
-            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Health Pills";
-        }
-
-        //use health pill on spacebar
-        if (Input.GetKeyDown("r"))
-        {
-            if(fCurrentHealth < fMaxHealth && iHealthPills > 0)
-            {
-                UseHealthPill();
-            }
-        }
+        ////TEST DAMAGE ON Y PRESS
+        //if(Input.GetKeyDown("y"))
+        //{
+        //    TakeDamage(5);
+        //}
+        ////TEST addign health pill on U PRESS
+        //if (Input.GetKeyDown("u"))
+        //{
+        //    AddHealthPillToInventory(1);
+        //    var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position + new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
+        //    newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "+ Health Pills";
+        //}
+        //
+        ////use health pill on spacebar
+        //if (Input.GetKeyDown("r"))
+        //{
+        //    if(fCurrentHealth < fMaxHealth && iHealthPills > 0)
+        //    {
+        //        UseHealthPill();
+        //    }
+        //}
 
 
     }
