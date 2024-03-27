@@ -20,7 +20,9 @@ public class AudioPlayerHit : MonoBehaviour
 
         AudioClip hitClip = hitClips[Random.Range(0, hitClips.Count)];
 
-        float volume = Mathf.Clamp((damage / PlayerData.instance.fMaxHealth) * volumeScale, 0.1f,0.5f);
+        float volume = Mathf.Clamp((damage / PlayerData.instance.fMaxHealth), 0f,0.2f);
+        volume = Mathf.Clamp(volume * volumeScale, 0f, 1f);
+
         m_audioSource.PlayOneShot(hitClip, volume);
     }
 }
