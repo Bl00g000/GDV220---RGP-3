@@ -28,7 +28,7 @@ public class PlayerData : MonoBehaviour
     // Events
 
     public event Action<float> OnPlayerDamaged;
-
+    public event Action OnPlayerConsumePill;
     //Singleton
     private void Awake()
     {
@@ -143,7 +143,7 @@ public class PlayerData : MonoBehaviour
     {
         iHealthPills--;
         Heal(fHealthPillHeal);
-
+        OnPlayerConsumePill?.Invoke();
         //Sound effect
         //UI effect?
     }
