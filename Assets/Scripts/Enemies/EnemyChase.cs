@@ -45,6 +45,7 @@ public class EnemyChase : EnemyBase
     {
         if (other.gameObject == PlayerData.instance.gameObject)
         {
+            PlayerData.instance.TakeDamage(fDamage);
             StartCoroutine(HitPlayerPause());
         }
     }
