@@ -8,15 +8,15 @@ public class SpeechTrigger : MonoBehaviour
     public float timeBetweenLetters;
     public bool deleteAfterMessage;
 
-    public GameObject trigger;
+    public GameObject activeTrigger;
 
     // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other)
     {
-        if (trigger != null)
+        if (activeTrigger != null)
         {
-
+            if (!activeTrigger.activeSelf) return;
         }
 
         if (other.transform.root == PlayerData.instance.transform)
