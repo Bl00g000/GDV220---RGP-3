@@ -3267,6 +3267,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 452041058443532096, guid: 344547db3db5426419215bbb61d10b38,
+        type: 3}
+      propertyPath: iMaxNumSpawns
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 452041058443532096, guid: 344547db3db5426419215bbb61d10b38,
+        type: 3}
+      propertyPath: enemiesToSpawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452041058443532096, guid: 344547db3db5426419215bbb61d10b38,
+        type: 3}
+      propertyPath: enemiesToSpawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 644507889341408046, guid: 9bf279bc3d03bdc439a7edb92697a14e,
+        type: 3}
     - target: {fileID: 452041058443532097, guid: 344547db3db5426419215bbb61d10b38,
         type: 3}
       propertyPath: m_RootOrder
