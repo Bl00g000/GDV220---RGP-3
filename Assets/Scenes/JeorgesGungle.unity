@@ -19072,6 +19072,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1481018964}
     - target: {fileID: 360119845, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: windUpAudio
+      value: 
+      objectReference: {fileID: 1846473955}
+    - target: {fileID: 360119845, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: flickerAudio
+      value: 
+      objectReference: {fileID: 1846473954}
+    - target: {fileID: 360119845, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: outOfChargeAudio
+      value: 
+      objectReference: {fileID: 1846473956}
+    - target: {fileID: 360119845, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: flashlightOnAudio
+      value: 
+      objectReference: {fileID: 1846473957}
+    - target: {fileID: 360119845, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
       propertyPath: flashlightVisionCone
       value: 
       objectReference: {fileID: 1412547150}
@@ -19079,6 +19095,10 @@ PrefabInstance:
       propertyPath: fChargeDrainPerSecond
       value: 1.8
       objectReference: {fileID: 0}
+    - target: {fileID: 887326827, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+      propertyPath: cameraFlashAudio
+      value: 
+      objectReference: {fileID: 1846473953}
     - target: {fileID: 887326827, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
       propertyPath: playerVisionCone
       value: 
@@ -19173,6 +19193,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a9bada6e9277b4399b30f1da5d2e74, type: 3}
+--- !u!82 &1846473953 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3783453698005856083, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846473952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1846473954 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5600942633623126587, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846473952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1846473955 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3783453698426360593, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846473952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1846473956 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1026908372706598181, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846473952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1846473957 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1274214858866839554, guid: f5a9bada6e9277b4399b30f1da5d2e74,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846473952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1846840530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9079841344712297494, guid: 76747db8808e30d41a9b02db94a17379,
