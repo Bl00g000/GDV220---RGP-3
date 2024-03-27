@@ -21,10 +21,17 @@ public class Flashlight : MonoBehaviour
     public float fChargeDrainPerSecond = 2.5f;
     public float fCurrentCharge;
 
+    protected bool bFlickering = false;
+    protected bool bPendingOffButIsFlickering = false;
+    protected bool bHasFlickered0 = false;
+    protected bool bHasFlickered1 = false;
+    protected bool bHasFlickered2 = false;
+
     [Header("Audio")]
     public AudioSource flashlightOnAudio;
     public AudioSource outOfChargeAudio;
     public AudioSource windUpAudio;
+   // public AudioSource flickerAudio;
 
     [Header("Keybinds")]
     public KeyCode RechargeButton = KeyCode.R;
@@ -72,6 +79,11 @@ public class Flashlight : MonoBehaviour
 
         collisions = Physics.OverlapSphere(gameObject.GetComponentInParent<PlayerMovement>().transform.position, flashlightVisionCone.fFlashlightRange + 10);
         CheckForEnmiesHit();
+
+        CheckChargeMilestones();
+
+
+        
     }
 
     void CheckForEnmiesHit()
@@ -110,7 +122,16 @@ public class Flashlight : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            ToggleFlashLight();
+            if(bFlickering)
+            {
+                //bPendingOffButIsFlickering = true;
+                EndFlickerCrouton();
+            }
+            else
+            {
+                ToggleFlashLight();
+            }
+            
         }
     }
 
@@ -122,38 +143,64 @@ public class Flashlight : MonoBehaviour
             
             if (!windUpAudio.isPlaying && MathF.Abs(Input.mouseScrollDelta.y) > 0) // TODO: THIS NEEDS REWORKING THE SOUND SUCKS WOOHOO
             { 
-                windUpAudio.Play(); 
+                windUpAudio.Play();
+                if (fCurrentCharge >= 0.05f)
+                {
+                    bHasFlickered2 = false;
+                }
+                if (fCurrentCharge >= 0.25f)
+                {
+                    bHasFlickered1 = false;
+                }
+                if (fCurrentCharge >= 0.5f)
+                {
+                    bHasFlickered0 = false;
+                }
             }
 
             fCurrentCharge += MathF.Abs(Input.mouseScrollDelta.y * fChargeGainMultiplier) * Time.deltaTime;
             fCurrentCharge = Mathf.Clamp(fCurrentCharge, 0, fMaxCharge);
+
+            
         }
     }
 
-    void ToggleFlashLight()
+    void ToggleFlashLight(bool _playSound = true)
     {
         if (bFlashLightActive)
         {
-            OnFlashLightToggle?.Invoke(false);
             bFlashLightActive = false;
+            OnFlashLightToggle?.Invoke(false);
+            
 
-            // play audio
-            flashlightOnAudio.Play();
+            if(_playSound)
+            {
+                // play audio
+                flashlightOnAudio.Play();
+            }
+           
         }
         else if (!bFlashLightActive && fCurrentCharge > 0)
         {
             floorLight.intensity = Mathf.Lerp(0f, startFloorIntensity, fCurrentCharge / fMaxCharge);
 
             // invoke event and set flashlightactive bool
-            OnFlashLightToggle?.Invoke(true);
             bFlashLightActive = true;
+            OnFlashLightToggle?.Invoke(true);
+            
 
-            // play audio
-            flashlightOnAudio.Play();
+            if (_playSound)
+            {
+                // play audio
+                flashlightOnAudio.Play();
+            }
         }
         else
         {
-            outOfChargeAudio.Play();
+            if (_playSound)
+            {
+                outOfChargeAudio.Play();
+            }
         }
     }
 
@@ -182,4 +229,121 @@ public class Flashlight : MonoBehaviour
             }
         }
     }
+
+
+    //0 for tiny flicker, 1 for med flicker, 2 for super flicker
+    void Flicker(int _flickerCategory)
+    {
+        if(bFlickering || !bFlashLightActive)
+        {
+            return;
+        }
+        
+
+        switch (_flickerCategory)
+        {
+            case 0:
+                bFlickering = true;
+                StartCoroutine(FlickerCrouton0());
+                break;
+            case 1:
+                bFlickering = true;
+                StartCoroutine(FlickerCrouton1());
+                break;
+            case 2:
+                bFlickering = true;
+                StartCoroutine(FlickerCrouton2());
+                break;
+            default:
+                break;
+        
+        };
+
+    }
+
+    void CheckChargeMilestones()
+    {
+        if(bFlickering)
+        {
+            return;
+        }
+        if (fCurrentCharge / fMaxCharge < 0.5 && bHasFlickered0 == false)
+        {
+            bHasFlickered0 = true;
+            Flicker(0);
+        }
+        else if(fCurrentCharge / fMaxCharge <= 0.25 && bHasFlickered1 == false)
+        {
+            bHasFlickered1 = true;
+            Flicker(1);
+        }
+        else if (fCurrentCharge / fMaxCharge <= 0.06 && bHasFlickered2 == false)
+        {
+            bHasFlickered2 = true;
+            Flicker(2);
+        }
+    }
+
+    void EndFlickerCrouton()
+    {
+        bFlickering = false;
+        if (bFlashLightActive)
+        {
+            ToggleFlashLight();
+        }
+        
+    }
+
+    IEnumerator FlickerCrouton0()
+    {
+        ToggleFlashLight(false); //off
+        yield return new WaitForSeconds(0.02f);
+        if (!bFlickering) { yield break; }
+
+        ToggleFlashLight(false);//on
+        bFlickering = false;
+    }
+
+    IEnumerator FlickerCrouton1()
+    {
+        ToggleFlashLight(false); //off
+        yield return new WaitForSeconds(0.03f);
+        if (!bFlickering) { yield break; }
+
+        ToggleFlashLight(false);//on
+        yield return new WaitForSeconds(0.1f);
+        if (!bFlickering) { yield break; }
+
+        ToggleFlashLight(false);//off
+        yield return new WaitForSeconds(0.05f);
+        if (!bFlickering) { yield break; }
+
+        ToggleFlashLight(false);//on
+        bFlickering = false;
+    }
+
+    IEnumerator FlickerCrouton2()
+    {
+        ToggleFlashLight(false); //off
+        yield return new WaitForSeconds(0.03f);
+        if (!bFlickering) { yield break; }
+
+        ToggleFlashLight(false);//on
+        yield return new WaitForSeconds(0.1f);
+        if (!bFlickering) { yield break; }
+
+        ToggleFlashLight(false);//off
+        yield return new WaitForSeconds(0.4f);
+        if (!bFlickering) { yield break; }
+
+        ToggleFlashLight(false);//on
+        yield return new WaitForSeconds(0.3f);
+        if (!bFlickering) { yield break; }
+        ToggleFlashLight(false);//off
+        fCurrentCharge = 0;
+        outOfChargeAudio.Play();
+        bFlickering = false;
+        
+    }
+
 }
