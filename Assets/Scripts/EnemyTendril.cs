@@ -112,6 +112,7 @@ public class EnemyTendril : EnemyBase
         if (_collision.gameObject == PlayerData.instance.gameObject)
         {
             //makes player be in the tentacles for movespeed
+            PlayerMovement.instance.tendrilEnterAudio.Play();
             PlayerMovement.instance.bInTendrils = true;
         }
     }
@@ -124,13 +125,13 @@ public class EnemyTendril : EnemyBase
             PlayerData.instance.TakeDamage(fDamage * Time.fixedDeltaTime, false);
         }
     }
-    private void OnTriggerLeave(Collider _collision)
+    private void OnTriggerExit(Collider _collision)
     {
         // If player stays in tendril collision box then deal damage over time
         if (_collision.gameObject == PlayerData.instance.gameObject)
         {
             //makes player be in the tentacles for movespeed
-            PlayerMovement.instance.bInTendrils = false ;
+            PlayerMovement.instance.bInTendrils = false;
         }
     }
 }

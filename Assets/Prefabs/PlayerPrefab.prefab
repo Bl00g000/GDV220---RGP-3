@@ -1563,6 +1563,7 @@ MonoBehaviour:
   bIsWinding: 0
   fWindingMultiplier: 0.55
   respawnLocation: {fileID: 0}
+  tendrilEnterAudio: {fileID: 3671720454240827451}
   playerController: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   moveLookDiff: {x: 0, y: 0, z: 0}
@@ -1798,6 +1799,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAudio
       objectReference: {fileID: 0}
+    - target: {fileID: 6409017750381054034, guid: d31cce602914a37479f6c8b4842d9ccc,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409017750381054034, guid: d31cce602914a37479f6c8b4842d9ccc,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409017750381054034, guid: d31cce602914a37479f6c8b4842d9ccc,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6842205971830861269, guid: d31cce602914a37479f6c8b4842d9ccc,
         type: 3}
       propertyPath: m_RootOrder
@@ -1864,6 +1880,12 @@ AudioSource:
 --- !u!82 &1274214858866839554 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8911249638395601003, guid: d31cce602914a37479f6c8b4842d9ccc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7639782808523485289}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3671720454240827451 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6409017750381054034, guid: d31cce602914a37479f6c8b4842d9ccc,
     type: 3}
   m_PrefabInstance: {fileID: 7639782808523485289}
   m_PrefabAsset: {fileID: 0}
