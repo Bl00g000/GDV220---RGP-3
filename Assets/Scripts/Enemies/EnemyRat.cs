@@ -38,8 +38,6 @@ public class EnemyRat : EnemyBase
                 navMeshAgent.isStopped = false;
             //}
         }
-
-        CheckDamagePlayer(5.0f, true);
     }
 
     Vector3 GetOutOfLightDirection()
@@ -79,6 +77,14 @@ public class EnemyRat : EnemyBase
         else
         {
             return v3PosFromPlayer - v3ProjectedVec2;
+        }
+    }
+
+    private void OnCollisionStay(Collision _collision)
+    {
+        if (_collision.gameObject == PlayerData.instance.gameObject)
+        {
+            PlayerData.instance.TakeDamage(fDamage);
         }
     }
 }

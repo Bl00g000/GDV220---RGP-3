@@ -49,7 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fMaxHealth: 5
   fHealth: 5
-  fWanderSpeed: 0
+  fDamage: 5
+  fWanderSpeed: 2
   fAttackingSpeed: 5
   fAggroRange: 20
   fSlowMultiplier: 0

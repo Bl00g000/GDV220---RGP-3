@@ -66,7 +66,6 @@ public class EnemyTendril : EnemyBase
 
             }
         }
-        CheckDamagePlayer( fPlayerDamage * Time.deltaTime, bPlayerDamageLockout);
     }
 
     private IEnumerator SlowUpdate()
@@ -80,6 +79,16 @@ public class EnemyTendril : EnemyBase
             }
             yield return null;
             yield return null;
+        }
+    }
+
+    private void OnCollisionStay(Collision _collision)
+    {
+        // If player stays in tendril collision box then deal damage over time
+        if (_collision.gameObject ==  PlayerData.instance.gameObject)
+        {
+            // Turn IFrames off for tendril damage
+            PlayerData.instance.TakeDamage(fDamage * Time.fixedDeltaTime, false);
         }
     }
 }
