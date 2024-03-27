@@ -64,7 +64,7 @@ public class EnemyBase : MonoBehaviour
       
         if (bFlashlighted)
         {
-            visualEffect.enabled = true;
+            if (visualEffect) visualEffect.enabled = true;
             fSlowMultiplier = 0.2f;
             Debug.Log("flashlighted - attack");
 
@@ -77,7 +77,7 @@ public class EnemyBase : MonoBehaviour
         else
         {
             fSlowMultiplier = 1.0f;
-            visualEffect.enabled = false;
+            if (visualEffect) visualEffect.enabled = false;
         }
 
         if (PlayerMovement.instance.gameObject.activeSelf)

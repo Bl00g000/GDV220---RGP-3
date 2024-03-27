@@ -80,7 +80,7 @@ public class EnemyRat : EnemyBase
         }
     }
 
-    private void OnCollisionStay(Collision _collision)
+    private void OnTriggerStay(Collider _collision)
     {
         if (_collision.gameObject == PlayerData.instance.gameObject)
         {
