@@ -113,7 +113,7 @@ public class EnemyBase : MonoBehaviour
             StartCoroutine(Wander());
         }
 
-        if (!Flashlight.instance.pointsToPlane.LightContainsObject(gameObject))
+        if (!Flashlight.instance.pointsToPlane.LightContainsObject(gameObject) || !Flashlight.instance.bFlashLightActive)
         {
             bFlashlighted = false;
         }
