@@ -31,7 +31,7 @@ public class Flashlight : MonoBehaviour
     public AudioSource flashlightOnAudio;
     public AudioSource outOfChargeAudio;
     public AudioSource windUpAudio;
-   // public AudioSource flickerAudio;
+    public AudioSource flickerAudio;
 
     [Header("Keybinds")]
     public KeyCode RechargeButton = KeyCode.R;
@@ -297,6 +297,7 @@ public class Flashlight : MonoBehaviour
     IEnumerator FlickerCrouton0()
     {
         ToggleFlashLight(false); //off
+        flickerAudio.Play();
         yield return new WaitForSeconds(0.02f);
         if (!bFlickering) { yield break; }
 
@@ -307,6 +308,7 @@ public class Flashlight : MonoBehaviour
     IEnumerator FlickerCrouton1()
     {
         ToggleFlashLight(false); //off
+        flickerAudio.Play();
         yield return new WaitForSeconds(0.03f);
         if (!bFlickering) { yield break; }
 
@@ -315,6 +317,7 @@ public class Flashlight : MonoBehaviour
         if (!bFlickering) { yield break; }
 
         ToggleFlashLight(false);//off
+        flickerAudio.Play();
         yield return new WaitForSeconds(0.05f);
         if (!bFlickering) { yield break; }
 
@@ -325,6 +328,7 @@ public class Flashlight : MonoBehaviour
     IEnumerator FlickerCrouton2()
     {
         ToggleFlashLight(false); //off
+        flickerAudio.Play();
         yield return new WaitForSeconds(0.03f);
         if (!bFlickering) { yield break; }
 
@@ -333,6 +337,7 @@ public class Flashlight : MonoBehaviour
         if (!bFlickering) { yield break; }
 
         ToggleFlashLight(false);//off
+        flickerAudio.Play();
         yield return new WaitForSeconds(0.4f);
         if (!bFlickering) { yield break; }
 
