@@ -61,7 +61,6 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        Debug.Log("Flashlighted: " + bFlashlighted);
         if (bFlashlighted)
         {
             if (visualEffect) visualEffect.enabled = true;

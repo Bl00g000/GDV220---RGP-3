@@ -54,7 +54,6 @@ public class EnemyTendril : EnemyBase
     {
         if (bFlashlighted)
         {
-
             // Display damage indicator
             bFlashlighted = false;
             
@@ -77,6 +76,11 @@ public class EnemyTendril : EnemyBase
 
             }
         }
+
+        if (!Flashlight.instance.pointsToPlane.LightContainsObject(gameObject))
+        {
+            bFlashlighted = false;
+        }
     }
 
     private IEnumerator SlowUpdate()
@@ -89,7 +93,7 @@ public class EnemyTendril : EnemyBase
                 mat.SetFloat("_Grow", fHealth / fMaxHealth);
 
 
-                Debug.Log(fHealth/fMaxHealth);
+                //Debug.Log(fHealth/fMaxHealth);
                 // resize
                 boxCollider.size = new Vector3(boxCollider.size.x, boxCollider.size.y,fHealth/fMaxHealth * startingSizeZ);
                 boxCollider.center = new Vector3(boxCollider.center.x,
