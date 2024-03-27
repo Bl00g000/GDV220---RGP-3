@@ -25,6 +25,7 @@ public class UISpeech : MonoBehaviour
     {
         char[] dialogletters = dialog.ToCharArray();
         speechText.text = string.Empty;
+        speechText.color = new Color(speechText.color.r, speechText.color.b, speechText.color.g, 1f);
 
         foreach (char c in dialogletters) 
         {
