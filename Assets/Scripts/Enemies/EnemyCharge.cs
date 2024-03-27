@@ -75,12 +75,12 @@ public class EnemyCharge : EnemyBase
 
             // Cast a ray towards the moose's forward vector
             
-            if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 2.0f, playerLayer))
+            if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 5.0f, playerLayer))
             {
                 // Break if it hits the player
                 break;
             }
-            else if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 2.0f, playerLayer))
+            else if (Physics.Raycast(navMeshAgent.transform.position, navMeshAgent.transform.forward, out hit, fAggroRange * 5.0f, wallLayer))
             {
                 bAttacking = false;
                 break;

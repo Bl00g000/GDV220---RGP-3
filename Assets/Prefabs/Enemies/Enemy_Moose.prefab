@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 1377078933176228541}
   m_Layer: 29
   m_Name: Enemy_Moose
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,8 +133,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.178863, y: 0.8401823, z: 0.3479805}
-  m_Center: {x: -0.11771703, y: 2.98, z: 2.12}
+  m_Size: {x: 4.5, y: 0.8401823, z: 0.3479805}
+  m_Center: {x: 0, y: 2.98, z: 2.12}
 --- !u!65 &4138036634483680617
 BoxCollider:
   m_ObjectHideFlags: 0

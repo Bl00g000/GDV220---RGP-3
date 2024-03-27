@@ -61,7 +61,6 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-      
         if (bFlashlighted)
         {
             if (visualEffect) visualEffect.enabled = true;
@@ -69,10 +68,14 @@ public class EnemyBase : MonoBehaviour
             Debug.Log("flashlighted - attack");
 
             // Aggro enemies when flashlighted?!
-            if (!bAttacking)
+            if (bWandering)
             {
-                Attack();
+                bWandering = false;
+                StopCoroutine(Wander());
+                navMeshAgent.ResetPath();
             }
+
+            Attack();
         }
         else
         {
@@ -85,6 +88,7 @@ public class EnemyBase : MonoBehaviour
             // Check if player is inside aggro range and there is a visible line between the enemy and player
             if (Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) < fAggroRange && HasLOS())
             {
+                // If within aggro range, stop wandering
                 if (bWandering)
                 {
                     bWandering = false;
@@ -172,9 +176,9 @@ public class EnemyBase : MonoBehaviour
         Vector3 v3DirectionToPlayer = (PlayerMovement.instance.transform.position - navMeshAgent.transform.position).normalized;
 
         // cast 2 rays, one that checks for player and one that checks for walls, if there is a wall between the moose and the player
-        if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out playerHit, fAggroRange * 2.0f, playerLayer))
+        if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out playerHit, fAggroRange * 5.0f, playerLayer))
         {
-            if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out wallHit, fAggroRange * 2.0f, wallLayer))
+            if (Physics.Raycast(navMeshAgent.transform.position, v3DirectionToPlayer, out wallHit, fAggroRange * 5.0f, wallLayer))
             {
                 if (Vector3.Distance(transform.position, playerHit.point) > Vector3.Distance(transform.position, wallHit.point))
                 {
