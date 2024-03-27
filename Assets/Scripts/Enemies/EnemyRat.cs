@@ -13,7 +13,7 @@ public class EnemyRat : EnemyBase
 
         lightCone = PlayerMovement.instance.GetComponentInChildren<VisionCone>();
     }
-
+    
     public override void Attack()
     {
         bAttacking = true;
