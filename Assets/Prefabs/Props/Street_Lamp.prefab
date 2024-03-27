@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6039918119773516347}
   - component: {fileID: 6039918119773516346}
   - component: {fileID: 8458074572381759274}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 7203361845719891261}
   - component: {fileID: 4905418517876869623}
   - component: {fileID: 4774596717752687735}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Street_Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,6 +512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e10fe53578c9f4a449835cbbe9a424da,
         type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e10fe53578c9f4a449835cbbe9a424da,
+        type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -634,7 +639,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 31dfd31e01d7a8c48856e7338b95f435,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 31dfd31e01d7a8c48856e7338b95f435,
         type: 3}
