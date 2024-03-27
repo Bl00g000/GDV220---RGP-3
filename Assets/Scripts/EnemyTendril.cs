@@ -17,9 +17,20 @@ public class EnemyTendril : EnemyBase
     float fPlayerDamage = 1.0f;
     bool bPlayerDamageLockout = false;
 
+    BoxCollider boxCollider;
+    float startingSizeZ = 1f;
+    float startingCenterZ = 1f;
+
     void Awake()
     {
         growVineMaterials = new List<Material>();
+        boxCollider =  GetComponent<BoxCollider>();
+        if (boxCollider)
+        {
+            startingSizeZ = boxCollider.size.z;
+            startingCenterZ = boxCollider.center.z;
+        }
+
     }
 
     void Start()
@@ -76,6 +87,14 @@ public class EnemyTendril : EnemyBase
             {
                 var mat = growVineMaterials[i];
                 mat.SetFloat("_Grow", fHealth / fMaxHealth);
+
+
+                Debug.Log(fHealth/fMaxHealth);
+                // resize
+                boxCollider.size = new Vector3(boxCollider.size.x, boxCollider.size.y,fHealth/fMaxHealth * startingSizeZ);
+                boxCollider.center = new Vector3(boxCollider.center.x,
+                    boxCollider.center.y,
+                    startingCenterZ * fHealth/fMaxHealth);
             }
             yield return null;
             yield return null;
