@@ -113,4 +113,3 @@ MonoBehaviour:
   text: I should probably grab that flashlight ...
   timeBetweenLetters: 0.04
   deleteAfterMessage: 0
-  trigger: {fileID: 0}
