@@ -1102,7 +1102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3621c712da018cd40a3b99042c55c704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordDelay: 0.1
   wordStayLength: 1.5
   wordFade: 1
 --- !u!1 &2141231886
@@ -1782,6 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f196b83978be05041bc51813e719cc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraWeapon: {fileID: 887326827}
   scrollingTextPF: {fileID: 6730258568751694421, guid: d936bbfe70576a04485ee50da7c5ca3f,
     type: 3}
   fMaxHealth: 100
@@ -2070,6 +2070,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pitch
       value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409017750381054034, guid: d31cce602914a37479f6c8b4842d9ccc,
+        type: 3}
+      propertyPath: Priority
+      value: 186
       objectReference: {fileID: 0}
     - target: {fileID: 6409017750381054034, guid: d31cce602914a37479f6c8b4842d9ccc,
         type: 3}

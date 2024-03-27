@@ -16,7 +16,7 @@ public class EnemyTendril : EnemyBase
 
     float fPlayerDamage = 1.0f;
     bool bPlayerDamageLockout = false;
-    bool bCanDie = false;
+     
 
     BoxCollider boxCollider;
     float startingSizeZ = 1f;
@@ -30,7 +30,7 @@ public class EnemyTendril : EnemyBase
             startingSizeZ = boxCollider.size.z;
             startingCenterZ = boxCollider.center.z;
         }
-
+        bCanDie = false;
     }
 
     void Start()
@@ -115,7 +115,7 @@ public class EnemyTendril : EnemyBase
         {
             //makes player be in the tentacles for movespeed
             PlayerMovement.instance.tendrilEnterAudio.Play();
-            PlayerMovement.instance.bInTendrils = true;
+            
         }
     }
     private void OnTriggerStay(Collider _collision)
@@ -123,6 +123,7 @@ public class EnemyTendril : EnemyBase
         // If player stays in tendril collision box then deal damage over time
         if (_collision.gameObject ==  PlayerData.instance.gameObject)
         {
+            PlayerMovement.instance.bInTendrils = true;
             // Turn IFrames off for tendril damage
             PlayerData.instance.TakeDamage(fDamage * Time.fixedDeltaTime, false);
         }
@@ -135,5 +136,14 @@ public class EnemyTendril : EnemyBase
             //makes player be in the tentacles for movespeed
             PlayerMovement.instance.bInTendrils = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        
+        PlayerMovement.instance.bInTendrils = false;
+        
+
+        
     }
 }

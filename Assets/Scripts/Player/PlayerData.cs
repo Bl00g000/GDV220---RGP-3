@@ -9,6 +9,8 @@ public class PlayerData : MonoBehaviour
 
     //public PlayerHealthBarUI healthBarUI;
 
+    public CameraWeapon cameraWeapon;
+
     public GameObject scrollingTextPF;
 
     public float fMaxHealth = 100.0f;
@@ -67,13 +69,13 @@ public class PlayerData : MonoBehaviour
         //}
         //
         ////use health pill on spacebar
-        //if (Input.GetKeyDown("r"))
-        //{
-        //    if(fCurrentHealth < fMaxHealth && iHealthPills > 0)
-        //    {
-        //        UseHealthPill();
-        //    }
-        //}
+        if (Input.GetKeyDown("r"))
+        {
+            if(fCurrentHealth < fMaxHealth && iHealthPills > 0)
+            {
+                UseHealthPill();
+            }
+        }
 
 
     }

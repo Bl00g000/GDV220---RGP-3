@@ -12,6 +12,8 @@ public class EnemyBase : MonoBehaviour
 
     protected NavMeshAgent navMeshAgent;
 
+    public bool bCanDie = true;
+
     public float fMaxHealth;
     public float fHealth;
     public float fDamage;
@@ -204,7 +206,14 @@ public class EnemyBase : MonoBehaviour
         // THE ENEMIES DIE NOW AND SO DOES TEDDY
         if (fHealth <= 0)
         {
-            Destroy(gameObject);
+
+            if(_fDamage == PlayerData.instance.cameraWeapon.fCameraFlashDamage|| bCanDie)
+            {
+                Destroy(gameObject);
+            }
+            
+
+            
         }
 
         if (_fDamage > 0)
