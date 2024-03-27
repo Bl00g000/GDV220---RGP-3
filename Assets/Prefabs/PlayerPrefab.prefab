@@ -1163,7 +1163,7 @@ MonoBehaviour:
   fCameraFlashDamage: 10
   fFlashInSpeed: 4000
   fFlashOutSpeed: 2000
-  bHasCamera: 0
+  bHasCamera: 1
   cameraFlashAudio: {fileID: 3783453698005856083}
 --- !u!1 &4652980554819237494
 GameObject:

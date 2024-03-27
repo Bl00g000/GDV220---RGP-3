@@ -1,4 +1,5 @@
 using MPUIKIT;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,8 @@ public class Searchable : MonoBehaviour, IInteractable
     public float fSearchTime = 2.0f;
     float fSearchSpeed = 1.0f;
 
+    public event Action OnSearching;
+
     // Update is called once per frame
     void Update()
     {
@@ -52,6 +55,7 @@ public class Searchable : MonoBehaviour, IInteractable
 
     IEnumerator Search()
     {
+        OnSearching?.Invoke();
         bInteracting = true;
         float fCurrentSearchTime = 0;
 
@@ -74,7 +78,7 @@ public class Searchable : MonoBehaviour, IInteractable
 
                 if (bHasCamAmmo)
                 {
-                    float chanceToFind = Random.Range(0f, 1f);
+                    float chanceToFind = UnityEngine.Random.Range(0f, 1f);
 
                     if (chanceToFind < fCamAmmoChance)
                     {
@@ -104,7 +108,7 @@ public class Searchable : MonoBehaviour, IInteractable
 
                 if (bHasHealth)
                 {
-                    float chanceToFind = Random.Range(0f, 1f);
+                    float chanceToFind = UnityEngine.Random.Range(0f, 1f);
 
                     if (chanceToFind < fCamAmmoChance)
                     {
