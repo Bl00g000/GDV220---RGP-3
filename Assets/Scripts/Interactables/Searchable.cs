@@ -96,7 +96,7 @@ public class Searchable : MonoBehaviour, IInteractable
                         else
                         {
                             newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
-                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "(Max) flash bulbs";
+                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "flash bulbs inventory full";
                             yield return new WaitForSeconds(1f);
                         }
                     }
@@ -127,7 +127,7 @@ public class Searchable : MonoBehaviour, IInteractable
                         {
                             // here is where you find the selected item
                             var newFoundText = Instantiate(scrollingTextPF, gameObject.transform.position, Quaternion.identity);
-                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "(Max) Health Pills";
+                            newFoundText.GetComponent<ScrollingUpTextUI>().textToDisplay = "Health Pills inventory full";
                             yield return new WaitForSeconds(1f);
                         }
 
