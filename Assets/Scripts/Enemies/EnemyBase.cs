@@ -202,15 +202,15 @@ public class EnemyBase : MonoBehaviour
     {
         fHealth -= _fDamage;
 
-        if (_fDamage > 0)
-        {
-            OnDamageTaken?.Invoke(_fDamage);
-        }
-
         // THE ENEMIES DIE NOW AND SO DOES TEDDY
         if (fHealth <= 0)
         {
             Destroy(gameObject);
+        }
+
+        if (_fDamage > 0)
+        {
+            OnDamageTaken?.Invoke(_fDamage);
         }
     }
 }
