@@ -16,11 +16,11 @@ public class EnemyTendril : EnemyBase
 
     float fPlayerDamage = 1.0f;
     bool bPlayerDamageLockout = false;
+    bool bCanDie = false;
 
     BoxCollider boxCollider;
     float startingSizeZ = 1f;
     float startingCenterZ = 1f;
-
     void Awake()
     {
         growVineMaterials = new List<Material>();
@@ -57,12 +57,12 @@ public class EnemyTendril : EnemyBase
             // Display damage indicator
             bFlashlighted = false;
             
-            if (fHealth <= 0f)
-            {
-                // Spawn Death VFX
-                StopAllCoroutines();
-                DestroyImmediate(gameObject);
-            }
+            //if (fHealth <= 0f)
+            //{
+            //    // Spawn Death VFX
+            //    StopAllCoroutines();
+            //    DestroyImmediate(gameObject);
+            //}
         }
         else
         {
@@ -82,6 +82,8 @@ public class EnemyTendril : EnemyBase
             bFlashlighted = false;
         }
     }
+
+
 
     private IEnumerator SlowUpdate()
     {
@@ -104,7 +106,7 @@ public class EnemyTendril : EnemyBase
             yield return null;
         }
     }
-
+   
 
     private void OnTriggerEnter(Collider _collision)
     {
