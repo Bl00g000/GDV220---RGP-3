@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         bIsPaused = true;
         Time.timeScale = 0.0f;
 
+
         if (!_bWon)
         {
             gameOver.GetComponentInChildren<TextMeshProUGUI>().text = "GAME OVER...";
@@ -99,5 +100,7 @@ public class GameManager : MonoBehaviour
         }
 
         gameOver.SetActive(true);
+
+        Time.timeScale = 0.0f;
     }
 }
